@@ -12,29 +12,29 @@ import com.example.model.Movie;
 import com.example.service.*;
 
 @Controller
-@RequestMapping("/movie")
+@RequestMapping("movie")
 public class MovieController {
 
 	@Autowired
 	private MovieService movieService;
 	
-	@RequestMapping
+	@RequestMapping(method = RequestMethod.GET)
 	public String index(ModelMap modelMap) {
 		modelMap.addAttribute(new Movie());
 		modelMap.put("movies", movieService.findAll());
-		return "/movie/index";
+		return "movie/index";
 	}
 	
-	@RequestMapping(value = "/detail/{id}")
+	@RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
 	public String detail(@PathVariable("id") int id, ModelMap modelMap) {
 		modelMap.put("movie", movieService.find(id));
-		return "/movie/detail";
+		return "movie/detail";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String addMovie(Movie movie, final BindingResult bindingResult, final ModelMap model) {
 		if (bindingResult.hasErrors()) {
-            return "/movie/index";
+            return "movie/index";
         }
         movieService.addMovie(movie);
         model.clear();
