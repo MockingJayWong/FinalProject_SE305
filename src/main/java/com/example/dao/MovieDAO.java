@@ -26,6 +26,6 @@ public class MovieDAO {
 
 	public int addMovie(Movie movie) {
 		return jdbcTemplate.update("insert into movie(name, description, price) values(?, ?, ?)",
-				new Object[] { movie.getName(), movie.getDescription(), movie.getPrice() });
+				new Object[] { movie.getMovieName(), movie.getIntroduction(), movie.getScore() });
 	}
 }

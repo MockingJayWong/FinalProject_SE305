@@ -2,41 +2,49 @@ package com.example.model;
 
 public class Movie {
 	private int id;
-	private String name;
-	private String description;
-	private double price;
+	private String movieName;
+	private String url;
+	private String introduction;
+	private float score;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getMovieName() {
+		return movieName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setMovieName(String movieName) {
+		this.movieName = movieName;
 	}
-	public String getDescription() {
-		return description;
+	public String getUrl() {
+		return url;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setUrl(String url) {
+		this.url = url;
 	}
-	public double getPrice() {
-		return price;
+	public String getIntroduction() {
+		return introduction;
 	}
-	public void setPrice(double price) {
-		this.price = price;
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+	public float getScore() {
+		return score;
+	}
+	public void setScore(float score) {
+		this.score = score;
+	}
+	public Movie(int id, String movieName, String url, String introduction, float score) {
+		super();
+		this.id = id;
+		this.movieName = movieName;
+		this.url = url;
+		this.introduction = introduction;
+		this.score = score;
 	}
 	public Movie() {
 		super();
-	}
-	public Movie(int id, String name, String description, double price) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.price = price;
 	}
 }
