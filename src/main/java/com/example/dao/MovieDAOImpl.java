@@ -32,8 +32,8 @@ public class MovieDAOImpl implements MovieDAO {
 	}
 
 	public int insert(Movie movie) {
-		return jdbcTemplate.update("insert into movie(name, description, price) values(?, ?, ?)",
-				new Object[] { movie.getMovieName(), movie.getIntroduction(), movie.getScore() });
+		return jdbcTemplate.update("insert into movie(movieName, url, introduction, score) values(?, ?, ?, ?)",
+				new Object[] { movie.getMovieName(), movie.getUrl(), movie.getIntroduction(), movie.getScore() });
 	}
 	
 	public int update(Movie movie) {

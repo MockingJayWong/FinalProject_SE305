@@ -16,15 +16,15 @@
 	</tr>
 	<tr>
 		<td>Name</td>
-		<td th:text="${movie.name}"></td>
+		<td th:text="${movie.movieName}"></td>
 	</tr>
 	<tr>
 		<td>Description</td>
-		<td th:text="${movie.description}"></td>
+		<td th:text="${movie.introduction}"></td>
 	</tr>
 	<tr>
 		<td>Price</td>
-		<td th:text="${movie.price}"></td>
+		<td th:text="${movie.score}"></td>
 	</tr>
 </table>
 <br/><br/>

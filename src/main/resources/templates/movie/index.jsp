@@ -18,9 +18,9 @@
 	</tr>
 	<tr th:each="movie : ${movies}">
 		<td th:text="${movie.id}"></td>
-		<td th:text="${movie.name}"></td>
-		<td th:text="${movie.description}"></td>
-		<td th:text="${movie.price}"></td>
+		<td th:text="${movie.movieName}"></td>
+		<td th:text="${movie.introduction}"></td>
+		<td th:text="${movie.score}"></td>
 		<td>
 			<a th:href="@{'/movie/detail/' + ${movie.id}}">Detail</a>
 		</td>
@@ -33,9 +33,10 @@
 	<fieldset>
 		<legend>Add New Movie</legend>
 		
-		<input type="text" th:field="*{name}"/>
-		<input type="text" th:field="*{description}"/>
-		<input type="text" th:field="*{price}"/>
+		<input type="text" th:field="*{movieName}"/>
+		<input type="text" th:field="*{url}"/>
+		<input type="text" th:field="*{introduction}"/>
+		<input type="text" th:field="*{score}"/>
 		
 		<button type="submit">Add</button>
 	</fieldset>
