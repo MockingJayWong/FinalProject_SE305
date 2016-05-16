@@ -10,7 +10,7 @@ public interface cinemaSessionDAO {
 	public Collection<Session> findAll();
 
 	public Session findByID(int SessionId);
-	public Session findByCinemeIdAndHall(int cinemaID, int hall);
+	public Collection<Session> findByCinemeIdAndHall(int cinemaID, int hall);
 	public Collection<Session> findByCinemaID(int cinemeID);
 	public Collection<Session> findByMovieName(String movieName);
 	public Collection<Session> findByTime(Date startTime, Date endTime);
