@@ -12,17 +12,17 @@ import com.example.model.Movie;
 public class MovieService {
 
 	@Autowired
-	private MovieDAO movieDAO;
+	private MovieDAOImpl movieDAO;
 	
 	public Collection<Movie> findAll() {
 		return movieDAO.findAll();
 	}
 
 	public Movie find(int id) {
-		return movieDAO.find(id);
+		return movieDAO.findByID(id);
 	}
 	
 	public int addMovie(Movie movie) {
-		return movieDAO.addMovie(movie);
+		return movieDAO.insert(movie);
 	}
 }
