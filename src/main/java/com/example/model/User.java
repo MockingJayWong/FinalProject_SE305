@@ -43,14 +43,12 @@ public class User {
 	public void setRole(UserType role) {
 		this.role = role;
 	}
-	public User(int id, String username, String password, String telephone, String email, UserType role) {
+	public User(String username, String password, String telephone, String email) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.telephone = telephone;
 		this.email = email;
-		this.role = role;
 	}
 	public User() {
 		super();

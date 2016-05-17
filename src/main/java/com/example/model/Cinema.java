@@ -6,10 +6,17 @@ public class Cinema {
 	private String cinemaName;
 	private String address;
 	
+	private String username;
 	private String password;
 	private String telephone;
 	private String email;
 	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public String getPassword() {
 		return password;
 	}
@@ -52,12 +59,15 @@ public class Cinema {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Cinema(int id, int cinemaID, String cinemaName, String address) {
+	public Cinema(String cinemaName, String address, String username, String password,
+			String telephone, String email) {
 		super();
-		this.id = id;
-		this.cinemaID = cinemaID;
 		this.cinemaName = cinemaName;
 		this.address = address;
+		this.username = username;
+		this.password = password;
+		this.telephone = telephone;
+		this.email = email;
 	}
 	public Cinema() {
 		super();

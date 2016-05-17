@@ -27,5 +27,11 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="G:/study/cinema_project/FinalProject_SE305/lib/commons-beanutils.jar"/>
+	<classpathentry kind="lib" path="G:/study/cinema_project/FinalProject_SE305/lib/commons-collections.jar"/>
+	<classpathentry kind="lib" path="G:/study/cinema_project/FinalProject_SE305/lib/commons-lang.jar"/>
+	<classpathentry kind="lib" path="G:/study/cinema_project/FinalProject_SE305/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="G:/study/cinema_project/FinalProject_SE305/lib/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="G:/study/cinema_project/FinalProject_SE305/lib/json-lib-2.4-jdk15.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
