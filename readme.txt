@@ -1,7 +1,6 @@
-src\main\resources\application.properties
+项目已迁移至Spring Legacy Project
 
-这个文件包含了数据库的连接，需要修改成：
+数据库配置位于文件src\main\webapp\WEB-INF\spring\appServlet\servlet-context.xml中
+请根据自己机器的数据库配置进行相关修改
 
-spring.datasource.url=jdbc:mysql://localhost:3306/{数据库名称}
-spring.datasource.username={用户名}
-spring.datasource.password={密码}
+后续将添加其余DAO及Service的Bean声明
