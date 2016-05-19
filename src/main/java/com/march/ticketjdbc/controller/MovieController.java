@@ -54,7 +54,7 @@ public class MovieController {
 	@RequestMapping(value = "getjson", method = RequestMethod.GET)
 	public Object getjson() {
 		Map<String, Object> map = new HashMap<>();
-		map.put("success", "1");
+		map.put("success", 1);
 		map.put("data", movieService.findAll());
 		return map;
 		//return movieService.find(1);
