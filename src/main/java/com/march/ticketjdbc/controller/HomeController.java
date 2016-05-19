@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.march.ticketjdbc.model.JsonModel;
+import com.march.ticketjdbc.service.JsonMovieListService;
 import com.march.ticketjdbc.service.JsonService;
 
 /**
@@ -27,7 +29,7 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
-	private JsonService jsonService;
+	private JsonMovieListService jsonmovielistService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -49,8 +51,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "/getjson")
 	@ResponseBody
-	public Object getJson() {
-		return jsonService.getJsonMovieList();
+	public JsonModel getJson() {
+		return jsonmovielistService.getJsonMovieList();
 	}
 	
 }

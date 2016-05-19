@@ -1,6 +1,9 @@
 package com.march.ticketjdbc.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Movie {
+	@JsonIgnore
 	private int id;
 	private String movieName;
 	private String url;
@@ -33,6 +36,7 @@ public class Movie {
 	public float getScore() {
 		return score;
 	}
+	
 	public void setScore(float score) {
 		this.score = score;
 	}

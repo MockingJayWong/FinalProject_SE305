@@ -10,7 +10,13 @@
 		infrastructure -->
 
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
+	<annotation-driven>
+		<message-converters>
+			<beans:bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+        	<beans:bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+		</message-converters>
+	</annotation-driven>
+
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
@@ -43,12 +49,10 @@
 
 	<beans:bean id="movieService" class="com.march.ticketjdbc.service.MovieService" />
 	
-	<beans:bean id="JsonServicemap" class="java.util.HashMap" scope="prototype"/>
-	<beans:bean id="JsonServicedatamap" class="java.util.HashMap" scope="prototype"/>
 	<beans:bean id="jsonmovielistService" class="com.march.ticketjdbc.service.JsonMovieListService" />
 	<beans:bean id="jsonService" class="com.march.ticketjdbc.service.JsonService" />
-	
-
+	<beans:bean id="jsondata" class="com.march.ticketjdbc.model.JsonData" scope="prototype"/>
+	<beans:bean id="jsonmodel" class="com.march.ticketjdbc.model.JsonModel" scope="prototype" />
 
 
 </beans:beans>
