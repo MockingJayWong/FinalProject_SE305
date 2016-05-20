@@ -55,7 +55,7 @@ public class MovieController {
 	@ResponseBody
 	@JsonView(JsonModule.GetMovieListModule.class)
 	public Object getJson() {
-		return jsonService.getCurrentMovieListJson();
+		return jsonService.getCurrentMovieListJson(5);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)

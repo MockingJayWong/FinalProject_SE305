@@ -3,10 +3,12 @@ package com.march.ticketjdbc.service;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.march.ticketjdbc.model.JsonData;
 import com.march.ticketjdbc.model.*;
 
+@Service
 public class GetJsonStringService {
 
 	@Autowired
@@ -15,12 +17,13 @@ public class GetJsonStringService {
 	@Autowired
 	CinemaService cinemaService;
 	
-	public Object getCurrentMovieListJson() {
+	public Object getCurrentMovieListJson(int num) {
 		JsonData data = new JsonData();
 		data.setError_code("0");
 
 		// TODO the right way to get allMovies
 		List<Movie> allMovies = movieService.findAll();
+		allMovies = allMovies.subList(0, allMovies.size() > num ? num : allMovies.size());
 
 		data.setList(allMovies);
 		return GetJsonString("success", data);

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.march.ticketjdbc.daointerface.TicketDAO;
 import com.march.ticketjdbc.model.Ticket;
 
 public class TicketDAOImpl implements TicketDAO{

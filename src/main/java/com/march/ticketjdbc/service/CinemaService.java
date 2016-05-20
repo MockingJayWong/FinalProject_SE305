@@ -4,20 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.march.ticketjdbc.dao.*;
+import com.march.ticketjdbc.daointerface.CinemaDAO;
+import com.march.ticketjdbc.daointerface.MovieDAO;
+import com.march.ticketjdbc.daointerface.SessionDAO;
 import com.march.ticketjdbc.model.*;
 
+@Service
 public class CinemaService {
 
 	@Autowired
-	MovieDAO movieDAO;
+	MovieDAOImpl movieDAO;
 	
 	@Autowired
-	CinemaDAO cinemaDAO;
+	CinemaDAOImpl cinemaDAO;
 	
 	@Autowired
-	SessionDAO sessionDao;
+	SessionDAOImpl sessionDao;
 
 	public List<Cinema> findCinemasByMovie(int movieId) {
 		List<Cinema> cinemas = new ArrayList<Cinema>();

@@ -1,4 +1,4 @@
-package com.march.ticketjdbc.dao;
+package com.march.ticketjdbc.daointerface;
 
 import java.util.List;
 
