@@ -24,6 +24,13 @@ public class MovieController {
 		modelMap.put("movie", movie);
 		return "movie/index";
 	}
+
+	@RequestMapping(value = "cinemaTable/{movie_id}", method = RequestMethod.GET)
+	public  String cinemaTable(@PathVariable("movie_id") int movie_id, ModelMap modelMap) {
+		// 返回该有该电影的影院列表
+		// TODO
+		return "todo";
+	}
 	
 	@RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
 	public String detail(@PathVariable("id") int id, ModelMap modelMap) {
