@@ -43,9 +43,8 @@ public class User {
 	public void setRole(UserType role) {
 		this.role = role;
 	}
-	public User(int id, String username, String password, String telephone, String email, UserType role) {
+	public User(String username, String password, String telephone, String email, UserType role) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.telephone = telephone;

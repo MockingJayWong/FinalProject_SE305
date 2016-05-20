@@ -59,10 +59,9 @@ public class Session {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public Session(int id, int cinemaID, int hall, String movieName, Date start_time, Date end_time, String language,
+	public Session(int cinemaID, int hall, String movieName, Date start_time, Date end_time, String language,
 			float price) {
 		super();
-		this.id = id;
 		this.cinemaID = cinemaID;
 		this.hall = hall;
 		this.movieName = movieName;

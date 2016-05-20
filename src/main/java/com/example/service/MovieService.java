@@ -15,6 +15,12 @@ public class MovieService {
 	private MovieDAOImpl movieDAO;
 	
 	public Collection<Movie> findAll() {
+		if (movieDAO.findAll().size() == 0) {
+			for (int i = 0; i < 10; i++) {
+				Movie movie = new Movie("testMovie"+i, "p1.png", "This is testMovie"+i+", interesting...", 5+i);
+				movieDAO.insert(movie);
+			}
+		}
 		return movieDAO.findAll();
 	}
 

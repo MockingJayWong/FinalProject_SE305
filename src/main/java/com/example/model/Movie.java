@@ -9,9 +9,9 @@ public class Movie {
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+//	public void setId(int id) {
+//		this.id = id;
+//	}
 	public String getMovieName() {
 		return movieName;
 	}
@@ -36,9 +36,8 @@ public class Movie {
 	public void setScore(float score) {
 		this.score = score;
 	}
-	public Movie(int id, String movieName, String url, String introduction, float score) {
+	public Movie(String movieName, String url, String introduction, float score) {
 		super();
-		this.id = id;
 		this.movieName = movieName;
 		this.url = url;
 		this.introduction = introduction;

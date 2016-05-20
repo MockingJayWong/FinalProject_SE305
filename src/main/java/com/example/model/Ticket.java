@@ -36,9 +36,8 @@ public class Ticket {
 	public void setSessionID(int sessionID) {
 		this.sessionID = sessionID;
 	}
-	public Ticket(int id, int orderID, int seat, float price, int sessionID) {
+	public Ticket(int orderID, int seat, float price, int sessionID) {
 		super();
-		this.id = id;
 		this.orderID = orderID;
 		this.seat = seat;
 		this.price = price;

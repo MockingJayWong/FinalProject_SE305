@@ -18,10 +18,10 @@ public class MovieController {
 	@Autowired
 	private MovieService movieService;
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public String index(ModelMap modelMap) {
-		modelMap.addAttribute(new Movie());
-		modelMap.put("movies", movieService.findAll());
+	@RequestMapping(value = "{id}", method = RequestMethod.GET)
+	public String index(@PathVariable("id") int id, ModelMap modelMap) {
+		Movie movie = movieService.find(id);
+		modelMap.put("movie", movie);
 		return "movie/index";
 	}
 	

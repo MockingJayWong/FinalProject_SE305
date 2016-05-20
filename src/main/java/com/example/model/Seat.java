@@ -22,9 +22,8 @@ public class Seat {
 	public void setSold_list(String sold_list) {
 		this.sold_list = sold_list;
 	}
-	public Seat(int id, int sessionID, String sold_list) {
+	public Seat(int sessionID, String sold_list) {
 		super();
-		this.id = id;
 		this.sessionID = sessionID;
 		this.sold_list = sold_list;
 	}

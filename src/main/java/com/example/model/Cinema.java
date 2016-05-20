@@ -52,9 +52,8 @@ public class Cinema {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Cinema(int id, int cinemaID, String cinemaName, String address) {
+	public Cinema(int cinemaID, String cinemaName, String address) {
 		super();
-		this.id = id;
 		this.cinemaID = cinemaID;
 		this.cinemaName = cinemaName;
 		this.address = address;

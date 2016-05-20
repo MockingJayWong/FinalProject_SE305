@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>Movie Detail</title>
 </head>
+
 <body>
 
 <h3>Movie Detail</h3>
@@ -23,12 +24,12 @@
 		<td th:text="${movie.introduction}"></td>
 	</tr>
 	<tr>
-		<td>Price</td>
+		<td>Score</td>
 		<td th:text="${movie.score}"></td>
 	</tr>
 </table>
 <br/><br/>
-<a th:href="@{/movie}">Back</a>
+<a th:href="@{/templates/movie}">Back</a>
 
 </body>
 </html>
