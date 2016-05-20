@@ -5,16 +5,16 @@ import java.sql.Date;
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class Orders {
-	public interface OrderInfoModule{}
-	@JsonView(OrderInfoModule.class)
+	
+	@JsonView(JsonModule.CreateOrderModule.class)
 	private int id;
-	@JsonView(OrderInfoModule.class)
+	@JsonView(JsonModule.CreateOrderModule.class)
 	private int userID;
-	@JsonView(OrderInfoModule.class)
+	@JsonView(JsonModule.CreateOrderModule.class)
 	private int cinemaID;
-	@JsonView(OrderInfoModule.class)
+	@JsonView(JsonModule.CreateOrderModule.class)
 	private Date time;
-	@JsonView(OrderInfoModule.class)
+	@JsonView(JsonModule.CreateOrderModule.class)
 	private float prices;
 	
 	private OrderState state;

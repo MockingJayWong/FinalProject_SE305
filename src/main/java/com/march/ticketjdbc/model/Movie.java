@@ -3,16 +3,15 @@ package com.march.ticketjdbc.model;
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class Movie {
-	public interface MovieModule{}
-	@JsonView(MovieModule.class)
+	@JsonView(JsonModule.GetMovieListModule.class)
 	private int id;
-	@JsonView(MovieModule.class)
+	@JsonView(JsonModule.GetMovieListModule.class)
 	private String movieName;
-	@JsonView(MovieModule.class)
+	@JsonView(JsonModule.GetMovieListModule.class)
 	private String url;
-	@JsonView(MovieModule.class)
+	@JsonView(JsonModule.GetMovieListModule.class)
 	private String introduction;
-	@JsonView(MovieModule.class)
+	@JsonView(JsonModule.GetMovieListModule.class)
 	private float score;
 	public int getId() {
 		return id;

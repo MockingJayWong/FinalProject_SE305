@@ -5,27 +5,27 @@ import java.sql.Date;
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class Session {
-	public interface SessionListModule {}
-	@JsonView(SessionListModule.class)
+
+	@JsonView(JsonModule.GetSessionListModule.class)
 	private int id;
 	private int cinemaID;
 	
-	@JsonView(SessionListModule.class)
+	@JsonView(JsonModule.GetSessionListModule.class)
 	private int hall;
 	
-	@JsonView(SessionListModule.class)
+	@JsonView(JsonModule.GetSessionListModule.class)
 	private String movieName;
 	
-	@JsonView(SessionListModule.class)
+	@JsonView(JsonModule.GetSessionListModule.class)
 	private Date start_time;
 	
-	@JsonView(SessionListModule.class)
+	@JsonView(JsonModule.GetSessionListModule.class)
 	private Date end_time;
 	
-	@JsonView(SessionListModule.class)
+	@JsonView(JsonModule.GetSessionListModule.class)
 	private String language;
 	
-	@JsonView(SessionListModule.class)
+	@JsonView(JsonModule.GetSessionListModule.class)
 	private float price;
 	public int getId() {
 		return id;

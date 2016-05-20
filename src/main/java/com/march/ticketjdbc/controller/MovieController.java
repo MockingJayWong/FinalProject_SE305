@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.march.ticketjdbc.model.Movie;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.march.ticketjdbc.model.*;
 import com.march.ticketjdbc.service.*;
 
 @Controller
@@ -52,6 +53,7 @@ public class MovieController {
 	
 	@RequestMapping(value = "currentMovieList", method = RequestMethod.GET)
 	@ResponseBody
+	@JsonView(JsonModule.GetMovieListModule.class)
 	public Object getJson() {
 		return jsonService.getCurrentMovieListJson();
 	}
