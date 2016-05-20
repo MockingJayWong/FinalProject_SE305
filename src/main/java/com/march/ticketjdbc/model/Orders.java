@@ -2,12 +2,21 @@ package com.march.ticketjdbc.model;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 public class Orders {
+	public interface OrderInfoModule{}
+	@JsonView(OrderInfoModule.class)
 	private int id;
+	@JsonView(OrderInfoModule.class)
 	private int userID;
+	@JsonView(OrderInfoModule.class)
 	private int cinemaID;
+	@JsonView(OrderInfoModule.class)
 	private Date time;
+	@JsonView(OrderInfoModule.class)
 	private float prices;
+	
 	private OrderState state;
 	public int getId() {
 		return id;

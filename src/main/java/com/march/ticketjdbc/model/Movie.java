@@ -1,10 +1,18 @@
 package com.march.ticketjdbc.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 public class Movie {
+	public interface MovieModule{}
+	@JsonView(MovieModule.class)
 	private int id;
+	@JsonView(MovieModule.class)
 	private String movieName;
+	@JsonView(MovieModule.class)
 	private String url;
+	@JsonView(MovieModule.class)
 	private String introduction;
+	@JsonView(MovieModule.class)
 	private float score;
 	public int getId() {
 		return id;

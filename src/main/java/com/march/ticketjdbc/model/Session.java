@@ -2,14 +2,30 @@ package com.march.ticketjdbc.model;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 public class Session {
+	public interface SessionListModule {}
+	@JsonView(SessionListModule.class)
 	private int id;
 	private int cinemaID;
+	
+	@JsonView(SessionListModule.class)
 	private int hall;
+	
+	@JsonView(SessionListModule.class)
 	private String movieName;
+	
+	@JsonView(SessionListModule.class)
 	private Date start_time;
+	
+	@JsonView(SessionListModule.class)
 	private Date end_time;
+	
+	@JsonView(SessionListModule.class)
 	private String language;
+	
+	@JsonView(SessionListModule.class)
 	private float price;
 	public int getId() {
 		return id;

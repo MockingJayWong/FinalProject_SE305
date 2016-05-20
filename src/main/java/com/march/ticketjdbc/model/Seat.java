@@ -1,9 +1,17 @@
 package com.march.ticketjdbc.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 public class Seat {
+	public interface SessionInfoModule{}
+	public interface OrderInfoModule{}
+	public interface SessionOrderModule extends SessionInfoModule, OrderInfoModule{}
 	private int id;
 	private int sessionID;
+	
+	@JsonView(SessionOrderModule.class)
 	private String sold_list;
+	
 	public int getId() {
 		return id;
 	}
