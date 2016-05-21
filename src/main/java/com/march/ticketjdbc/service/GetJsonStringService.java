@@ -73,11 +73,12 @@ public class GetJsonStringService {
 		if (orderService.checkSeats(sessionId, seats)) {
 			Orders order = orderService.createOrder(userId, cinemaId, sessionId, seats);
 			Session session = sessionDAO.findByID(sessionId);
+			List<int[]> list = TransSoldList(seats);
 			
 			data.setError_code("0");
 			data.setOrder(order);
 			data.setSession(session);
-			//获取对应的票及转换插入即可
+			data.setList(list);
 			
 			return GetJsonString("success", data);
 		}
@@ -120,5 +121,18 @@ public class GetJsonStringService {
 		JsonData data = new JsonData();
 		data.setCinema(cinemaService.getInfo(username));
 		return GetJsonString("success", data);
+	}
+	
+	private List<int[]> TransSoldList(String soldList) {
+		String []seatList = soldList.split(",");
+		List<int[]> result = new ArrayList<int[]>();
+		
+		for (int i = 0; i < seatList.length - 1; i++) {
+			int []temp = new int[2];
+			temp[0] = Integer.parseInt(seatList[i]) / 10;
+			temp[1] = Integer.parseInt(seatList[i]) % 10;
+			result.add(temp);
+		}
+		return result;
 	}
 }
