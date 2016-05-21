@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.march.ticketjdbc.dao.*;
-import com.march.ticketjdbc.daointerface.CinemaDAO;
-import com.march.ticketjdbc.daointerface.MovieDAO;
-import com.march.ticketjdbc.daointerface.SessionDAO;
 import com.march.ticketjdbc.model.*;
 
 @Service

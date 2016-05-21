@@ -12,7 +12,7 @@ public class JsonData {
 	@JsonView({JsonModule.GetMovieListModule.class, JsonModule.GetCinemaListModule.class, JsonModule.GetSessionListModule.class})
 	private List<Object> list;
 
-	@JsonView(JsonModule.CreateOrderModule.class)
+	@JsonView({JsonModule.CreateOrderModule.class})
 	private Orders order;
 	
 	@JsonView({JsonModule.CreateOrderModule.class, JsonModule.GetSessionInfoModule.class})

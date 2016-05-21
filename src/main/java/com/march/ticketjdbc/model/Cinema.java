@@ -2,15 +2,12 @@ package com.march.ticketjdbc.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-
 public class Cinema {
-	public interface CinemaModule {}
-	
-	@JsonView(CinemaModule.class)
+	@JsonView(JsonModule.GetCinemaListModule.class)
 	private int id;
-	@JsonView(CinemaModule.class)
+	@JsonView(JsonModule.GetCinemaListModule.class)
 	private String cinemaName;
-	@JsonView(CinemaModule.class)
+	@JsonView(JsonModule.GetCinemaListModule.class)
 	private String address;
 	
 	private String password;
@@ -54,15 +51,11 @@ public class Cinema {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	public Cinema(int id, String cinemaName, String address, String password, String telephone, String email) {
+	public Cinema(int id, String cinemaName, String address) {
 		super();
 		this.id = id;
 		this.cinemaName = cinemaName;
 		this.address = address;
-		this.password = password;
-		this.telephone = telephone;
-		this.email = email;
 	}
 	public Cinema() {
 		super();
