@@ -1,12 +1,18 @@
 package com.march.ticketjdbc.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 public class User {
+	@JsonView(JsonModule.UserModule.class)
 	private int id;
+	@JsonView(JsonModule.UserModule.class)
 	private String username;
+	@JsonView(JsonModule.UserModule.class)
 	private String password;
+	@JsonView(JsonModule.UserModule.class)
 	private String telephone;
+	@JsonView(JsonModule.UserModule.class)
 	private String email;
-	private UserType role;
 	public int getId() {
 		return id;
 	}
@@ -37,20 +43,12 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public UserType getRole() {
-		return role;
-	}
-	public void setRole(UserType role) {
-		this.role = role;
-	}
-	public User(int id, String username, String password, String telephone, String email, UserType role) {
+	public User(String username, String password, String telephone, String email) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.telephone = telephone;
 		this.email = email;
-		this.role = role;
 	}
 	public User() {
 		super();

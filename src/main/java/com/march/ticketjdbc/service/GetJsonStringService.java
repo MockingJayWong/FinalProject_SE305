@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.march.ticketjdbc.model.JsonData;
+import com.march.ticketjdbc.dao.SessionDAOImpl;
 import com.march.ticketjdbc.model.*;
 
 @Service
@@ -16,6 +17,15 @@ public class GetJsonStringService {
 
 	@Autowired
 	CinemaService cinemaService;
+	
+	@Autowired
+	OrderService orderService;
+	
+	@Autowired
+	UserService userService;
+	
+	@Autowired
+	SessionDAOImpl sessionDAO;
 	
 	public Object getCurrentMovieListJson(int num) {
 		JsonData data = new JsonData();
@@ -56,5 +66,59 @@ public class GetJsonStringService {
 		map.put("data", data);
 
 		return map;
+	}
+
+	public Object createOrder(int userId, int cinemaId, int sessionId, String seats) {
+		JsonData data = new JsonData();
+		if (orderService.checkSeats(sessionId, seats)) {
+			Orders order = orderService.createOrder(userId, cinemaId, sessionId, seats);
+			Session session = sessionDAO.findByID(sessionId);
+			
+			data.setError_code("0");
+			data.setOrder(order);
+			data.setSession(session);
+			//获取对应的票及转换插入即可
+			
+			return GetJsonString("success", data);
+		}
+		return GetJsonString("faild", null);
+	}
+
+	public Object userLogin(String username, String password) {
+		return GetJsonString(userService.login(username, password), null);
+	}
+
+	public Object userSign(String username, String password, String telephone, String email) {
+		return GetJsonString(userService.sign(username, password, telephone, email), null);
+	}
+	
+	public Object userChange(String username, String password, String telephone, String email) {
+		return GetJsonString(userService.change(username, password, telephone, email), null);
+	}
+
+	public Object userInfo(String username) {
+		JsonData data = new JsonData();
+		data.setUser(userService.getInfo(username));
+		return GetJsonString("success", data);
+	}
+
+	public Object cinemaLogin(String username, String password) {
+		return GetJsonString(cinemaService.login(username, password), null);
+	}
+
+	public Object cinemaSign(String cinemaName, String address, String username, String password, String telephone,
+			String email) {
+		return GetJsonString(cinemaService.sign(cinemaName, address, username, password, telephone, email), null);
+	}
+
+	public Object cinemaChange(String cinemaName, String address, String username, String password, String telephone,
+			String email) {
+		return GetJsonString(cinemaService.change(cinemaName, address, username, password, telephone, email), null);
+	}
+
+	public Object cinemaInfo(String username) {
+		JsonData data = new JsonData();
+		data.setCinema(cinemaService.getInfo(username));
+		return GetJsonString("success", data);
 	}
 }

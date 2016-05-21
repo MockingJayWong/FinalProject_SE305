@@ -3,6 +3,7 @@ package com.march.ticketjdbc.model;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.march.ticketjdbc.model.JsonModule.UserModule;
 
 public class JsonData {
 	
@@ -15,9 +16,34 @@ public class JsonData {
 	@JsonView({JsonModule.CreateOrderModule.class})
 	private Orders order;
 	
+	@JsonView({JsonModule.CreateOrderModule.class})
+	private Session session;
+	
 	@JsonView({JsonModule.CreateOrderModule.class, JsonModule.GetSessionInfoModule.class})
 	private Seat seat;
 
+	@JsonView(JsonModule.CinemaModule.class)
+	private Cinema cinema;
+	
+	public Cinema getCinema() {
+		return cinema;
+	}
+
+	public void setCinema(Cinema cinema) {
+		this.cinema = cinema;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@JsonView(JsonModule.UserModule.class)
+	private User user;
+	
 	public JsonData() {
 		list = new ArrayList<Object>();
 	}
@@ -26,6 +52,7 @@ public class JsonData {
 		return error_code;
 	}
 	
+
 	public void setError_code(String code) {
 		error_code = code;
 	}
@@ -48,7 +75,14 @@ public class JsonData {
 	public void setOrder(Orders order) {
 		this.order = order;
 	}
+	
+	public Session getSession() {
+		return session;
+	}
 
+	public void setSession(Session session) {
+		this.session = session;
+	}
 	public Seat getSeat() {
 		return seat;
 	}

@@ -54,9 +54,8 @@ public class Orders {
 	public void setState(OrderState state) {
 		this.state = state;
 	}
-	public Orders(int id, int userID, int cinemaID, Date time, float prices, OrderState state) {
+	public Orders(int userID, int cinemaID, Date time, float prices, OrderState state) {
 		super();
-		this.id = id;
 		this.userID = userID;
 		this.cinemaID = cinemaID;
 		this.time = time;

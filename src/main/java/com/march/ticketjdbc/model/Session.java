@@ -13,13 +13,13 @@ public class Session {
 	@JsonView(JsonModule.GetSessionListModule.class)
 	private int hall;
 	
-	@JsonView(JsonModule.GetSessionListModule.class)
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.CreateOrderModule.class})
 	private String movieName;
 	
-	@JsonView(JsonModule.GetSessionListModule.class)
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.CreateOrderModule.class})
 	private Date start_time;
 	
-	@JsonView(JsonModule.GetSessionListModule.class)
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.CreateOrderModule.class})
 	private Date end_time;
 	
 	@JsonView(JsonModule.GetSessionListModule.class)
