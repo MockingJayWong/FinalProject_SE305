@@ -7,7 +7,7 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.march.ticketjdbc.dao.*;
+import com.march.ticketjdbc.daoImpl.*;
 import com.march.ticketjdbc.model.*;
 
 @Service
@@ -52,7 +52,7 @@ public class OrderService {
 	
 	public Orders createOrder(int userId, int cinemaId, int sessionId, String seats) {
 		//创建订单
-		Date now = new Date(System.currentTimeMillis());
+		Long now = System.currentTimeMillis();
 		Session session = sessionDAO.findByID(sessionId);
 		String []Seat_str = seats.split(",");
 		

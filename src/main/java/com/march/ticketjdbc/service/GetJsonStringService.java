@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.march.ticketjdbc.model.JsonData;
-import com.march.ticketjdbc.dao.SessionDAOImpl;
+import com.march.ticketjdbc.daoImpl.SessionDAOImpl;
 import com.march.ticketjdbc.model.*;
 
 @Service

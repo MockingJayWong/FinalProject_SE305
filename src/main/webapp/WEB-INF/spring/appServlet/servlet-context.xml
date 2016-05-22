@@ -46,13 +46,13 @@
 	</beans:bean>
 
 	<!-- DAOs -->
-	<beans:bean id="cinemaDAO" class="com.march.ticketjdbc.dao.CinemaDAOImpl" />
-	<beans:bean id="movieDAO" class="com.march.ticketjdbc.dao.MovieDAOImpl" />
-	<beans:bean id="orderDAO" class="com.march.ticketjdbc.dao.OrderDAOImpl" />
-	<beans:bean id="seatListDAO" class="com.march.ticketjdbc.dao.SeatListDAOImpl" />
-	<beans:bean id="sessionDAO" class="com.march.ticketjdbc.dao.SessionDAOImpl" />
-	<beans:bean id="ticketDAO" class="com.march.ticketjdbc.dao.TicketDAOImpl" />
-	<beans:bean id="userDAO" class="com.march.ticketjdbc.dao.UserDAOImpl" />
+	<beans:bean id="cinemaDAO" class="com.march.ticketjdbc.daoImpl.CinemaDAOImpl" />
+	<beans:bean id="movieDAO" class="com.march.ticketjdbc.daoImpl.MovieDAOImpl" />
+	<beans:bean id="orderDAO" class="com.march.ticketjdbc.daoImpl.OrderDAOImpl" />
+	<beans:bean id="seatListDAO" class="com.march.ticketjdbc.daoImpl.SeatListDAOImpl" />
+	<beans:bean id="sessionDAO" class="com.march.ticketjdbc.daoImpl.SessionDAOImpl" />
+	<beans:bean id="ticketDAO" class="com.march.ticketjdbc.daoImpl.TicketDAOImpl" />
+	<beans:bean id="userDAO" class="com.march.ticketjdbc.daoImpl.UserDAOImpl" />
 	
 	<!-- Services -->
 	<context:component-scan base-package="com.march.ticketjdbc.service" />
