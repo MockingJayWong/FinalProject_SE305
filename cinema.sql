@@ -39,12 +39,7 @@ CREATE TABLE `cinema_datebase`.`cinema` (
   `password` VARCHAR(45) NOT NULL,
   `telephone` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  PRIMARY KEY(`id`),
-  CONSTRAINT `user_cinema_id`
-    FOREIGN KEY(`cinemaID`)
-    REFERENCES `cinema_datebase`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE
+  PRIMARY KEY(`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `cinema_datebase`.`orders` (
@@ -63,7 +58,7 @@ CREATE TABLE `cinema_datebase`.`orders` (
     ON UPDATE CASCADE ,
   CONSTRAINT `cinema_orders_id`
     FOREIGN KEY(`cinemaID`)
-    REFERENCES `cinema_datebase`.`cinema` (`cinemaID`)
+    REFERENCES `cinema_datebase`.`cinema` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -80,7 +75,7 @@ CREATE TABLE `cinema_datebase`.`session` (
   PRIMARY KEY(`id`) ,
   CONSTRAINT `cinema_session_id`
     FOREIGN KEY (`cinemaID`)
-    REFERENCES `cinema_datebase`.`cinema` (`cinemaID`)
+    REFERENCES `cinema_datebase`.`cinema` (`id`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
