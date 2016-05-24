@@ -1,4 +1,4 @@
-package com.march.ticketjdbc.dao;
+package com.march.ticketjdbc.daoImpl;
 
 import java.sql.Date;
 import java.util.List;
@@ -61,8 +61,8 @@ public class OrderDAOImpl implements OrderDAO {
 
 
 	@Override
-	public List<Orders> findByUserIdIdAndData(int Id, Date startTime, Date endTime) {
-		return jdbcTemplate.query("select * from orders where userID = ? and time > ? and time < ?",
+	public List<Orders> findByUserIdIdAndData(int Id, Long startTime, Long endTime) {
+		return jdbcTemplate.query("select * from orders where userID = ? and time >= ? and time <= ?",
 				new Object[]{Id, startTime, endTime}, new BeanPropertyRowMapper<Orders>(Orders.class));
 	}
 
@@ -84,8 +84,8 @@ public class OrderDAOImpl implements OrderDAO {
 
 
 	@Override
-	public List<Orders> findByCinemaIdIdAndData(int Id, Date startTime, Date endTime) {
-		return jdbcTemplate.query("select * from orders where cinemaID = ? and time > ? and time < ?",
+	public List<Orders> findByCinemaIdIdAndData(int Id, Long startTime, Long endTime) {
+		return jdbcTemplate.query("select * from orders where cinemaID = ? and time >= ? and time <= ?",
 				new Object[]{Id, startTime, endTime}, new BeanPropertyRowMapper<Orders>(Orders.class));
 	}
 

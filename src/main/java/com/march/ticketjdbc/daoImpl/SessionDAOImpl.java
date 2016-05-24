@@ -1,4 +1,4 @@
-package com.march.ticketjdbc.dao;
+package com.march.ticketjdbc.daoImpl;
 
 import java.sql.Date;
 import java.util.List;
@@ -42,8 +42,8 @@ public class SessionDAOImpl implements SessionDAO{
 	}
 
 	@Override
-	public List<Session> findByTime(Date startTime, Date endTime) {
-		return jdbcTemplate.query("select * from session where start_time > ? and end_time < ?",new Object[]{startTime, endTime} ,new BeanPropertyRowMapper<Session>(Session.class));
+	public List<Session> findByTime(Long startTime, Long endTime) {
+		return jdbcTemplate.query("select * from session where start_time >= ? and end_time <= ?",new Object[]{startTime, endTime} ,new BeanPropertyRowMapper<Session>(Session.class));
 	}
 
 	@Override
@@ -53,8 +53,8 @@ public class SessionDAOImpl implements SessionDAO{
 	}
 
 	@Override
-	public List<Session> findByCinemaIdAndTime(int cinemaID, Date startTime, Date endTime) {
-		return jdbcTemplate.query("select * from session where cinemaID = ? and start_time > ? and end_time < ?",new Object[]{cinemaID,startTime, endTime} ,new BeanPropertyRowMapper<Session>(Session.class));
+	public List<Session> findByCinemaIdAndTime(int cinemaID, Long startTime, Long endTime) {
+		return jdbcTemplate.query("select * from session where cinemaID = ? and start_time >= ? and end_time <= ?",new Object[]{cinemaID,startTime, endTime} ,new BeanPropertyRowMapper<Session>(Session.class));
 	}
 
 	@Override

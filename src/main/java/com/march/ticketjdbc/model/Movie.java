@@ -45,7 +45,6 @@ public class Movie {
 	}
 	public Movie(String movieName, String url, String introduction, float score) {
 		super();
-//		this.id = id;
 		this.movieName = movieName;
 		this.url = url;
 		this.introduction = introduction;

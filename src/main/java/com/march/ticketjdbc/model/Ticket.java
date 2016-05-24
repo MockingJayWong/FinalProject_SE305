@@ -1,6 +1,6 @@
 package com.march.ticketjdbc.model;
 
-public class Ticket implements Comparable{
+public class Ticket implements Comparable<Ticket> {
 	private int id;
 	private int orderID;
 	private int seat;
@@ -47,9 +47,9 @@ public class Ticket implements Comparable{
 		super();
 	}
 	@Override
-	public int compareTo(Object o) {
+	public int compareTo(Ticket other) {
 		// TODO Auto-generated method stub
-		Ticket other = (Ticket)o;
+		//Ticket other = (Ticket)o;
 		Integer seat = this.seat;
 		Integer ohter_seat = other.getSeat();
 		return seat.compareTo(ohter_seat);

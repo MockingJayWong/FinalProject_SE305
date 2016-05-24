@@ -1,4 +1,4 @@
-package com.march.ticketjdbc.dao;
+package com.march.ticketjdbc.daoImpl;
 
 import java.util.List;
 
@@ -28,14 +28,14 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public int insert(User user) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update("insert into user values(null,?,?,?,?,?)",
+		return jdbcTemplate.update("insert into user values(null,?,?,?,?)",
 				new Object[] {user.getUsername(),user.getPassword(),
 						user.getTelephone(),user.getEmail()});
 	}
 
 	@Override
 	public int update(User user) {
-		return jdbcTemplate.update("update user set password = ?,telephone = ?, email = ?, role = ? where id = ?",
+		return jdbcTemplate.update("update user set password = ?,telephone = ?, email = ?, where id = ?",
 				new Object[] {user.getPassword(),
 						user.getTelephone(),user.getEmail(),user.getId()});
 	}
