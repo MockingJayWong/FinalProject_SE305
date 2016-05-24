@@ -17,7 +17,7 @@ public class Orders {
 	@JsonView(JsonModule.CreateOrderModule.class)
 	private float prices;
 	
-	private OrderState state;
+	private String state;
 	public int getId() {
 		return id;
 	}
@@ -48,13 +48,13 @@ public class Orders {
 	public void setPrices(float prices) {
 		this.prices = prices;
 	}
-	public OrderState getState() {
+	public String getState() {
 		return state;
 	}
-	public void setState(OrderState state) {
+	public void setState(String state) {
 		this.state = state;
 	}
-	public Orders(int userID, int cinemaID, long time, float prices, OrderState state) {
+	public Orders(int userID, int cinemaID, long time, float prices, String state) {
 		super();
 		this.userID = userID;
 		this.cinemaID = cinemaID;

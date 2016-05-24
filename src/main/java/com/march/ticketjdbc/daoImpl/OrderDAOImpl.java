@@ -14,14 +14,13 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import com.march.ticketjdbc.daointerface.OrderDAO;
-import com.march.ticketjdbc.model.OrderState;
 import com.march.ticketjdbc.model.Orders;
 
 public class OrderDAOImpl implements OrderDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	//�?般不会用�?
+	//�?般不会用�?
 	@Override
 	public List<Orders> findAll() {
 		return jdbcTemplate.query("select * from orders", new BeanPropertyRowMapper<Orders>(Orders.class));
@@ -53,7 +52,7 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
-	public int update(int id, OrderState orderstate) {
+	public int update(int id, String orderstate) {
 		return jdbcTemplate.update("update orders set state = ? where id = ?",
 				new Object[] {orderstate,id});
 	}
@@ -75,7 +74,7 @@ public class OrderDAOImpl implements OrderDAO {
 
 
 	@Override
-	public List<Orders> findByUserIdIdAndState(int Id, OrderState orderstate) {
+	public List<Orders> findByUserIdIdAndState(int Id, String orderstate) {
 		return jdbcTemplate.query("select * from orders where userID = ? and state = ?",
 				new Object[]{Id, orderstate}, new BeanPropertyRowMapper<Orders>(Orders.class));
 	}
@@ -98,7 +97,7 @@ public class OrderDAOImpl implements OrderDAO {
 
 
 	@Override
-	public List<Orders> findByCinemaIdIdAndState(int Id,  OrderState orderstate) {
+	public List<Orders> findByCinemaIdIdAndState(int Id,  String orderstate) {
 		return jdbcTemplate.query("select * from orders where cinemaID = ? and state = ?",
 				new Object[]{Id, orderstate}, new BeanPropertyRowMapper<Orders>(Orders.class));
 	}
