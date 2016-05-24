@@ -27,7 +27,7 @@ public class OrderDAOImpl implements OrderDAO {
 	public int insert(Orders order) {
 		return jdbcTemplate.update("insert into orders values(null,?,?,?,?,?)",
 				new Object[] {order.getUserID(),order.getCinemaID(),order.getTime(),
-						order.getPrices(),order.getState()});
+						order.getPrices(),"1"});
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class OrderDAOImpl implements OrderDAO {
 
 
 	@Override
-	public List<Orders> findByUserIdIdAndData(int Id, Long startTime, Long endTime) {
+	public List<Orders> findByUserIdIdAndData(int Id, long startTime, long endTime) {
 		return jdbcTemplate.query("select * from orders where userID = ? and time >= ? and time <= ?",
 				new Object[]{Id, startTime, endTime}, new BeanPropertyRowMapper<Orders>(Orders.class));
 	}
@@ -84,7 +84,7 @@ public class OrderDAOImpl implements OrderDAO {
 
 
 	@Override
-	public List<Orders> findByCinemaIdIdAndData(int Id, Long startTime, Long endTime) {
+	public List<Orders> findByCinemaIdIdAndData(int Id, long startTime, long endTime) {
 		return jdbcTemplate.query("select * from orders where cinemaID = ? and time >= ? and time <= ?",
 				new Object[]{Id, startTime, endTime}, new BeanPropertyRowMapper<Orders>(Orders.class));
 	}

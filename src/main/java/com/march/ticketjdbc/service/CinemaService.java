@@ -32,14 +32,14 @@ public class CinemaService {
 	}
 	
 	public String login(String username, String password) {
-		Cinema cinema = cinemaDAO.findByName(username);
+		Cinema cinema = cinemaDAO.findByUserName(username);
 		if (cinema == null || !cinema.getPassword().equals(password))
 			return "username or password error";
 		return "success";
 	}
 	
 	public String sign(String cinemaName, String address, String username, String password, String telephone, String email) {
-		Cinema cinema = cinemaDAO.findByName(username);
+		Cinema cinema = cinemaDAO.findByUserName(username);
 		if (cinema == null) {
 			cinemaDAO.insert(new Cinema(cinemaName, address, username, password, telephone, email));
 			return "this username already exists";
@@ -50,7 +50,7 @@ public class CinemaService {
 	public String change(String cinemaName, String address, String username, String password, String telephone, String email) {
 		if (password == null || password.length() == 0)
 			return "password can not be empty";
-		Cinema cinema = cinemaDAO.findByName(username);
+		Cinema cinema = cinemaDAO.findByUserName(username);
 		cinema.setPassword(password);
 		
 		if (cinemaName == null || cinemaName.length() == 0) return "cinemaName can not be empty";
@@ -70,6 +70,6 @@ public class CinemaService {
 	}
 	
 	public Cinema getInfo(String username) {
-		return cinemaDAO.findByName(username);
+		return cinemaDAO.findByUserName(username);
 	}
 }

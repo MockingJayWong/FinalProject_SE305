@@ -13,7 +13,7 @@ public class Orders {
 	@JsonView(JsonModule.CreateOrderModule.class)
 	private int cinemaID;
 	@JsonView(JsonModule.CreateOrderModule.class)
-	private Long time;
+	private long time;
 	@JsonView(JsonModule.CreateOrderModule.class)
 	private float prices;
 	
@@ -36,10 +36,10 @@ public class Orders {
 	public void setCinemaID(int cinemaID) {
 		this.cinemaID = cinemaID;
 	}
-	public Long getTime() {
+	public long getTime() {
 		return time;
 	}
-	public void setTime(Long time) {
+	public void setTime(long time) {
 		this.time = time;
 	}
 	public float getPrices() {
@@ -54,7 +54,7 @@ public class Orders {
 	public void setState(OrderState state) {
 		this.state = state;
 	}
-	public Orders(int userID, int cinemaID, Long time, float prices, OrderState state) {
+	public Orders(int userID, int cinemaID, long time, float prices, OrderState state) {
 		super();
 		this.userID = userID;
 		this.cinemaID = cinemaID;

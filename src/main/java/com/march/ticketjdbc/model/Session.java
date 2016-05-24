@@ -17,10 +17,10 @@ public class Session {
 	private String movieName;
 	
 	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.CreateOrderModule.class})
-	private Long start_time;
+	private long start_time;
 	
 	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.CreateOrderModule.class})
-	private Long end_time;
+	private long end_time;
 	
 	@JsonView(JsonModule.GetSessionListModule.class)
 	private String language;
@@ -51,16 +51,16 @@ public class Session {
 	public void setMovieName(String movieName) {
 		this.movieName = movieName;
 	}
-	public Long getStart_time() {
+	public long getStart_time() {
 		return start_time;
 	}
-	public void setStart_time(Long start_time) {
+	public void setStart_time(long start_time) {
 		this.start_time = start_time;
 	}
-	public Long getEnd_time() {
+	public long getEnd_time() {
 		return end_time;
 	}
-	public void setEnd_time(Long end_time) {
+	public void setEnd_time(long end_time) {
 		this.end_time = end_time;
 	}
 	public String getLanguage() {
@@ -75,7 +75,7 @@ public class Session {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public Session(int cinemaID, int hall, String movieName, Long start_time, Long end_time, String language,
+	public Session(int cinemaID, int hall, String movieName, long start_time, long end_time, String language,
 			float price) {
 		super();
 		this.cinemaID = cinemaID;

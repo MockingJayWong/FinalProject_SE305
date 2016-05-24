@@ -39,10 +39,10 @@ public class OrderService {
 		
 		int i = 0, j = 0;
 		while (i < Seats_int.size() && j < soldTickets.size()) {
-			if (Seats_int.get(i).equals(soldTickets.get(j)))
+			if (Seats_int.get(i).equals(soldTickets.get(j).getSeat()))
 				return false;
 			int a = Seats_int.get(i);
-			int b = Seats_int.get(j);
+			int b = soldTickets.get(j).getSeat();
 			if (a < b) i++;
 			else j++;
 		}
@@ -52,7 +52,7 @@ public class OrderService {
 	
 	public Orders createOrder(int userId, int cinemaId, int sessionId, String seats) {
 		//创建订单
-		Long now = System.currentTimeMillis();
+		long now = System.currentTimeMillis();
 		Session session = sessionDAO.findByID(sessionId);
 		String []Seat_str = seats.split(",");
 		

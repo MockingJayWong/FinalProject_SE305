@@ -22,9 +22,9 @@ public class UserService {
 		User user = userDAO.findByName(username);
 		if (user == null) {
 			userDAO.insert(new User(username, password, telephone, email));
-			return "this username already exists";
+			return "success";
 		}
-		return "success";
+		return "this username already exists";
 	}
 	
 	public String change(String username, String password, String telephone, String email) {

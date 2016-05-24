@@ -19,9 +19,15 @@ public class CinemaDAOImpl implements CinemaDAO {
 	}
 
 	@Override
-	public Cinema findByName(String cinemaName) {
+	public Cinema findByCinemaName(String cinemaName) {
 		return jdbcTemplate.queryForObject("select * from cinema where cinemaName = ?",
 				new BeanPropertyRowMapper<Cinema>(Cinema.class), cinemaName);
+	}
+	
+	@Override
+	public Cinema findByUserName(String userName) {
+		return jdbcTemplate.queryForObject("select * from cinema where username = ?",
+				new BeanPropertyRowMapper<Cinema>(Cinema.class), userName);
 	}
 
 	@Override

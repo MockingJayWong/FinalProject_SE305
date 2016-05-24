@@ -13,13 +13,13 @@ public interface OrderDAO {
 	public List<Orders> findByUserIdIdAndState(int Id, OrderState orderstate);
 	
 	//注意这里的Data是sql包中
-	public List<Orders> findByUserIdIdAndData(int Id, Long startTime , Long endTime);
+	public List<Orders> findByUserIdIdAndData(int Id, long startTime , long endTime);
 	
 	public List<Orders> findByCinemaId(int Id);
 	public List<Orders> findByCinemaIdIdAndState(int Id, OrderState orderstate);
 	
 	//注意这里的Data是sql包中
-	public List<Orders> findByCinemaIdIdAndData(int Id, Long startTime , Long endTime);
+	public List<Orders> findByCinemaIdIdAndData(int Id, long startTime , long endTime);
 	
 	
 	public int insert(Orders order);

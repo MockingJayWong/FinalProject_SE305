@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.march.ticketjdbc.dao.MovieDAOImpl;
+import com.march.ticketjdbc.daoImpl.MovieDAOImpl;
 import com.march.ticketjdbc.model.Movie;
 
 @RunWith(SpringJUnit4ClassRunner.class)
