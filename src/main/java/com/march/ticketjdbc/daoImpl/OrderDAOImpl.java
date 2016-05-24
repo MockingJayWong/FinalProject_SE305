@@ -20,7 +20,7 @@ public class OrderDAOImpl implements OrderDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	//�?般不会用�?
+	//锟�?鑸笉浼氱敤锟�?
 	@Override
 	public List<Orders> findAll() {
 		return jdbcTemplate.query("select * from orders", new BeanPropertyRowMapper<Orders>(Orders.class));
@@ -31,10 +31,6 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public int insert(final Orders order) {
 		KeyHolder  generatedKeyHolder = new GeneratedKeyHolder();   
-		/*return jdbcTemplate.update("insert into orders values(null,?,?,?,?,?)",generatedKeyHolder,
-				new Object[] {order.getUserID(),order.getCinemaID(),order.getTime(),
-						order.getPrices(),"1"});
-		*/
 		jdbcTemplate.update(
 				new PreparedStatementCreator() {
 			@Override
@@ -44,7 +40,7 @@ public class OrderDAOImpl implements OrderDAO {
 				st.setInt(2, order.getCinemaID());
 				st.setLong(3, order.getTime());
 				st.setFloat(4, order.getPrices());
-				st.setString(5, "1");
+				st.setString(5, order.getState());
 				return st;
 			}
 		},generatedKeyHolder);

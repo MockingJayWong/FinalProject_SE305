@@ -1,11 +1,17 @@
 package com.march.ticketjdbc.daoImpl;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import com.march.ticketjdbc.daointerface.SessionDAO;
 import com.march.ticketjdbc.model.Session;
@@ -58,11 +64,25 @@ public class SessionDAOImpl implements SessionDAO{
 	}
 
 	@Override
-	public int insert(Session session) {
-		return jdbcTemplate.update("insert into session(cinemaID,hall,movieName,start_time,end_time,language, price) values(?,?,?,?,?,?,?)",
-				new Object[] {session.getCinemaID(),session.getHall(),
-						session.getMovieName(),session.getStart_time(),session.getEnd_time(),
-						session.getLanguage(),session.getPrice()});
+	public int insert(final Session session) {
+
+		KeyHolder  generatedKeyHolder = new GeneratedKeyHolder();   
+		jdbcTemplate.update(
+				new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement st = con.prepareStatement("insert into session(cinemaID,hall,movieName,start_time,end_time,language, price) values(?,?,?,?,?,?,?)", new String[]{"id"});
+				st.setInt(1,session.getCinemaID());
+				st.setInt(2, session.getHall());
+				st.setString(3, session.getMovieName());
+				st.setLong(4, session.getStart_time());
+				st.setLong(5, session.getEnd_time());
+				st.setString(6, session.getLanguage());
+				st.setFloat(7, session.getPrice());
+				return st;
+			}
+		},generatedKeyHolder);
+		return generatedKeyHolder.getKey().intValue();
 	}
 
 	@Override
