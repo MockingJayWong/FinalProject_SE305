@@ -22,11 +22,16 @@ public class MovieService {
 		return movieDAO.findByID(id);
 	}
 
-	public int addMovie(Movie movie) {
-		return movieDAO.insert(movie);
+	public Movie addMovie(Movie movie) {
+		movie.setId(movieDAO.insert(movie));
+		return movie;
 	}
 
 	public int deleteMovie(int movieID) {
 		return movieDAO.delete(movieID);
+	}
+	
+	public int updateMovie(Movie movie){
+		return movieDAO.update(movie);
 	}
 }

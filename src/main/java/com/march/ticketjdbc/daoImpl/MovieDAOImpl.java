@@ -31,7 +31,10 @@ public class MovieDAOImpl implements MovieDAO {
 				new BeanPropertyRowMapper<Movie>(Movie.class), id);
 	}
 	
-	//public List<Movie> findByTime(Date StartTime)
+	public List<Movie> findByTime(long start_time, long end_time) {
+		return jdbcTemplate.query("select * from movie where start_time >= ? and end_time <= ?",
+				new BeanPropertyRowMapper<Movie>(Movie.class), new Object[] {start_time, end_time});
+	}
 	
 	public Movie findByMovieName(String name) {
 		return jdbcTemplate.queryForObject("select * from movie where movieName = ?",

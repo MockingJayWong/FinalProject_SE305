@@ -13,6 +13,11 @@ public class Movie {
 	private String introduction;
 	@JsonView(JsonModule.GetMovieListModule.class)
 	private float score;
+	@JsonView(JsonModule.GetMovieListModule.class)
+	private long start_time;
+	@JsonView(JsonModule.GetMovieListModule.class)
+	private long end_time;
+	
 	public int getId() {
 		return id;
 	}
