@@ -1,11 +1,17 @@
 package com.march.ticketjdbc.daoImpl;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import com.march.ticketjdbc.daointerface.OrderDAO;
 import com.march.ticketjdbc.model.OrderState;
@@ -24,10 +30,26 @@ public class OrderDAOImpl implements OrderDAO {
 
 
 	@Override
-	public int insert(Orders order) {
-		return jdbcTemplate.update("insert into orders values(null,?,?,?,?,?)",
+	public int insert(final Orders order) {
+		KeyHolder  generatedKeyHolder = new GeneratedKeyHolder();   
+		/*return jdbcTemplate.update("insert into orders values(null,?,?,?,?,?)",generatedKeyHolder,
 				new Object[] {order.getUserID(),order.getCinemaID(),order.getTime(),
 						order.getPrices(),"1"});
+		*/
+		jdbcTemplate.update(
+				new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement st = con.prepareStatement("insert into orders values(null,?,?,?,?,?)", new String[]{"id"});
+				st.setInt(1, order.getUserID());
+				st.setInt(2, order.getCinemaID());
+				st.setLong(3, order.getTime());
+				st.setFloat(4, order.getPrices());
+				st.setString(5, "1");
+				return st;
+			}
+		},generatedKeyHolder);
+		return generatedKeyHolder.getKey().intValue();
 	}
 
 	@Override
