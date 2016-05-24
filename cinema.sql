@@ -32,7 +32,6 @@ CREATE  TABLE `cinema_datebase`.`user` (
 
 CREATE TABLE `cinema_datebase`.`cinema` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `cinemaID` INT NOT NULL,
   `cinemaName` VARCHAR(45) NOT NULL,
   `address` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
