@@ -73,13 +73,12 @@ public class GetJsonStringService {
 		if (orderService.checkSeats(sessionId, seats)) {
 			Orders order = orderService.createOrder(userId, cinemaId, sessionId, seats);
 			Session session = sessionDAO.findByID(sessionId);
-			List<int[]> result = new ArrayList<int[]>();
-			TransSoldList(seats, result);
+			List<int[]> list = 	TransSoldList(seats);
 			
 			data.setError_code("0");
 			data.setOrder(order);
 			data.setSession(session);
-			data.setList(result);
+			data.setList(list);
 			
 			return GetJsonString("success", data);
 		}
@@ -124,8 +123,9 @@ public class GetJsonStringService {
 		return GetJsonString("success", data);
 	}
 	
-	private List<int[]> TransSoldList(String soldList, List<int[]> result) {
+	private List<int[]> TransSoldList(String soldList) {
 		String []seatList = soldList.split(",");
+		List<int[]> result = new ArrayList<int[]>();
 		
 		for (int i = 0; i < seatList.length; i++) {
 			int []temp = new int[2];

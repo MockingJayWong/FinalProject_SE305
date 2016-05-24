@@ -56,7 +56,7 @@ public class OrderService {
 		Session session = sessionDAO.findByID(sessionId);
 		String []Seat_str = seats.split(",");
 		
-		Orders order = new Orders(userId, cinemaId, now, session.getPrice() * Seat_str.length, OrderState.NOT_PAID);
+		Orders order = new Orders(userId, cinemaId, now, session.getPrice() * Seat_str.length, "1");
 		order.setId(orderDAO.insert(order));
 		
 		//锁定已选票
