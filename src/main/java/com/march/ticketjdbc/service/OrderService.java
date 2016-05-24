@@ -5,10 +5,12 @@ import java.sql.Date;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.march.ticketjdbc.dao.*;
 import com.march.ticketjdbc.model.*;
 
+@Service
 public class OrderService {
 	@Autowired
 	private TicketDAOImpl ticketDAO;

@@ -61,9 +61,8 @@ public class Cinema {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Cinema(int id, String cinemaName, String address) {
+	public Cinema(String cinemaName, String address) {
 		super();
-		this.id = id;
 		this.cinemaName = cinemaName;
 		this.address = address;
 	}

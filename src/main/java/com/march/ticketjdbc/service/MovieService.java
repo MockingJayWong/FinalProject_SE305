@@ -29,4 +29,11 @@ public class MovieService {
 	public int deleteMovie(int movieID) {
 		return movieDAO.delete(movieID);
 	}
+	
+	public void deploy() {
+		for (int i = 0; i <  10; i++) {
+			Movie movie = new Movie( "movie"+i, "img"+i, "This is movie "+i+"...", (float)5+i);
+			addMovie(movie);
+		}
+	}
 }

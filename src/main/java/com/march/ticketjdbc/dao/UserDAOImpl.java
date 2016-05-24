@@ -30,14 +30,14 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		return jdbcTemplate.update("insert into user values(null,?,?,?,?,?)",
 				new Object[] {user.getUsername(),user.getPassword(),
-						user.getTelephone(),user.getEmail(),user.getRole()});
+						user.getTelephone(),user.getEmail()});
 	}
 
 	@Override
 	public int update(User user) {
 		return jdbcTemplate.update("update user set password = ?,telephone = ?, email = ?, role = ? where id = ?",
 				new Object[] {user.getPassword(),
-						user.getTelephone(),user.getEmail(),user.getRole(),user.getId()});
+						user.getTelephone(),user.getEmail(),user.getId()});
 	}
 
 	@Override
