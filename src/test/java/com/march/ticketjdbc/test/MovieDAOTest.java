@@ -18,7 +18,7 @@ public class MovieDAOTest {
 	
 	@Test
 	public void addMovie() {
-		Movie movie = new Movie("JUNIT", "a.org", "my god!", 12.9f);
+		Movie movie = new Movie("JUNIT", "a.org", "my god!", 12.9f, 123l, 345l);
 		movieDAO.insert(movie);
 	}
 }

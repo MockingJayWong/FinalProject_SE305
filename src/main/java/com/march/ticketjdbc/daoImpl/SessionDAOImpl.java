@@ -1,12 +1,12 @@
 package com.march.ticketjdbc.daoImpl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -28,7 +28,11 @@ public class SessionDAOImpl implements SessionDAO{
 
 	@Override
 	public Session findByID(int SessionId) {
-		return jdbcTemplate.queryForObject("select * from session where id = ?",new Object[]{SessionId} ,new BeanPropertyRowMapper<Session>(Session.class));
+		try {
+			return jdbcTemplate.queryForObject("select * from session where id = ?",new Object[]{SessionId} ,new BeanPropertyRowMapper<Session>(Session.class));
+		} catch(EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 	@Override

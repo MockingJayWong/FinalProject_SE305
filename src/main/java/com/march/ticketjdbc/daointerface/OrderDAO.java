@@ -1,6 +1,5 @@
 package com.march.ticketjdbc.daointerface;
 
-import java.sql.Date;
 import java.util.List;
 
 import com.march.ticketjdbc.model.Orders;

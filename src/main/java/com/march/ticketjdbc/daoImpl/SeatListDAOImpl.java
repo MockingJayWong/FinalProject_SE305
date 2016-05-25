@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -48,8 +49,9 @@ public class SeatListDAOImpl implements SeatListDAO {
 		try {
 			return jdbcTemplate.queryForObject("select * from seat where sessionID = ?",
 					new BeanPropertyRowMapper<Seat>(Seat.class), sessionID);
-		}
-		catch (IndexOutOfBoundsException e) {
+		} catch(EmptyResultDataAccessException e) {
+			return null;
+		} catch (IndexOutOfBoundsException e) {
 			return null;
 		}
 	}
@@ -57,10 +59,11 @@ public class SeatListDAOImpl implements SeatListDAO {
 	@Override
 	public Seat findById(int seatID) {
 		try {
-			return jdbcTemplate.query("select * from seat where id = ?",
-					new BeanPropertyRowMapper<Seat>(Seat.class), seatID).get(0);
-		}
-		catch (IndexOutOfBoundsException e) {
+			return jdbcTemplate.queryForObject("select * from seat where id = ?",
+					new BeanPropertyRowMapper<Seat>(Seat.class), seatID);
+		} catch(EmptyResultDataAccessException e) {
+			return null;
+		} catch (IndexOutOfBoundsException e) {
 			return null;
 		}
 	}

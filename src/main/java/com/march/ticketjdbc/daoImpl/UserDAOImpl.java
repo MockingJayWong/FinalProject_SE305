@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -27,8 +28,12 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User findByName(String userName) {
-		return jdbcTemplate.queryForObject("select * from user where username = ?",
-				new BeanPropertyRowMapper<User>(User.class), userName);
+		try {
+			return jdbcTemplate.queryForObject("select * from user where username = ?",
+					new BeanPropertyRowMapper<User>(User.class), userName);
+		} catch(EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 	@Override
@@ -65,9 +70,12 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User findByID(int userId) {
-		return jdbcTemplate.queryForObject("select * from user where id = ?",
-				new BeanPropertyRowMapper<User>(User.class), userId);
-		
+		try {
+			return jdbcTemplate.queryForObject("select * from user where id = ?",
+					new BeanPropertyRowMapper<User>(User.class), userId);
+		} catch(EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 }

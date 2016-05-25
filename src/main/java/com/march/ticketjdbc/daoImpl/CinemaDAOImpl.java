@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -26,20 +27,32 @@ public class CinemaDAOImpl implements CinemaDAO {
 
 	@Override
 	public Cinema findByCinemaName(String cinemaName) {
-		return jdbcTemplate.queryForObject("select * from cinema where cinemaName = ?",
-				new BeanPropertyRowMapper<Cinema>(Cinema.class), cinemaName);
+		try {
+			return jdbcTemplate.queryForObject("select * from cinema where cinemaName = ?",
+					new BeanPropertyRowMapper<Cinema>(Cinema.class), cinemaName);
+		} catch(EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 	
 	@Override
 	public Cinema findByUserName(String userName) {
-		return jdbcTemplate.queryForObject("select * from cinema where username = ?",
-				new BeanPropertyRowMapper<Cinema>(Cinema.class), userName);
+		try {
+			return jdbcTemplate.queryForObject("select * from cinema where username = ?",
+					new BeanPropertyRowMapper<Cinema>(Cinema.class), userName);
+		} catch(EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 	@Override
 	public Cinema findById(int cinemaID) {
-		return jdbcTemplate.queryForObject("select * from cinema where id = ?",
-				new BeanPropertyRowMapper<Cinema>(Cinema.class), cinemaID);
+		try {
+			return jdbcTemplate.queryForObject("select * from cinema where id = ?",
+					new BeanPropertyRowMapper<Cinema>(Cinema.class), cinemaID);
+		} catch(EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 	@Override

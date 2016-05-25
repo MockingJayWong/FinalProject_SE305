@@ -1,7 +1,6 @@
 package com.march.ticketjdbc.daoImpl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;

@@ -1,7 +1,5 @@
 package com.march.ticketjdbc.service;
 
-import java.sql.*;
-import java.sql.Date;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;

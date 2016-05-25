@@ -1,7 +1,5 @@
 package com.march.ticketjdbc.model;
 
-import java.sql.Date;
-
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class Session {
