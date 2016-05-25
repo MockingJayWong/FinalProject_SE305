@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -27,8 +28,12 @@ public class MovieDAOImpl implements MovieDAO {
 	}
 
 	public Movie findByID(int id) {
-		return jdbcTemplate.queryForObject("select * from movie where id = ?",
-				new BeanPropertyRowMapper<Movie>(Movie.class), id);
+		try {
+			return jdbcTemplate.queryForObject("select * from movie where id = ?",
+					new BeanPropertyRowMapper<Movie>(Movie.class), id);
+		} catch(EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 	
 	public List<Movie> findByTime(long start_time, long end_time) {
@@ -37,8 +42,12 @@ public class MovieDAOImpl implements MovieDAO {
 	}
 	
 	public Movie findByMovieName(String name) {
-		return jdbcTemplate.queryForObject("select * from movie where movieName = ?",
-				new BeanPropertyRowMapper<Movie>(Movie.class), name);
+		try {
+			return jdbcTemplate.queryForObject("select * from movie where movieName = ?",
+					new BeanPropertyRowMapper<Movie>(Movie.class), name);
+		} catch(EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 	public int insert(final Movie movie) {

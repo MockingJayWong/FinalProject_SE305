@@ -1,5 +1,6 @@
 package com.march.ticketjdbc.controller;
 
+import org.junit.runner.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,37 +30,13 @@ public class MovieController {
 	
 	@Autowired
 	private MovieService movieService;
-	
-//	@RequestMapping(method = RequestMethod.GET)
-//	public String index(ModelMap modelMap) {
-//		modelMap.addAttribute(new Movie());
-//		modelMap.put("movies", movieService.findAll());
-//		return "movie/index";
-//	}
-//	
-//	@RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
-//	public String detail(@PathVariable("id") int id, ModelMap modelMap) {
-//		modelMap.put("movie", movieService.find(id));
-//		return "movie/detail";
-//	}
-//	
-//	@RequestMapping(value = "detail", method = RequestMethod.GET)
-//	public String qString(@RequestParam("movieID") int id, ModelMap modelMap) {
-//		modelMap.put("movie", movieService.find(id));
-//		return "movie/detail";
-//	}
-//	
-//	@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
-//	public String delete(@PathVariable("id") int id, ModelMap modelMap) {
-//		movieService.deleteMovie(id);
-//		modelMap.clear();
-//		return "redirect:/movie";
-//	}
+
 	
 	@RequestMapping(value = "currentMovieList", method = RequestMethod.GET)
 	@ResponseBody
 	@JsonView(JsonModule.GetMovieListModule.class)
 	public Object getJson() {
+		Movie movie = movieService.find(324234);
 		return jsonService.getCurrentMovieListJson(5);
 	}
 	
