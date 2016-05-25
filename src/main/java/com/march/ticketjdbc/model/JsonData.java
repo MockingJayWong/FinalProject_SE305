@@ -25,6 +25,9 @@ public class JsonData {
 	@JsonView(JsonModule.CinemaModule.class)
 	private Cinema cinema;
 	
+	@JsonView(JsonModule.GetMovieListModule.class) 
+	private Movie movie;
+	
 	public Cinema getCinema() {
 		return cinema;
 	}
@@ -52,6 +55,14 @@ public class JsonData {
 		return error_code;
 	}
 	
+
+	public Movie getMovie() {
+		return movie;
+	}
+
+	public void setMovie(Movie movie) {
+		this.movie = movie;
+	}
 
 	public void setError_code(String code) {
 		error_code = code;

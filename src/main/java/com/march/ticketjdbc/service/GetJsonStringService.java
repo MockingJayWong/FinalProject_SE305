@@ -27,6 +27,7 @@ public class GetJsonStringService {
 	@Autowired
 	SessionDAOImpl sessionDAO;
 	
+	//Movie  Json --------------------------------------------------------------
 	public Object getCurrentMovieListJson(int num) {
 		JsonData data = new JsonData();
 		data.setError_code("0");
@@ -38,6 +39,17 @@ public class GetJsonStringService {
 		data.setList(allMovies);
 		return GetJsonString("success", data);
 	}
+	
+	public Object insertMovie(Movie movie) {
+		JsonData data = new JsonData();
+		data.setMovie(movieService.addMovie(movie));
+		data.setError_code("0");
+		return GetJsonString("success", data);
+	}
+	
+	
+	
+	//----------------------------------------------分割线-------------------------------
 
 	public Object GetCinemaListJson(int movieId) {
 		JsonData data = new JsonData();

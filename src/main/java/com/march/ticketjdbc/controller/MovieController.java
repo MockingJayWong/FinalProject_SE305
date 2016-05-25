@@ -2,6 +2,8 @@ package com.march.ticketjdbc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 //import org.springframework.ui.ModelMap;
 //import org.springframework.validation.BindingResult;
 //import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,6 +26,9 @@ public class MovieController {
 	
 	@Autowired
 	private GetJsonStringService jsonService;
+	
+	@Autowired
+	private MovieService movieService;
 	
 //	@RequestMapping(method = RequestMethod.GET)
 //	public String index(ModelMap modelMap) {
@@ -58,13 +63,22 @@ public class MovieController {
 		return jsonService.getCurrentMovieListJson(5);
 	}
 	
-//	@RequestMapping(method = RequestMethod.POST)
-//	public String addMovie(@ModelAttribute("movie") Movie movie, final BindingResult bindingResult, final ModelMap model) {
-//		if (bindingResult.hasErrors()) {
-//            return "movie/index";
-//        }
-//        movieService.addMovie(movie);
-//        model.clear();
-//        return "redirect:/movie";
-//	}
+	@RequestMapping(value = "adder", method = RequestMethod.GET)
+	public Object addMovieView(ModelMap map) {
+		map.addAttribute(new Movie());
+		return "addmovie";
+	}
+	
+	@RequestMapping(value = "addMovie", method = RequestMethod.POST)
+	@ResponseBody
+	public Object addMovie(@ModelAttribute Movie movie) {
+		return jsonService.insertMovie(movie);
+	}
+
+
+
+	
+
+	
+	
 }

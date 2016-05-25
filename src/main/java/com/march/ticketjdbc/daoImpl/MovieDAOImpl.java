@@ -47,11 +47,13 @@ public class MovieDAOImpl implements MovieDAO {
 				new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement st = con.prepareStatement("insert into movie(movieName, url, introduction, score) values(?, ?, ?, ?)", new String[]{"id"});
+				PreparedStatement st = con.prepareStatement("insert into movie(movieName, url, introduction, score,start_time, end_time) values(?, ?, ?, ?,?,?)", new String[]{"id"});
 				st.setString(1, movie.getMovieName());
 				st.setString(2, movie.getUrl());
 				st.setString(3, movie.getIntroduction());
 				st.setFloat(4, movie.getScore());
+				st.setLong(5, movie.getStart_time());
+				st.setLong(6, movie.getEnd_time());
 				return st;
 			}
 		},generatedKeyHolder);

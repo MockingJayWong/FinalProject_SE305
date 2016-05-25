@@ -18,6 +18,18 @@ public class Movie {
 	@JsonView(JsonModule.GetMovieListModule.class)
 	private long end_time;
 	
+	public long getStart_time() {
+		return start_time;
+	}
+	public void setStart_time(long start_time) {
+		this.start_time = start_time;
+	}
+	public long getEnd_time() {
+		return end_time;
+	}
+	public void setEnd_time(long end_time) {
+		this.end_time = end_time;
+	}
 	public int getId() {
 		return id;
 	}
@@ -48,12 +60,14 @@ public class Movie {
 	public void setScore(float score) {
 		this.score = score;
 	}
-	public Movie(String movieName, String url, String introduction, float score) {
+	public Movie(String movieName, String url, String introduction, float score, long start_time, long end_time) {
 		super();
 		this.movieName = movieName;
 		this.url = url;
 		this.introduction = introduction;
 		this.score = score;
+		this.start_time = start_time;
+		this.end_time = end_time;
 	}
 	public Movie() {
 		super();
