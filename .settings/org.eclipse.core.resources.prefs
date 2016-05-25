@@ -1,17 +1,7 @@
 eclipse.preferences.version=1
-<<<<<<< HEAD
-<<<<<<< HEAD
-encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
-=======
-=======
 encoding//src/main/java/com/march/ticketjdbc/daoImpl/OrderDAOImpl.java=UTF-8
->>>>>>> master
 encoding//src/main/java/com/march/ticketjdbc/service/GetJsonStringService.java=UTF-8
 encoding//src/main/java/com/march/ticketjdbc/service/OrderService.java=UTF-8
 encoding//src/main/java/com/march/ticketjdbc/service/UserService.java=UTF-8
 encoding//src/test/java=ISO-8859-1
-<<<<<<< HEAD
->>>>>>> master
-=======
 encoding/<project>=UTF-8
->>>>>>> master
