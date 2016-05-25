@@ -4,27 +4,29 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 public class Session {
 
-	@JsonView(JsonModule.GetSessionListModule.class)
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class})
 	private int id;
+	
 	private int cinemaID;
 	
-	@JsonView(JsonModule.GetSessionListModule.class)
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class})
 	private int hall;
 	
-	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.CreateOrderModule.class})
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.CreateOrderModule.class, JsonModule.GetCinemaListModule.class})
 	private String movieName;
 	
-	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.CreateOrderModule.class})
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.CreateOrderModule.class, JsonModule.GetCinemaListModule.class})
 	private long start_time;
 	
-	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.CreateOrderModule.class})
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.CreateOrderModule.class, JsonModule.GetCinemaListModule.class})
 	private long end_time;
 	
-	@JsonView(JsonModule.GetSessionListModule.class)
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class})
 	private String language;
 	
-	@JsonView(JsonModule.GetSessionListModule.class)
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class})
 	private float price;
+	
 	public int getId() {
 		return id;
 	}

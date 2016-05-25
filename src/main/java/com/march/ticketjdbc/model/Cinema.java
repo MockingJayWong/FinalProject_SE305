@@ -1,5 +1,7 @@
 package com.march.ticketjdbc.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class Cinema {
@@ -18,6 +20,16 @@ public class Cinema {
 	private String telephone;
 	@JsonView(JsonModule.CinemaModule.class)
 	private String email;
+	
+	@JsonView(JsonModule.GetCinemaListModule.class)
+	private List<Session> sessions;
+	
+	public List<Session> getSessions() {
+		return sessions;
+	}
+	public void setSessions(List<Session> sessions) {
+		this.sessions = sessions;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -65,6 +77,7 @@ public class Cinema {
 		super();
 		this.cinemaName = cinemaName;
 		this.address = address;
+		//this.sessions = new ArrayList<Session>();
 	}
 	
 	public Cinema(String cinemaName, String address, String username, String password, String telephone, String email) {
@@ -75,8 +88,10 @@ public class Cinema {
 		this.password = password;
 		this.telephone = telephone;
 		this.email = email;
+		//this.sessions = new ArrayList<Session>();
 	}
 	public Cinema() {
 		super();
+		//this.sessions = new ArrayList<Session>();
 	}
 }

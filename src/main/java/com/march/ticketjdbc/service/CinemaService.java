@@ -21,6 +21,10 @@ public class CinemaService {
 	@Autowired
 	SessionDAOImpl sessionDao;
 
+	public List<Cinema> findAll() {
+		return cinemaDAO.findAll();
+	}
+	
 	public List<Cinema> findCinemasByMovie(int movieId) {
 		List<Cinema> cinemas = new ArrayList<Cinema>();
 		String name = movieDAO.findByID(movieId).getMovieName();

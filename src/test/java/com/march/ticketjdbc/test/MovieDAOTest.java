@@ -1,5 +1,7 @@
 package com.march.ticketjdbc.test;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +22,11 @@ public class MovieDAOTest {
 	public void addMovie() {
 		Movie movie = new Movie("JUNIT", "a.org", "my god!", 12.9f, 123l, 345l);
 		movieDAO.insert(movie);
+	}
+	
+	@Test
+	public void getallMovies() {
+		List<Movie> m = movieDAO.findAll();
+		System.out.println(m);
 	}
 }

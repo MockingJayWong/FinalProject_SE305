@@ -21,7 +21,7 @@ public class CinemaController {
 	@RequestMapping(value = "cinemaList", method = RequestMethod.GET)
 	@ResponseBody
 	@JsonView(JsonModule.GetCinemaListModule.class)
-	public Object getCinemaListJson(@RequestParam("movieId") int id) {
+	public Object getCinemaListJson(@RequestParam(value = "movieId", required = false) Integer id) {
 		return jsonService.GetCinemaListJson(id);
 	}
 	
