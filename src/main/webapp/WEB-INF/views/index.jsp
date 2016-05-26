@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!DOCTYPE html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8">
@@ -49,6 +48,7 @@
             </div>
           </div>
         </div>
+      </div>
     </div>
 
     <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>

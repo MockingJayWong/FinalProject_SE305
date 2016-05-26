@@ -20,7 +20,18 @@ public class MovieDAOTest {
 	
 	@Test
 	public void addMovie() {
-		Movie movie = new Movie("JUNIT", "a.org", "my god!", 12.9f, 123l, 345l);
+		Movie movie = new Movie(
+				"变形金刚",       // name
+				"a.org",          // url
+				"动作类",         // type
+				"Transformers",   // intro
+				8.9f,             // score
+				12345l,               // start
+				23456l,               // end
+				120l,             // length
+				"忘了",       // director
+				"不记得"       // actor
+				);
 		movieDAO.insert(movie);
 	}
 	

@@ -56,7 +56,7 @@ public class MovieDAOImpl implements MovieDAO {
 				new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement st = con.prepareStatement("insert into movie(movieName, url, type, introduction, score, start_time, end_time, director, actor) values(?, ?, ?, ?, ?, ?, ?, ?, ?)", new String[]{"id"});
+				PreparedStatement st = con.prepareStatement("insert into movie(movieName, url, type, introduction, score, start_time, end_time, length, director, actor) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", new String[]{"id"});
 				st.setString(1, movie.getMovieName());
 				st.setString(2, movie.getUrl());
 				st.setString(3, movie.getType());
@@ -64,8 +64,9 @@ public class MovieDAOImpl implements MovieDAO {
 				st.setFloat(5, movie.getScore());
 				st.setLong(6, movie.getStart_time());
 				st.setLong(7, movie.getEnd_time());
-				st.setString(8, movie.getDirector());
-				st.setString(9, movie.getActor());
+				st.setLong(8, movie.getLength());
+				st.setString(9, movie.getDirector());
+				st.setString(10, movie.getActor());
 				return st;
 			}
 		},generatedKeyHolder);
@@ -73,8 +74,8 @@ public class MovieDAOImpl implements MovieDAO {
 	}
 	
 	public int update(Movie movie) {
-		return jdbcTemplate.update("update movie set movieName = ?, url = ?, type = ?, introduction = ?, score = ?, start_time = ?, end_time = ?, director = ?, actor = ? where id = ?",
-				new Object[] {movie.getMovieName(), movie.getUrl(), movie.getType(), movie.getIntroduction(), movie.getScore(), movie.getStart_time(), movie.getEnd_time(), movie.getDirector(), movie.getActor(), movie.getId()});
+		return jdbcTemplate.update("update movie set movieName = ?, url = ?, type = ?, introduction = ?, score = ?, start_time = ?, end_time = ?, length = ?, director = ?, actor = ? where id = ?",
+				new Object[] {movie.getMovieName(), movie.getUrl(), movie.getType(), movie.getIntroduction(), movie.getScore(), movie.getStart_time(), movie.getEnd_time(), movie.getLength(),  movie.getDirector(), movie.getActor(), movie.getId()});
 	}
 	
 	public int delete(int movieID) {

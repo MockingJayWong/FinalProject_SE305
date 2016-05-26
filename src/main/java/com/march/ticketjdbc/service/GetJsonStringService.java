@@ -46,7 +46,6 @@ public class GetJsonStringService {
 		JsonData data = new JsonData();
 		data.setError_code("0");
 		Movie movie = movieService.find(movieId);
-		movie.setLength((movie.getEnd_time() - movie.getStart_time()) / 60000);  // minutes
 		data.setMovie(movie);
 		return GetJsonString("success", data);
 	}

@@ -37,9 +37,9 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<beans:property name="url"
-			value="jdbc:mysql://172.18.41.13:3306/cinema_datebase?useUnicode=true&amp;characterEncoding=UTF-8" />
-		<beans:property name="username" value="Marchse305" />
-		<beans:property name="password" value="se305" />
+			value="jdbc:mysql://115.28.13.219:3306/cinema_database?useUnicode=true&amp;characterEncoding=UTF-8" />
+		<beans:property name="username" value="root" />
+		<beans:property name="password" value="admin123" />
 	</beans:bean>
 	<beans:bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<beans:property name="dataSource" ref="dataSource" />

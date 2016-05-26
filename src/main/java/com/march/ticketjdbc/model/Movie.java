@@ -34,18 +34,6 @@ public class Movie {
 	@JsonView(JsonModule.GetMovieDetailModule.class)
 	private String actor;
 	
-	public long getStart_time() {
-		return start_time;
-	}
-	public void setStart_time(long start_time) {
-		this.start_time = start_time;
-	}
-	public long getEnd_time() {
-		return end_time;
-	}
-	public void setEnd_time(long end_time) {
-		this.end_time = end_time;
-	}
 	public int getId() {
 		return id;
 	}
@@ -95,20 +83,39 @@ public class Movie {
 	public void setActor(String actor) {
 		this.actor = actor;
 	}
+	
+	public long getStart_time() {
+		return start_time;
+	}
+	public void setStart_time(long start_time) {
+		this.start_time = start_time;
+	}
+	public long getEnd_time() {
+		return end_time;
+	}
+	public void setEnd_time(long end_time) {
+		this.end_time = end_time;
+	}
 	public long getLength() {
 		return length;
 	}
 	public void setLength(long length) {
 		this.length = length;
 	}
-	public Movie(String movieName, String url, String introduction, float score, long start_time, long end_time) {
+
+	public Movie(String movieName, String url, String type, String introduction, float score, long start_time,
+			long end_time, long length, String director, String actor) {
 		super();
 		this.movieName = movieName;
 		this.url = url;
+		this.type = type;
 		this.introduction = introduction;
 		this.score = score;
 		this.start_time = start_time;
 		this.end_time = end_time;
+		this.length = length;
+		this.director = director;
+		this.actor = actor;
 	}
 	public Movie() {
 		super();
