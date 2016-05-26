@@ -25,7 +25,7 @@ public class JsonData {
 	@JsonView(JsonModule.CinemaModule.class)
 	private Cinema cinema;
 	
-	@JsonView(JsonModule.GetMovieListModule.class) 
+	@JsonView(JsonModule.GetMovieDetailModule.class) 
 	private Movie movie;
 	
 	public Cinema getCinema() {

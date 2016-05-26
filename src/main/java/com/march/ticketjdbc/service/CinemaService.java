@@ -27,9 +27,13 @@ public class CinemaService {
 	
 	public List<Cinema> findCinemasByMovie(int movieId) {
 		List<Cinema> cinemas = new ArrayList<Cinema>();
-		String name = movieDAO.findByID(movieId).getMovieName();
-		for (Session session:sessionDao.findByMovieName(name)) {
-			cinemas.add(cinemaDAO.findById(session.getCinemaID()));
+		Movie movie = movieDAO.findByID(movieId);
+		
+		if (movie != null) {
+			String name = movie.getMovieName();
+			for (Session session:sessionDao.findByMovieName(name)) {
+				cinemas.add(cinemaDAO.findById(session.getCinemaID()));
+			}
 		}
 
 		return cinemas;
