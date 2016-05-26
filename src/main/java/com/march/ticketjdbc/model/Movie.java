@@ -98,6 +98,9 @@ public class Movie {
 	public long getLength() {
 		return length;
 	}
+	public void setLength(long length) {
+		this.length = length;
+	}
 	public Movie(String movieName, String url, String introduction, float score, long start_time, long end_time) {
 		super();
 		this.movieName = movieName;
@@ -106,8 +109,6 @@ public class Movie {
 		this.score = score;
 		this.start_time = start_time;
 		this.end_time = end_time;
-		
-		this.length = this.end_time - this.start_time;
 	}
 	public Movie() {
 		super();
