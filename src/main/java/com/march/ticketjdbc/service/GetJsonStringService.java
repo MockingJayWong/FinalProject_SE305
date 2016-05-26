@@ -6,34 +6,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.march.ticketjdbc.model.JsonData;
-import com.march.ticketjdbc.daoImpl.SessionDAOImpl;
 import com.march.ticketjdbc.model.*;
 
 @Service
 public class GetJsonStringService {
 
 	@Autowired
-	MovieService movieService;
+	private MovieService movieService;
 
 	@Autowired
-	CinemaService cinemaService;
+	private CinemaService cinemaService;
 
 	@Autowired
-	OrderService orderService;
+	private OrderService orderService;
 
 	@Autowired
-	UserService userService;
+	private UserService userService;
 
-	// wujiahui
 	@Autowired
 	private SessionService sessionService;
 
-	// wujiahui
 	@Autowired
 	private SeatService seatService;
-
-	@Autowired
-	SessionDAOImpl sessionDAO;
 
 	
 	// --------------------------------- Movie Json -----------------------------------
@@ -41,11 +35,17 @@ public class GetJsonStringService {
 		JsonData data = new JsonData();
 		data.setError_code("0");
 
-		// TODO the right way to get allMovies
 		List<Movie> allMovies = movieService.findAll();
 		allMovies = allMovies.subList(0, allMovies.size() > num ? num : allMovies.size());
 
 		data.setList(allMovies);
+		return GetJsonString("success", data);
+	}
+	
+	public Object getMovieDetail(int movieId) {
+		JsonData data = new JsonData();
+		data.setError_code("0");
+		data.setMovie(movieService.find(movieId));
 		return GetJsonString("success", data);
 	}
 
@@ -68,7 +68,6 @@ public class GetJsonStringService {
 		} else {
 			List<Cinema> allCinemas = cinemaService.findCinemasByMovie(movieId);
 			for (Cinema cinema : allCinemas) {
-				// TODO: Add sessions to each cinema
 				int cinemaId = cinema.getId();
 				String movieName = movieService.find(movieId).getMovieName();
 				cinema.setSessions(sessionService.findSessionsByMovieAndCinema(cinemaId, movieName));
@@ -106,7 +105,6 @@ public class GetJsonStringService {
 		JsonData data = new JsonData();
 		data.setError_code("0");
 
-		// TODO the right way to get all Sessions
 		String movieName = movieService.find(movieId).getMovieName();
 		List<Session> all = sessionService.findSessionsByMovieAndCinema(cinemaId, movieName);
 		data.setList(all);
@@ -114,24 +112,19 @@ public class GetJsonStringService {
 		return GetJsonString("success", data);
 	}
 
-	// wujiahui
 	public Object GetSectionListJson(String movieName, int cinemaId) {
 		JsonData data = new JsonData();
 		data.setError_code("0");
 
-		// TODO the right way to get all Sessions
 		List<Session> all = sessionService.findSessionsByMovieAndCinema(cinemaId, movieName);
 		data.setList(all);
 
 		return GetJsonString("success", data);
 	}
 
-	// wujiahui
 	public Object GetSectionInfoJson(int sessionId) {
 		JsonData data = new JsonData();
 		data.setError_code("0");
-
-		// TODO the right way to get all Sessions
 
 		Seat seat = seatService.getSeatBySessionId(sessionId);
 		data.setList(TransSoldList(seat.getSold_list()));
@@ -148,7 +141,7 @@ public class GetJsonStringService {
 		JsonData data = new JsonData();
 		if (orderService.checkSeats(sessionId, seats)) {
 			Orders order = orderService.createOrder(userId, cinemaId, sessionId, seats);
-			Session session = sessionDAO.findByID(sessionId);
+			Session session = sessionService.getSessionDetailed(sessionId);
 			List<int[]> list = TransSoldList(seats);
 
 			data.setError_code("0");
