@@ -1,0 +1,176 @@
+.whole {
+  background: #BFE3E6;
+}
+nav.navigator .ui.menu {
+  background-color: #E6B84A;
+  box-border: 5px solid #FCFCFC;
+}
+nav.navigator .ui.menu .item {
+  color: #FCFCFC;
+  font-weight: bold;
+}
+.header {
+  padding: 2rem;
+  border-bottom: 1px solid #d0d0d0;
+}
+.content {
+  padding-bottom: 100px;
+}
+* {
+  box-sizing: border-box;
+}
+ul,
+ol,
+dl {
+  list-style: none;
+}
+.info {
+  font-size: 0.9em;
+}
+.info > * {
+  display: inline-block;
+}
+.info .label {
+  color: #b0b0b0;
+}
+.info .value {
+  color: #7d7d7d;
+  margin-left: 1em;
+}
+button.button.ui {
+  background-color: #2f7277 !important;
+}
+.detail-intro {
+  border: 1px solid #FCFCFC;
+  position: relative;
+  background-color: #FCFCFC;
+}
+.detail-intro > .title {
+  padding: 1rem 0 1rem 226px;
+  border: 1px solid #FCFCFC;
+  background-color: #DF7244;
+  color: #FCFCFC;
+}
+.detail-intro .poster {
+  width: 166px;
+  height: 234px;
+  position: absolute;
+  margin: 20px;
+  top: 0;
+  padding: 2px;
+  border: 1px solid #FCFCFC;
+}
+.detail-intro .infos {
+  padding: 0 0 1em 226px;
+  word-break: break-all;
+}
+.detail-intro .infos .info {
+  font-size: 0.9em;
+  margin: 10px 0;
+}
+.detail-intro .infos .info > * {
+  display: inline-block;
+}
+.detail-intro .infos .info .label {
+  color: light(#989378, 20%);
+}
+.detail-intro .infos .info .value {
+  color: #7d7960;
+}
+.detail-intro > .rating {
+  position: absolute;
+  right: 0;
+  margin-top: -56px;
+  padding: 18px 20px;
+  border: 1px solid #FCFCFC;
+  box-shadow: 0 0 10px #e3e3e3;
+  background-color: #E6B84A;
+}
+.detail-intro > .rating > * {
+  display: inline-block;
+}
+.detail-intro > .plot {
+  margin: 2em;
+  border-top: 1px solid #FCFCFC;
+}
+.detail-intro > .plot .title {
+  padding: 1em 0;
+  margin-bottom: 0;
+}
+.detail-intro > .plot > .content {
+  font-size: 0.85em;
+  color: #7d7960;
+  padding: 0;
+}
+.items-container {
+  padding: 0;
+  border: 5px solid #FCFCFC;
+  border-radius: 5px;
+  width: 70%;
+  background-color: #FCFCFC;
+}
+.items-container .title {
+  padding: 10px;
+  background-color: #DF7244;
+  color: #FCFCFC;
+}
+.items-container .item {
+  border-bottom: 2px solid #c4c1b2;
+  padding: 1em;
+  line-height: 1.4em;
+  position: relative;
+}
+.items-container .item:last-child {
+  border-bottom: none;
+}
+.items-container .item .item-title {
+  font-weight: bold;
+  color: #989378;
+}
+.items-container .item .item-content {
+  color: #555;
+  font-size: 0.9rem;
+}
+.items-container .item .item-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-top: 1.25em;
+}
+.items-container .item .item-button button {
+  height: 2.5em;
+  background-color: #2f7277;
+}
+.room-container .seats-container {
+  text-align: center;
+}
+.room-container .seats-container .seats.row {
+  margin: 0.2em;
+}
+.room-container .seats-container .seats.row .seat {
+  margin: 0.2em;
+  width: 1.5em;
+  height: 1.5em;
+}
+.room-container .note {
+  text-align: center;
+}
+.room-container .note .checkbox {
+  margin: 1em;
+}
+.tab-container {
+  width: 70%;
+}
+.tab-container .items-container {
+  border: none;
+  width: 100%;
+}
+.tab-container .items-container .items-content .item {
+  border-top: 1px solid #e3e3e3;
+}
+.tab-container .items-container .items-content .item .info {
+  width: 60%;
+}
+.ui.modal.second .content > .btn-container {
+  text-align: right;
+}
