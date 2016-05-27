@@ -1,0 +1,79 @@
+.detail-intro {
+    @poster_h: 234px;
+    @poster_w: 166px;
+    @padding: 20px;
+    @border: 1px solid @free-white;
+
+    border: @border;
+    position: relative;
+    background-color: @light-bg;
+
+    & > .title {
+        padding: 1rem 0 1rem (@poster_w + 3*@padding);
+        border: @border;
+        background-color: @free-red;
+        color: @light-text-col;
+    }
+
+    .poster {
+        width: @poster_w;
+        height: @poster_h;
+
+        position: absolute;
+        margin: @padding;
+        top: 0;
+        padding: 2px;
+        border: @border;
+    }
+
+    .infos {
+        padding: 0 0 1em (@poster_w + 3*@padding);
+        word-break: break-all;
+        .info {
+            font-size: 0.9em;
+            margin: 0.5*@padding 0;
+            & > * {
+                display: inline-block;
+            }
+
+            .label {
+                color: light(@dark-text-col, 20%);
+            }
+
+            .value {
+                color: darken(@dark-text-col, 10%);
+            }
+        }
+    }
+
+    &>.rating {
+        position: absolute;
+        right: 0;
+        margin-top: (-2.8 * @padding);
+        padding: (0.9*@padding) @padding;
+        border: @border;
+        box-shadow: 0 0 10px darken(@light-text-col, 10%);
+        background-color: @free-yellow;
+
+        & > * {
+            display: inline-block;
+        }
+    }
+
+    & > .plot {
+        margin: 2em;
+        border-top: @border;
+
+
+        .title {
+            padding: 1em 0;
+            margin-bottom: 0;
+        }
+
+        & > .content {
+            font-size: 0.85em;
+            color: darken(@dark-text-col, 10%);
+            padding: 0;
+        }
+    }
+}

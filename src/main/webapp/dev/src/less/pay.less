@@ -1,0 +1,24 @@
+@import "global/colors.less";
+@import "global/layout.less";
+@import "global/utils.less";
+
+@import "includes/count-down.less";
+
+.content {
+    .pay-order-container {
+        .total {
+            & > * {
+                display: inline-block;
+            }
+
+            .value {
+                color: @free-yellow;
+            }
+        }
+    }
+
+    .pay-btn-container {
+        margin-top: 5em;
+        text-align: right;
+    }
+}

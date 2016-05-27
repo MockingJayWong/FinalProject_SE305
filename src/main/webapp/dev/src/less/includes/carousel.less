@@ -1,0 +1,105 @@
+.carousel {
+
+    margin: 30px auto;
+    background-color: @bg-second-col;
+    padding: 10px;
+    position: relative;
+    border: 5px solid @free-white;
+    border-radius: 0.3em;
+
+    ul.side.carousel-item {
+        overflow: hidden;
+        padding: 0 20px;
+
+        li.reco-movie {
+            display: inline-block;
+            margin: 30px 25px 60px 30px;
+            position: relative;
+            box-shadow: 0 0 15px darken(@bg-second-col, 50%);
+
+            a {
+                display: block;
+            }
+
+            img {
+                width: 170px;
+                height: 250px;
+            }
+
+            .reco-movie-info {
+                position: absolute;
+                bottom: 0;
+                background-color: darken(@dark-bg, 30%);
+                opacity: 0.8;
+                color: lighten(@dark-text-col, 30%);
+                display: block;
+                width: 100%;
+                padding: 5px 10px;
+
+                .reco-movie-name {
+                    font-weight: bold;
+                    color: @light-text-col;
+                    z-index: -999;
+                }
+
+                .reco-movie-rank {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    color: @free-red;
+                    margin-right: 2px;
+                    font-weight: bold;
+                }
+
+                .reco-movie-intro {
+                    word-break: break-all;
+                }
+            }
+            .purchase-btn {
+                background-color: @btn-default-col;
+                color: @light-text-col;
+                position: absolute;
+                width: 85%;
+                margin: 1rem;
+                box-shadow: 0 0 20px lighten(@dark-bg, 10%);
+            }
+        }
+    }
+
+    .carousel-title {
+        color: @light-text-col;
+    }
+
+    .carousel-btn {
+        display: inline-block;
+        background: @free-white;
+        opacity: 0.8;
+        width: 50px;
+        height: 50px;
+        border: 1px solid @free-white;
+        border-radius: 50%;
+        text-align: center;
+        padding: 9px;
+        cursor: pointer;
+
+        &.to-left {
+            position: absolute;
+            top: 150px;
+            left: -60px;
+        }
+
+        &.to-right {
+            position: absolute;
+            top: 150px;
+            right: -60px;
+        }
+
+        &:hover {
+            background-color: lighten(@dark-bg, 40%);
+
+            transition: background-color 0.5s;
+        }
+
+        transition: background-color 0.5s;
+    }
+}

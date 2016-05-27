@@ -1,0 +1,212 @@
+mixin reco-item(name)
+    li(class="reco-#{name}")
+        a(href="../html/movie.html")
+            img(src="../assets/0.jpg")
+        div(class="reco-#{name}-info")
+            div(class="reco-#{name}-name")
+                | 美国队长2
+            div(class="reco-#{name}-intro")
+                | 一群人内讧打架的故事
+            span(class="reco-#{name}-rank")
+                | 8.9
+        a(href="../html/movie.html#cinemas")
+            button.ui.primary.button.purchase-btn
+                | 购票
+
+mixin info(name, key, value)
+    dl(class="#{name}-#{attributes.about}", class=["#{name}-info", "info"])
+        dt.label
+            | #{key}
+        dd.value
+            | #{value}
+
+mixin list-item(name, item)
+    .item(class="#{name}-item")
+        .item-title(class=["#{name}-name"])
+            | 天河电影院
+        .item-content
+            +info(name, "地址", "天河区天河路623号天娱广场5楼（近地铁3号线岗顶站A出口）")(about="address")
+            +info(name, "场次", "13:10 | 13:45 | 14:50 | 15:30 | 16:30 | 17:15 |18:10 | 19:00 | 19:50 | 20:40 |21:30 | 22:25")(about="section")
+        .item-button
+            a(href="#")
+                button.ui.primary.button.purchase-btn
+                    | 选座购票
+
+mixin side(status, name)
+    ul.side(class="#{status} reco-#{name}s-group carousel-item")
+        +reco-item(name)
+        +reco-item(name)
+        +reco-item(name)
+        +reco-item(name)
+
+
+mixin carousel(name)
+    .carousel(class="reco-#{name}s")
+        .carousel-title
+            h4 当前热映:
+        .carousel-btn.to-left
+            i.big.arrow.left.icon
+        .carousel-btn.to-right
+            i.big.arrow.right.icon
+        .ui.shape
+            .sides
+                +side("active", name)
+                +side("", name)
+
+mixin list(name)
+    .items-container(class="reco-#{name}s")
+        .title
+            h4 热门电影院
+        .items-content
+            +list-item(name)
+            +list-item(name)
+            +list-item(name)
+            +list-item(name)
+
+mixin detail-intro(name)
+    div(class=["#{name}-intro", "detail-intro"])
+        div(class=["#{name}-title", "title"])
+            h3
+                | 愤怒的小鸟
+        img(src="../assets/0.jpg", class=["#{name}-poster", "poster"])
+        div(class=["#{name}-rating", "rating"])
+            .ui.rating(data-rating="3", data-max-rating="5")
+            span.rating-value
+                | 8.8
+        dl(class=["#{name}-infos", "infos"])
+            +info(name, "首映", "2016-05-20")(about="first-time")
+            +info(name, "类型", "动画,奇幻,冒险")(about="type")
+            +info(name, "版本", "3D")(about="version")
+            +info(name, "地区", "美国,芬兰")(about="region")
+            +info(name, "时长", "97分钟")(about="period")
+            +info(name, "导演", "费格尔·雷利,克莱·凯蒂")(about="director")
+            +info(name, "主演", "杰森·苏戴奇斯，乔什·盖德，丹尼·麦克布耐德，玛娅·鲁道夫，彼特·丁拉基，比尔·哈德尔，托尼·海尔，科甘·迈克尔·凯...")(about="actors")
+        div(class=["#{name}-plot", "plot"])
+            h5.title
+                | 剧情
+            .content
+                | 在一座与世隔绝的美丽小岛上，住着一群乐天知命的鸟。不过易怒的大红（杰森·苏戴奇斯 配音）、亢奋的恰克（乔什·盖德 配音）和炸弹（丹尼·麦克布耐德 配音）总是因为各自的怪性格而不被其他的鸟接纳。不过当神秘的绿猪伦纳德（比尔·哈德尔 配音）造访这座世外小岛，就得由这群怪咖查出这些神秘兮兮的外来客到底有何目的
+
+mixin tab-item(name, title)
+    a.item(data-tab=name, class=[attributes.status])
+        | #{title}
+
+mixin tab-segment(name, title)
+    .ui.tab.attached.segment(data-tab=name, class=[attributes.status])
+        if block
+            block
+        else
+            | 这里还没有东西哦
+
+
+mixin tab-container(name)
+    .ui.attached.tabular.menu(class="reco-#{name}s")
+        +tab-item("cinemas", "上映影院")(status="active")
+        +tab-item("recommends", "热门影评")
+    +tab-segment("cinemas")(status="active")
+        +list("cinema")
+    +tab-segment("recommends")
+
+mixin table(name)
+    -
+        var headers = [
+        "放映开始时间", "放映结束时间", "语言版本", "放映厅", "售价", "在线选座"
+        ];
+        var datas = [
+            {
+                startTime: "22:25",
+                endTime: "23:55",
+                language: "英语3D",
+                room: "二号厅",
+                price: 31.5
+            },
+            {
+                startTime: "22:25",
+                endTime: "23:55",
+                language: "英语3D",
+                room: "二号厅",
+                price: 31.5
+            }
+        ]
+
+    .table-container
+        table.ui.celled.table
+            thead
+                tr
+                    each header in headers
+                        th= header
+            tbody(class="reco-#{name}s")
+                each data in datas
+                    tr(class="#{name}-item")
+                        each value, key in data
+                            td(class=key)
+                                | #{value}
+                        td
+                            button.ui.primary.button.purchase-btn
+                                | 购票   
+
+mixin room-container(name)
+    - var row = 10, col = 10, i = 0;
+    .room-container
+        .ui.horizontal.divider.screen
+            | 屏幕
+        .seats-container
+            while i++ <= row
+                div(class=["#{name}s", "row", "row-#{i}"])
+                    - var j = 0;
+                    while j++ <= col
+                        input(type="checkbox", class=["#{name}", "row-#{i}", "col-#{j}"])
+        .note(class=name)
+            .ui.checkbox
+                input(type="checkbox", onclick="return false;")
+                label 可选座位
+            .ui.checkbox
+                input(type="checkbox", checked="checked", onclick="return false;")
+                label 已选座位
+            .ui.checkbox
+                input(type="checkbox", checked="checked", disabled="disabled")
+                label 已售座位
+
+
+mixin modal(name)
+    .modal-container
+        .ui.modal(class=[attributes.order])
+            i.close.icon
+            .content
+                if attributes.type == "table"
+                    +table(name)
+                else
+                    +room-container(name)
+                    .btn-container
+                        // temporary
+                        a(href="pay.html")
+                            button.ui.primary.button.purchase-btn
+                                | 去支付
+mixin count-down(min, sec)
+    .count-down-container
+        i.smile.icon.large
+        .tips
+            .time-left
+                | 请在#{min}分钟#{sec}秒内支付完成
+            .otherwise
+                | 超时订单会自动取消，如遇支付问题，请拨打电话
+
+
+mixin order-table()
+    -
+        var headers = ["观影时间", "影片", "影院", "座位"];
+        var values = ["6月8号 周三 0:00", "美国队长3","天河影院", "1排2座"];
+    table.order-detail.ui.celled.table
+        thead
+            tr
+                each header in headers
+                    th= header
+        tbody
+            tr
+                each value in values
+                    td= value
+    .total
+        .label
+            | 应付总额: 
+        .value 
+            | ￥73

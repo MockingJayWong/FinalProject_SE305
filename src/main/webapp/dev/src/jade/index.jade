@@ -1,0 +1,10 @@
+extends ./utils/layout.jade
+include ./utils/mixins.jade
+
+block content
+    .content
+        block header
+            include ./includes/logo-header.jade
+        .main
+            +carousel("movie")
+            +list("cinema")

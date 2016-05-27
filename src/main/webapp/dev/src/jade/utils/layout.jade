@@ -1,0 +1,21 @@
+doctype html
+html(lang='zh-CN')
+    head
+        block head
+            meta(charset="utf-8")
+            block title
+                title
+                    | 首页
+            link(href="../css/lib/semantic/dist/semantic.min.css", rel="stylesheet")
+            block style
+                link(href="../css/index.css", rel="stylesheet")
+    body
+        .whole
+            .ui.main.container
+                block nav
+                    include ../includes/nav.jade
+                block content
+            block script
+                script(src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js")
+                script(src="../css/lib/semantic/dist/semantic.min.js")
+

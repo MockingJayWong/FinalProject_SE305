@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+}
+
+ul, ol, dl {
+    list-style: none;
+}
+
+//---- reused components ---
+.info {
+    font-size: 0.9em;
+    & > * {
+        display: inline-block;
+    }
+
+    .label {
+        color: darken(@light-text-col, 30%);
+    }
+
+    .value {
+        color: darken(@light-text-col, 50%);
+        margin-left: 1em;
+    }
+}
+
+
+button.button.ui {
+    background-color: @btn-default-col!important;
+}

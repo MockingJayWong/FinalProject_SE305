@@ -1,0 +1,25 @@
+.count-down-container {
+    padding: 1em;
+    i.icon {
+        font-size: 4.5em;
+        color: @free-yellow;
+        margin: 0.2em;
+        float: left;            
+    }
+    .tips {
+        display: inline-block;
+        margin: 1em 0;
+        & > * {
+            padding: 0.5em;
+        }
+
+        .time-left {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .otherwise {
+            font-size: 0.9em;
+            color: darken(@light-text-col, 30%)
+        }
+    }
+}

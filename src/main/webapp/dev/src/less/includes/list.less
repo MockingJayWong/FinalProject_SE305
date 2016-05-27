@@ -1,0 +1,52 @@
+.items-container {
+    @border: 5px solid @light-text-col;
+    @color: @dark-text-col;
+    @dark-border: 2px solid lighten(@dark-text-col, 20%);
+
+    padding: 0;
+    border: @border;
+    border-radius: 5px;
+    width: 70%;
+    background-color: @light-bg;
+
+    .title {
+        padding: 10px;
+        background-color: @free-red;
+        color: @light-text-col;
+    }
+
+    .item {
+        border-bottom: @dark-border;
+        padding: 1em;
+        line-height: 1.4em;
+        position: relative;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .item-title {
+            font-weight: bold;
+            color: @color;
+        }
+
+        .item-content {
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .item-button {
+            @h: 2.5em;
+
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin-top: (@h / 2);
+
+            button {
+                height: @h;
+                background-color: @btn-default-col;
+            }
+        }
+    }
+}
