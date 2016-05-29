@@ -37,6 +37,6 @@ public class OrderController {
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public Object getMovie(@PathVariable("id") int id) {
-		return "order";
+		return "order.jsp";
 	}
 }
