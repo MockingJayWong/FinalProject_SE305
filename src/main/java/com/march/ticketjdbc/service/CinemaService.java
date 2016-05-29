@@ -77,7 +77,11 @@ public class CinemaService {
 		return "success";
 	}
 	
-	public Cinema getInfo(String username) {
+	public Cinema getInfoByUserName(String username) {
 		return cinemaDAO.findByUserName(username);
+	}
+	
+	public Cinema getInfoByCinemaId(int cinemaID) {
+		return cinemaDAO.findById(cinemaID);
 	}
 }

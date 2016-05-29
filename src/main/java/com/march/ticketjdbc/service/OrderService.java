@@ -23,7 +23,8 @@ public class OrderService {
 		String []Seats_str = seats.split(",");
 		List<Integer> Seats_int = new ArrayList<Integer>();
 		for (String str : Seats_str) {
-			Seats_int.add(Integer.parseInt(str));
+			String []Seats_xy = str.split("_");
+			Seats_int.add( (Integer.parseInt(Seats_xy[0])  - 1) * 10+ Integer.parseInt(Seats_xy[1] ) );
 		}
 		
 		List<Ticket> soldTickets = ticketDAO.findBySession(sessionId);		
@@ -59,9 +60,25 @@ public class OrderService {
 		
 		//锁定已选票
 		for (String str: Seat_str) {
-			ticketDAO.insert(new Ticket(order.getId(), Integer.parseInt(str),session.getPrice(), sessionId));
+			String []Seats_xy = str.split("_");
+			int s = (Integer.parseInt(Seats_xy[0])  - 1) * 10+ Integer.parseInt(Seats_xy[1] );
+			ticketDAO.insert(new Ticket(order.getId(), s, session.getPrice(), sessionId));
 		}
 		
 		return order;
 	}
+	
+	public Orders getOrderDetail(int orderId) {
+		return orderDAO.findByOrderId(orderId);
+	}
+
+	public Session getSessionByOrderId(int orderId) {
+		List<Ticket> tickets = ticketDAO.findByOrder(orderId);
+		if (tickets.size() == 0) {
+			return null;
+		} else {
+			return sessionDAO.findByID(tickets.get(0).getSessionID());
+		}
+	}
+	
 }

@@ -9,19 +9,19 @@ public class Session {
 	
 	private int cinemaID;
 	
-	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class})
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class,JsonModule.GetOrderDetailModule.class})
 	private int hall;
 	
-	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.CreateOrderModule.class, JsonModule.GetCinemaListModule.class})
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class, JsonModule.GetOrderDetailModule.class})
 	private String movieName;
 	
-	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.CreateOrderModule.class, JsonModule.GetCinemaListModule.class})
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class,JsonModule.GetOrderDetailModule.class})
 	private long start_time;
 	
-	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.CreateOrderModule.class, JsonModule.GetCinemaListModule.class})
+	@JsonView({JsonModule.GetSessionListModule.class,  JsonModule.GetCinemaListModule.class,JsonModule.GetOrderDetailModule.class})
 	private long end_time;
 	
-	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class})
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class,JsonModule.GetOrderDetailModule.class})
 	private String language;
 	
 	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class})

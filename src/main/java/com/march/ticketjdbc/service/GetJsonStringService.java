@@ -95,7 +95,7 @@ public class GetJsonStringService {
 
 	public Object cinemaInfo(String username) {
 		JsonData data = new JsonData();
-		data.setCinema(cinemaService.getInfo(username));
+		data.setCinema(cinemaService.getInfoByUserName(username));
 		return GetJsonString("success", data);
 	}
 	// ------------------------------- End Cinema Json ---------------------------------
@@ -138,21 +138,46 @@ public class GetJsonStringService {
 	
 	
 	// --------------------------------- Order Json -----------------------------------
-	public Object createOrder(int userId, int cinemaId, int sessionId, String seats) {
+	public Object createOrder(int userId, int sessionId, String seats) {
 		JsonData data = new JsonData();
 		if (orderService.checkSeats(sessionId, seats)) {
-			Orders order = orderService.createOrder(userId, cinemaId, sessionId, seats);
 			Session session = sessionService.getSessionDetailed(sessionId);
-			List<int[]> list = TransSoldList(seats);
-
+			Orders order = orderService.createOrder(userId, session.getCinemaID(), sessionId, seats);
+			
 			data.setError_code("0");
 			data.setOrder(order);
-			data.setSession(session);
-			data.setList(list);
 
 			return GetJsonString("success", data);
 		}
 		return GetJsonString("faild", null);
+	}
+	
+	public Object getOrderDetail(int orderId) {
+		JsonData data = new JsonData();
+		Orders order = orderService.getOrderDetail(orderId);
+		if (order != null) {
+			if (order.getState().equals("0")) {
+				order.setState("paid");
+			} else if (order.getState().equals("1")) {
+				order.setState("not paid");
+			} else if (order.getState().equals("2")) {
+				order.setState("invalid");
+			}
+			
+			Session session = orderService.getSessionByOrderId(order.getId());
+			Cinema cinema = cinemaService.getInfoByCinemaId(order.getCinemaID());
+			Seat seats = seatService.getSeatBySessionId(session.getId());
+			List<int[]> seatList = TransSoldList(seats.getSold_list());
+			
+			data.setError_code("0");
+			data.setOrder(order);;
+			data.setSession(session);
+			data.setCinema(cinema);
+			data.setList(seatList);
+			
+			return GetJsonString("success", data);
+		}
+		return GetJsonString("fail", null);
 	}
 	// ------------------------------- End Order Json ---------------------------------
 	
@@ -184,7 +209,7 @@ public class GetJsonStringService {
 
 		for (int i = 0; i < seatList.length; i++) {
 			int[] temp = new int[2];
-			temp[0] = Integer.parseInt(seatList[i]) / 10;
+			temp[0] = Integer.parseInt(seatList[i]) / 10 + 1;
 			temp[1] = Integer.parseInt(seatList[i]) % 10;
 			result.add(temp);
 		}

@@ -4,17 +4,16 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 public class Orders {
 	
-	@JsonView(JsonModule.CreateOrderModule.class)
+	@JsonView({JsonModule.CreateOrderModule.class,JsonModule.GetOrderDetailModule.class})
 	private int id;
-	@JsonView(JsonModule.CreateOrderModule.class)
+
 	private int userID;
-	@JsonView(JsonModule.CreateOrderModule.class)
 	private int cinemaID;
-	@JsonView(JsonModule.CreateOrderModule.class)
+	@JsonView({JsonModule.GetOrderDetailModule.class})
 	private long time;
-	@JsonView(JsonModule.CreateOrderModule.class)
+	@JsonView({JsonModule.GetOrderDetailModule.class})
 	private float prices;
-	
+	@JsonView({JsonModule.GetOrderDetailModule.class})
 	private String state;
 	public int getId() {
 		return id;

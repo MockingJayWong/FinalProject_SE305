@@ -10,19 +10,19 @@ public class JsonData {
 	@JsonView(JsonModule.DefaultModule.class)
 	private String error_code;
 
-	@JsonView({JsonModule.CreateOrderModule.class, JsonModule.GetMovieListModule.class, JsonModule.GetCinemaListModule.class, JsonModule.GetSessionListModule.class})
+	@JsonView({JsonModule.GetMovieListModule.class, JsonModule.GetCinemaListModule.class, JsonModule.GetSessionListModule.class,JsonModule.GetOrderDetailModule.class})
 	private List<Object> list;
 
-	@JsonView({JsonModule.CreateOrderModule.class})
+	@JsonView({JsonModule.CreateOrderModule.class, JsonModule.GetOrderDetailModule.class})
 	private Orders order;
 	
-	@JsonView({JsonModule.CreateOrderModule.class})
+	@JsonView({ JsonModule.GetOrderDetailModule.class})
 	private Session session;
 	
 	@JsonView({JsonModule.GetSessionInfoModule.class})
 	private Seat seat;
 
-	@JsonView(JsonModule.CinemaModule.class)
+	@JsonView({JsonModule.CinemaModule.class, JsonModule.GetOrderDetailModule.class})
 	private Cinema cinema;
 	
 	@JsonView(JsonModule.GetMovieDetailModule.class) 

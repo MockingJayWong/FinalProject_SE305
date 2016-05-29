@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -13,6 +14,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import com.march.ticketjdbc.daointerface.OrderDAO;
+import com.march.ticketjdbc.model.Movie;
 import com.march.ticketjdbc.model.Orders;
 
 public class OrderDAOImpl implements OrderDAO {
@@ -82,8 +84,17 @@ public class OrderDAOImpl implements OrderDAO {
 				new Object[]{Id, startTime, endTime}, new BeanPropertyRowMapper<Orders>(Orders.class));
 	}
 
+	@Override
+	public Orders findByOrderId(int Id) {
+		try {
+			return jdbcTemplate.queryForObject("select * from orders where id = ?",
+					new BeanPropertyRowMapper<Orders>(Orders.class), Id);
+		} catch(EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 
-
+	
 	@Override
 	public List<Orders> findByCinemaId(int Id) {
 		return jdbcTemplate.query("select * from orders where cinemaID = ?",new Object[]{Id}, new BeanPropertyRowMapper<Orders>(Orders.class));
