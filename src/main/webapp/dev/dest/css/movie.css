@@ -1,5 +1,6 @@
 .whole {
   background: #BFE3E6;
+  min-height: 100%;
 }
 nav.navigator .ui.menu {
   background-color: #E6B84A;
