@@ -19,7 +19,7 @@ gulp.task("server", ["build"], function() {
 
 gulp.task("build-semantic", function() {
     return gulp.src("src/lib/**/**.*")
-        .pipe(gulp.dest("dest/lib"))
+        .pipe(gulp.dest("dest/css/lib"))
 })
 
 gulp.task("build-css", function() {
