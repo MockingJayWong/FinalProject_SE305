@@ -209,8 +209,9 @@ public class GetJsonStringService {
 
 		for (int i = 0; i < seatList.length; i++) {
 			int[] temp = new int[2];
-			temp[0] = Integer.parseInt(seatList[i]) / 10 + 1;
-			temp[1] = Integer.parseInt(seatList[i]) % 10;
+			// 位置有11行11列，位置从0-120
+			temp[0] = Integer.parseInt(seatList[i]) / 11 + 1;
+			temp[1] = Integer.parseInt(seatList[i]) % 11 + 1;
 			result.add(temp);
 		}
 		return result;

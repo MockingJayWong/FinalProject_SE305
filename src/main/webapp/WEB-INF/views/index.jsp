@@ -73,7 +73,7 @@
                         var movie = movieList[movieIndex];
                         innerHTML += 
                             '<li class="reco-movie">'+
-                                '<a href="#"+>'+
+                                '<a href="movie/'+movie.id+'" >'+
                                     '<img src="resources/images/'+movie.url+'" >'+
                                 '</a>'+
                                 '<div class="reco-movie-info">'+
@@ -87,7 +87,7 @@
                                         movie.score+
                                     '</span>'+
                                 '</div>'+
-                                '<a href="#">'+
+                                '<a href="movie/'+movie.id+'#cinemas">'+
                                     '<button class="ui primary button purchase-btn">购票 </button>'+
                                 '</a>'+
                             '</li>';
