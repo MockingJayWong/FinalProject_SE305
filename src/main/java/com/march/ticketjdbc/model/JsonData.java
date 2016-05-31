@@ -10,7 +10,8 @@ public class JsonData {
 	@JsonView(JsonModule.DefaultModule.class)
 	private String error_code;
 
-	@JsonView({JsonModule.GetMovieListModule.class, JsonModule.GetCinemaListModule.class, JsonModule.GetSessionListModule.class,JsonModule.GetOrderDetailModule.class})
+	@JsonView({JsonModule.GetMovieListModule.class, JsonModule.GetCinemaListModule.class, JsonModule.GetSessionListModule.class,JsonModule.GetOrderDetailModule.class
+		,JsonModule.GetSessionInfoModule.class})
 	private List<Object> list;
 
 	@JsonView({JsonModule.CreateOrderModule.class, JsonModule.GetOrderDetailModule.class})
@@ -19,8 +20,8 @@ public class JsonData {
 	@JsonView({ JsonModule.GetOrderDetailModule.class})
 	private Session session;
 	
-	@JsonView({JsonModule.GetSessionInfoModule.class})
-	private Seat seat;
+	//@JsonView({JsonModule.GetSessionInfoModule.class})
+	//private Seat seat;
 
 	@JsonView({JsonModule.CinemaModule.class, JsonModule.GetOrderDetailModule.class})
 	private Cinema cinema;
@@ -94,12 +95,6 @@ public class JsonData {
 	public void setSession(Session session) {
 		this.session = session;
 	}
-	public Seat getSeat() {
-		return seat;
-	}
-
-	public void setSeat(Seat seat) {
-		this.seat = seat;
-	}
+	
 
 }

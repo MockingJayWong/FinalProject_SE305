@@ -91,7 +91,7 @@
                                     '<button class="ui primary button purchase-btn">购票 </button>'+
                                 '</a>'+
                             '</li>';
-                        if (movieIndex = movieList.len-1) {
+                        if (movieIndex == movieList.length-1) {
                             innerHTML += '</ul>';
                         }
                     }

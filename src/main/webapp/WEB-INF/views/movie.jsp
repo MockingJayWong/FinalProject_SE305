@@ -5,8 +5,8 @@
   <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link href="../css/lib/semantic/dist/semantic.min.css" rel="stylesheet">
-    <link href="../css/movie.css" rel="stylesheet">
+    <link href="../resources/css/lib/semantic/dist/semantic.min.css" rel="stylesheet">
+    <link href="../resources/css/movie.css" rel="stylesheet">
   </head>
   <body>
     <div class="whole">
@@ -251,8 +251,8 @@
                   </div>
                 </div>
                 <div class="btn-container">
-                  <!-- temporary--><a href="pay.html">
-                    <button class="ui primary button purchase-btn">去支付</button></a>
+                  <!-- temporary-->
+                    <button id="generate_order_btn" class="ui primary button purchase-btn">去支付</button></a>
                 </div>
               </div>
             </div>
@@ -260,13 +260,13 @@
         </div>
       </div>
       <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
-      <script src="../css/lib/semantic/dist/semantic.min.js"></script>
+      <script src="../resources/css/lib/semantic/dist/semantic.min.js"></script>
       <script type="text/javascript">
         $(document).ready(function(){
         	// 从url获取movieId
         	var url = window.location.href;
 			var temp_array =  url.split('/');
-			var movie_id = temp_array[temp_array.len-1];
+			var movie_id = temp_array[temp_array.length-1].split('#')[0];
             
 			// 获取movie detail
             $.ajax({
@@ -313,13 +313,13 @@
                 }
             });
 
-			var cinema_list;
+            var cinema_id_map = {};
 			
             $.ajax({
               url:"../cinema/cinemaList",
               data:{movieId:movie_id},
               success:function(responseJson) {
-                var cinema_html = 
+            	  var cinema_html = 
                       '<div class="item cinema-item">\
                         <div class="item-title cinema-name">cinema_name</div>\
                         <div class="item-content">\
@@ -332,14 +332,16 @@
                             <dd class="value">cinema_sessions</dd>\
                           </dl>\
                         </div>\
-                        <div class="item-button"><a href="#">\
-                            <button class="ui primary button purchase-btn">选座购票</button></a></div>\
+                        <div class="item-button">\
+                            <button id="cinema_btn_cinema_id" class="ui primary button purchase-btn">选座购票</button></div>\
                       </div>'
 
                 var inner_html = "";
-                cinema_list = responseJson.data.list;
+                var cinema_list = responseJson.data.list;
+                var cinema_html_after_replace;
                 for (var cinemaIndex in cinema_list) {
                   var cinema = cinema_list[cinemaIndex];
+                  cinema_id_map[cinema.id] = cinema;
                   var sessions_str = "";
                   var session_list = cinema.sessions;
                   for (var sessionIndex in session_list) {
@@ -347,11 +349,87 @@
                     sessions_str += session.start_time.toString();
                     if (sessionIndex < session_list.len-1) sessions_str += ' | ';
                   }
-                  cinema_html = cinema_html.replace('cinema_name', cinema.cinemaName).replace('cinema_address', cinema.address).replace('cinema_sessions', sessions_str)
-                  inner_html += cinema_html;
+                  cinema_html_after_replace = cinema_html.replace('cinema_id', cinema.id).replace('cinema_name', cinema.cinemaName).replace('cinema_address', cinema.address).replace('cinema_sessions', sessions_str)
+                  inner_html += cinema_html_after_replace;
                 }
                 $("#cinema_list").html(inner_html);
+                $(".cinema-item .purchase-btn").click(select_session);
               }
+            })
+            
+            function select_session(e) {
+              var cinema_id = e.target.id.split('_')[2];
+              var session_list = cinema_id_map[cinema_id].sessions;
+
+              var session_tr_html = '<tr class="section-item">\
+                                      <td class="startTime">session_start_time</td>\
+                                      <td class="endTime">session_end_time</td>\
+                                      <td class="language">session_language</td>\
+                                      <td class="room">session_hall号厅</td>\
+                                      <td class="price">session_price</td>\
+                                      <td>\
+                                        <button id="session_btn_session_id" class="ui primary button purchase-btn">购票   </button>\
+                                      </td>\
+                                    </tr>'
+
+              var session_tr_html_after_replace;
+              var session_list_html = "";
+              for (sessionIndex in session_list) {
+                var session = session_list[sessionIndex];
+                var startTime = new Date(session.start_time);
+                var endTime = new Date(session.end_time);
+                session_tr_html_after_replace = session_tr_html.replace('session_id', session.id).replace('session_start_time', startTime.getHours()+':'+startTime.getMinutes()).replace('session_end_time', endTime.getHours()+':'+endTime.getMinutes()).replace('session_language', session.language).replace('session_hall', session.hall).replace('session_price', session.price);
+                session_list_html += session_tr_html_after_replace;
+              }
+
+              $("#sessions_tbody").html(session_list_html);
+              $(".first.modal").modal("show");
+
+              $(".section-item .purchase-btn").click(select_seat);
+            }
+            
+            var session_id;
+            function select_seat(e) {
+              session_id = e.target.id.split('_')[2];
+              $.ajax({
+                url:'../session/'+session_id,
+                success:function(responseJson) {
+                  $(".first.modal").modal("hide");
+                  var sold_list = responseJson.data.seat;
+                  for (seatIndex in sold_list) {
+                    /* if (sold_list[seatIndex] != '') {
+                      var seat_x = parseInt(sold_list[seatIndex])/11+1;
+                      var seat_y = parseInt(sold_list[seatIndex])%11+1;
+                      $('.row'+seat_x).filter('.col'+seat_y).attr("checked","checked").attr("disabled", "disabled");
+                    } */
+                    var seat_x = sold_list[seatIndex][0];
+                    var seat_y = sold_list[seatIndex][1];
+                    $('.row'+seat_x).filter('.col'+seat_y).attr("checked","checked").attr("disabled", "disabled");
+                  }
+                  $(".second.modal").modal("show");
+                }
+              })
+            }
+            
+            $('#generate_order_btn').click(function(e) {
+              var seats_str = "";
+              $('.seat').each(function() {
+                if ($(this).is(':checked') && ! $(this).attr('disabled')) {
+                  var seat_x_str = $(this).attr('class').split(' ')[1];
+                  var x = parseInt(seat_x_str.split('-')[1]);
+                  var seat_y_str = $(this).attr('class').split(' ')[2];
+                  var y = parseInt(seat_y_str.split('-')[1]);
+                  seats_str += x+'_'+y+',';
+                }
+              });
+              $.ajax({
+                url:'../order/createOrder',
+                data:{sessionId:session_id, seats:seats_str},
+                success:function(responseJson) {
+                  order_id = responseJson.data.id;
+                  window.location.href="../order/"+order_id;
+                }
+              })
             })
 
             $(".ui.menu .item").tab();
@@ -361,10 +439,6 @@
                 allowMutiple: false
             });
         
-            $(".cinema-item .purchase-btn").click(function(e) {
-                $(".first.modal").modal("show");
-            })
-            $(".second.modal").modal("attach events", ".first.modal .button")
         });
       </script>
     </div>

@@ -5,8 +5,8 @@
   <head>
     <meta charset="utf-8">
     <title>首页</title>
-    <link href="../css/lib/semantic/dist/semantic.min.css" rel="stylesheet">
-    <link href="../css/pay.css" rel="stylesheet">
+    <link href="../resources/css/lib/semantic/dist/semantic.min.css" rel="stylesheet">
+    <link href="../resources/css/pay.css" rel="stylesheet">
   </head>
   <body>
     <div class="whole">
@@ -62,13 +62,13 @@
         </div>
       </div>
       <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
-      <script src="../css/lib/semantic/dist/semantic.min.js"></script>
+      <script src="../resources/css/lib/semantic/dist/semantic.min.js"></script>
       <script type="text/javascript">
         $(doucment).ready(function() {
        	  // 从url获取orderId
           var url = window.location.href;
 	      var temp_array =  url.split('/');
-	      var orderId = temp_array[temp_array.len-1];
+	      var orderId = temp_array[temp_array.length-1];
 
           // 获取订单的详细信息
           $.ajax({
