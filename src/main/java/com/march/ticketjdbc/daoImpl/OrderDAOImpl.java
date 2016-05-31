@@ -85,6 +85,12 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
+	public List<Orders>findOrdersState(String state) {
+		return jdbcTemplate.query("select * from orders where state =?",
+				new Object[]{state}, new BeanPropertyRowMapper<Orders>(Orders.class));
+	}
+	
+	@Override
 	public Orders findByOrderId(int Id) {
 		try {
 			return jdbcTemplate.queryForObject("select * from orders where id = ?",

@@ -2,9 +2,11 @@
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"   
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
@@ -32,6 +34,9 @@
 
 	<context:component-scan base-package="com.march.ticketjdbc.controller" />
 
+	<!-- Server start listener -->
+	<beans:bean class="com.march.ticketjdbc.listener.StartupListener" />
+
 	<!-- Database configuration -->
 	<beans:bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -53,6 +58,11 @@
 	<beans:bean id="sessionDAO" class="com.march.ticketjdbc.daoImpl.SessionDAOImpl" />
 	<beans:bean id="ticketDAO" class="com.march.ticketjdbc.daoImpl.TicketDAOImpl" />
 	<beans:bean id="userDAO" class="com.march.ticketjdbc.daoImpl.UserDAOImpl" />
+	
+	<!-- Task -->
+	 <task:scheduled-tasks>   
+        <task:scheduled ref="orderService" method="checkOrder"  cron="* * * * * ?"/>   
+</task:scheduled-tasks>  
 	
 	<!-- Services -->
 	<context:component-scan base-package="com.march.ticketjdbc.service" />

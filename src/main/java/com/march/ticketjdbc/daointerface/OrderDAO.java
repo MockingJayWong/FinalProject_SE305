@@ -19,8 +19,9 @@ public interface OrderDAO {
 	//注意这里的Data是sql包中
 	public List<Orders> findByCinemaIdIdAndData(int Id, long startTime , long endTime);
 	
+	public List<Orders>findOrdersState(String state);
 	public Orders  findByOrderId(int Id);
-	
+		
 	public int insert(Orders order);
 	
 	//按常理，订单修改只能修改其状态�??

@@ -25,7 +25,8 @@ public class OrderController {
 	@ResponseBody
 	@JsonView(JsonModule.CreateOrderModule.class)
 	public Object getJson(int sessionId, String seats) {
-		return jsonService.createOrder(Integer.parseInt(httpSession.getAttribute("userId").toString()),sessionId, seats);
+		return jsonService.createOrder(1,sessionId, seats);
+		//return jsonService.createOrder(Integer.parseInt(httpSession.getAttribute("userId").toString()),sessionId, seats);
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)

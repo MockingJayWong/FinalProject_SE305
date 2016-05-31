@@ -19,6 +19,10 @@ public class OrderService {
 	@Autowired
 	private OrderDAOImpl orderDAO;
 	
+	public static List<Orders> checkOrderList = new ArrayList<Orders>();
+	
+	private final long effectiveTime = 15 * 60 * 1000;
+	
 	public boolean checkSeats(int sessionId, String seats) {
 		String []Seats_str = seats.split(",");
 		List<Integer> Seats_int = new ArrayList<Integer>();
@@ -57,6 +61,7 @@ public class OrderService {
 		
 		Orders order = new Orders(userId, cinemaId, now, session.getPrice() * Seat_str.length, "1");
 		order.setId(orderDAO.insert(order));
+		checkOrderList.add(order);
 		
 		//锁定已选票
 		for (String str: Seat_str) {
@@ -79,6 +84,25 @@ public class OrderService {
 		} else {
 			return sessionDAO.findByID(tickets.get(0).getSessionID());
 		}
+	}
+	
+	public void checkOrder() {
+		if (!checkOrderList.isEmpty()) {
+			Orders order = checkOrderList.get(0);
+
+			Date now = new Date(System.currentTimeMillis());
+			Date createOrderTime = new Date(order.getTime());
+			long length = now.getTime() - createOrderTime.getTime();
+
+			if (length > effectiveTime) {
+				orderDAO.update(order.getId(), "2");
+				checkOrderList.remove(0);
+			}
+		}
+	}
+
+	public static List<Orders> getCheckOrderList() {
+		return checkOrderList;
 	}
 	
 }
