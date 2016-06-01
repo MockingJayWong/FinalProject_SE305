@@ -62,12 +62,13 @@ public class CinemaDAOImpl implements CinemaDAO {
 				new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement st = con.prepareStatement("insert into cinema(cinemaName,address,password,telephone,email) values(?,?,?,?,?)", new String[]{"id"});
+				PreparedStatement st = con.prepareStatement("insert into cinema(cinemaName,address,username,password,telephone,email) values(?,?,?,?,?,?)", new String[]{"id"});
 				st.setString(1, cinema.getCinemaName());
 				st.setString(2, cinema.getAddress());
-				st.setString(3, cinema.getPassword());
-				st.setString(4, cinema.getTelephone());
-				st.setString(5, cinema.getEmail());
+				st.setString(3, cinema.getUsername());
+				st.setString(4, cinema.getPassword());
+				st.setString(5, cinema.getTelephone());
+				st.setString(6, cinema.getEmail());
 				return st;
 			}
 		},generatedKeyHolder);
@@ -76,8 +77,8 @@ public class CinemaDAOImpl implements CinemaDAO {
 
 	@Override
 	public int update(Cinema cinema) {
-		return jdbcTemplate.update("update cinema set cinemaName = ?,address=?,password=?,telephone=?, email=? where id = ?",
-				new Object[] {cinema.getCinemaName(),cinema.getAddress()
+		return jdbcTemplate.update("update cinema set cinemaName = ?,address=?,username=?,password=?,telephone=?, email=? where id = ?",
+				new Object[] {cinema.getCinemaName(),cinema.getAddress(),cinema.getUsername()
 						,cinema.getPassword(),cinema.getTelephone(),cinema.getEmail(), cinema.getId()});
 	}
 
