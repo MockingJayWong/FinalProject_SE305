@@ -203,14 +203,14 @@ button.button.ui {
   margin-left: -200px;
   margin-top: 160px;
 }
-.content .center-container form {
+.content .center-container .user-info {
   color: #FCFCFC;
   font-size: 1.1em;
   text-align: center;
   position: relative;
   padding: 1em 0;
 }
-.content .center-container form .title {
+.content .center-container .user-info .title {
   position: absolute;
   left: 0;
   top: -1.5em;
@@ -218,30 +218,32 @@ button.button.ui {
   background-color: #DF7244;
   padding: 0.2em;
 }
-.content .center-container form .input-item {
+.content .center-container .user-info .info {
   margin: 2em 0;
   padding: 0 3em;
 }
-.content .center-container form .input-item label {
+.content .center-container .user-info .info .label {
   width: 5em;
   float: left;
   text-align: left;
   font-weight: bold;
+  color: #FCFCFC;
 }
-.content .center-container form .input-item input {
+.content .center-container .user-info .info .value {
   height: 2em;
-  border: 3px solid #FCFCFC;
-  border-radius: 0.5em;
+  width: 10em;
+  text-align: left;
   padding: 0 0.5em;
   color: #989378;
+  border-bottom: 2px solid #FCFCFC;
 }
-.content .center-container form button {
+.content .center-container .user-info button {
   background-color: #2f7277;
   color: #FCFCFC;
 }
-.content .center-container form button a {
+.content .center-container .user-info button a {
   color: #FCFCFC;
 }
-.content .center-container form button a:hover {
+.content .center-container .user-info button a:hover {
   color: rgba(0, 0, 0, 0.8);
 }

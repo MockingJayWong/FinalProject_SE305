@@ -41,6 +41,23 @@ dl {
 button.button.ui {
   background-color: #2f7277 !important;
 }
+.input-item {
+  margin: 2em 0;
+  padding: 0 3em;
+}
+.input-item label {
+  width: 5em;
+  float: left;
+  text-align: left;
+  font-weight: bold;
+}
+.input-item input {
+  height: 2em;
+  border: 3px solid #FCFCFC;
+  border-radius: 0.5em;
+  padding: 0 0.5em;
+  color: #989378;
+}
 .carousel {
   margin: 30px auto;
   background-color: #E6B84A;
