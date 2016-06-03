@@ -1,0 +1,40 @@
+extends ./utils/layout.jade
+include ./utils/mixins.jade
+
+block style
+    link(href="../css/login.css", rel="stylesheet")
+
+block nav
+    | 
+
+block content
+    .content
+        .center-container
+            form
+                .title
+                    | 注册
+                .input-item
+                    label(for="username")
+                        | 用户名
+                    input(type="text",id="username")
+                .input-item
+                    label(for="password_1")
+                        | 密码
+                    input(type="password", id="password_1")
+                .input-item
+                    label(for="password_2")
+                        | 确认密码
+                    input(type="password", id="password_2")
+                .input-item
+                    label(for="email")
+                        | 邮箱
+                    input(type="text",id="email")
+                .input-item
+                    label(for="phont")
+                        | 电话号码
+                    input(type="text",id="phone")
+                button.button.ui
+                    | 注册
+                button.button.ui
+                    a(href="../html/login.html")
+                        | 已有账号，去登录

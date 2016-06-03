@@ -1,0 +1,230 @@
+.whole {
+  background: #BFE3E6;
+  min-height: 100%;
+}
+nav.navigator .ui.menu {
+  background-color: #E6B84A;
+  box-border: 5px solid #FCFCFC;
+}
+nav.navigator .ui.menu .item {
+  color: #FCFCFC;
+  font-weight: bold;
+}
+.header {
+  padding: 2rem;
+  border-bottom: 1px solid #d0d0d0;
+}
+.content {
+  padding-bottom: 100px;
+}
+* {
+  box-sizing: border-box;
+}
+ul,
+ol,
+dl {
+  list-style: none;
+}
+.info {
+  font-size: 0.9em;
+}
+.info > * {
+  display: inline-block;
+}
+.info .label {
+  color: #b0b0b0;
+}
+.info .value {
+  color: #7d7d7d;
+  margin-left: 1em;
+}
+button.button.ui {
+  background-color: #2f7277 !important;
+}
+.carousel {
+  margin: 30px auto;
+  background-color: #E6B84A;
+  padding: 10px;
+  position: relative;
+  border: 5px solid #FCFCFC;
+  border-radius: 0.3em;
+}
+.carousel ul.side.carousel-item {
+  overflow: hidden;
+  padding: 0 20px;
+}
+.carousel ul.side.carousel-item li.reco-movie {
+  display: inline-block;
+  margin: 30px 25px 60px 30px;
+  position: relative;
+  box-shadow: 0 0 15px #2b2006;
+}
+.carousel ul.side.carousel-item li.reco-movie a {
+  display: block;
+}
+.carousel ul.side.carousel-item li.reco-movie img {
+  width: 170px;
+  height: 250px;
+}
+.carousel ul.side.carousel-item li.reco-movie .reco-movie-info {
+  position: absolute;
+  bottom: 0;
+  background-color: #444134;
+  opacity: 0.8;
+  color: #dad8cf;
+  display: block;
+  width: 100%;
+  padding: 5px 10px;
+}
+.carousel ul.side.carousel-item li.reco-movie .reco-movie-info .reco-movie-name {
+  font-weight: bold;
+  color: #FCFCFC;
+  z-index: -999;
+}
+.carousel ul.side.carousel-item li.reco-movie .reco-movie-info .reco-movie-rank {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #DF7244;
+  margin-right: 2px;
+  font-weight: bold;
+}
+.carousel ul.side.carousel-item li.reco-movie .reco-movie-info .reco-movie-intro {
+  word-break: break-all;
+}
+.carousel ul.side.carousel-item li.reco-movie .purchase-btn {
+  background-color: #2f7277;
+  color: #FCFCFC;
+  position: absolute;
+  width: 85%;
+  margin: 1rem;
+  box-shadow: 0 0 20px #aeaa95;
+}
+.carousel .carousel-title {
+  color: #FCFCFC;
+}
+.carousel .carousel-btn {
+  display: inline-block;
+  background: #FCFCFC;
+  opacity: 0.8;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #FCFCFC;
+  border-radius: 50%;
+  text-align: center;
+  padding: 9px;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+.carousel .carousel-btn.to-left {
+  position: absolute;
+  top: 150px;
+  left: -60px;
+}
+.carousel .carousel-btn.to-right {
+  position: absolute;
+  top: 150px;
+  right: -60px;
+}
+.carousel .carousel-btn:hover {
+  background-color: #f0f0ec;
+  transition: background-color 0.5s;
+}
+.items-container {
+  padding: 0;
+  border: 5px solid #FCFCFC;
+  border-radius: 5px;
+  width: 70%;
+  background-color: #FCFCFC;
+}
+.items-container .title {
+  padding: 10px;
+  background-color: #DF7244;
+  color: #FCFCFC;
+}
+.items-container .item {
+  border-bottom: 2px solid #c4c1b2;
+  padding: 1em;
+  line-height: 1.4em;
+  position: relative;
+}
+.items-container .item:last-child {
+  border-bottom: none;
+}
+.items-container .item .item-title {
+  font-weight: bold;
+  color: #989378;
+}
+.items-container .item .item-content {
+  color: #555;
+  font-size: 0.9rem;
+}
+.items-container .item .item-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-top: 1.25em;
+}
+.items-container .item .item-button button {
+  height: 2.5em;
+  background-color: #2f7277;
+}
+.content {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.content .center-container {
+  margin: auto;
+  width: 400px;
+  min-height: 200px;
+  border: 5px solid #FCFCFC;
+  border-radius: 3px;
+  background-color: #E6B84A;
+  position: absolute;
+  left: 50%;
+  margin-left: -200px;
+  margin-top: 160px;
+}
+.content .center-container form {
+  color: #FCFCFC;
+  font-size: 1.1em;
+  text-align: center;
+  position: relative;
+  padding: 1em 0;
+}
+.content .center-container form .title {
+  position: absolute;
+  left: 0;
+  top: -1.5em;
+  font-size: 1.5em;
+  background-color: #DF7244;
+  padding: 0.2em;
+}
+.content .center-container form .input-item {
+  margin: 2em 0;
+  padding: 0 3em;
+}
+.content .center-container form .input-item label {
+  width: 5em;
+  float: left;
+  text-align: left;
+  font-weight: bold;
+}
+.content .center-container form .input-item input {
+  height: 2em;
+  border: 3px solid #FCFCFC;
+  border-radius: 0.5em;
+  padding: 0 0.5em;
+  color: #989378;
+}
+.content .center-container form button {
+  background-color: #2f7277;
+  color: #FCFCFC;
+}
+.content .center-container form button a {
+  color: #FCFCFC;
+}
+.content .center-container form button a:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
