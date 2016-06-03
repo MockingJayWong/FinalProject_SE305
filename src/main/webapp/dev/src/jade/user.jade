@@ -1,0 +1,18 @@
+extends ./utils/layout.jade
+include ./utils/mixins.jade
+
+block style
+    link(href="../css/user.css", rel="stylesheet")
+
+
+block content
+    .content
+        .center-container
+            .user-info
+                .title
+                    | 个人信息
+                +info("user", "用户名", "AAA")
+                +info("user", "邮箱", "110120130@qq.com")
+                +info("user", "电话号码", "12922029832")
+                button.button.ui
+                    | 修改

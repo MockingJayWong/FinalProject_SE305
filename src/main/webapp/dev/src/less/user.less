@@ -1,0 +1,75 @@
+@import "global/colors.less";
+@import "global/layout.less";
+@import "global/utils.less";
+
+@import "includes/carousel.less";
+@import "includes/list.less";
+
+.content {
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    .center-container {
+        margin: auto;
+        width: 400px;
+        min-height: 200px;
+        border: 5px solid @light-text-col;
+        border-radius: 3px;
+        background-color: @bg-second-col;
+        position: absolute;
+        left: 50%;
+        margin-left: -200px;
+        margin-top: 160px;
+        
+        .user-info {
+            color: @light-text-col;
+            font-size: 1.1em;
+            text-align: center;
+            position: relative;
+            padding: 1em 0;
+
+            .title {
+                position: absolute;
+                left: 0;
+                top: -1.5em;
+                font-size: 1.5em;
+                background-color: @free-red;
+                padding: 0.2em;
+            }
+
+            .info {
+                margin: 2em 0;
+                padding: 0 3em;
+
+                .label {
+                    width: 5em;
+                    float: left;
+                    text-align: left;
+                    font-weight: bold;
+                    color: @light-text-col;
+                }
+
+                .value {
+                    height: 2em;
+                    width: 10em;
+                    text-align: left;
+                    padding: 0 0.5em;
+                    color: @dark-text-col;
+                    border-bottom: 2px solid @light-text-col;
+                }
+            }
+
+            button {
+                background-color: @btn-default-col;
+                color: @light-text-col;
+                a {
+                    color: @light-text-col;
+                    &:hover {
+                        color: rgba(0, 0, 0, 0.8)
+                    }
+                }
+            }
+        }
+    }
+}

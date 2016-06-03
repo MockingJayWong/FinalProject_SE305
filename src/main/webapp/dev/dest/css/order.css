@@ -1,0 +1,94 @@
+.whole {
+  background: #BFE3E6;
+  min-height: 100%;
+}
+nav.navigator .ui.menu {
+  background-color: #E6B84A;
+  box-border: 5px solid #FCFCFC;
+}
+nav.navigator .ui.menu .item {
+  color: #FCFCFC;
+  font-weight: bold;
+}
+.header {
+  padding: 2rem;
+  border-bottom: 1px solid #d0d0d0;
+}
+.content {
+  padding-bottom: 100px;
+}
+* {
+  box-sizing: border-box;
+}
+ul,
+ol,
+dl {
+  list-style: none;
+}
+.info {
+  font-size: 0.9em;
+}
+.info > * {
+  display: inline-block;
+}
+.info .label {
+  color: #b0b0b0;
+}
+.info .value {
+  color: #7d7d7d;
+  margin-left: 1em;
+}
+button.button.ui {
+  background-color: #2f7277 !important;
+}
+.input-item {
+  margin: 2em 0;
+  padding: 0 3em;
+}
+.input-item label {
+  width: 5em;
+  float: left;
+  text-align: left;
+  font-weight: bold;
+}
+.input-item input {
+  height: 2em;
+  border: 3px solid #FCFCFC;
+  border-radius: 0.5em;
+  padding: 0 0.5em;
+  color: #989378;
+}
+.count-down-container {
+  padding: 1em;
+}
+.count-down-container i.icon {
+  font-size: 4.5em;
+  color: #E6B84A;
+  margin: 0.2em;
+  float: left;
+}
+.count-down-container .tips {
+  display: inline-block;
+  margin: 1em 0;
+}
+.count-down-container .tips > * {
+  padding: 0.5em;
+}
+.count-down-container .tips .time-left {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.count-down-container .tips .otherwise {
+  font-size: 0.9em;
+  color: #b0b0b0;
+}
+.content .pay-order-container .total > * {
+  display: inline-block;
+}
+.content .pay-order-container .total .value {
+  color: #E6B84A;
+}
+.content .pay-btn-container {
+  margin-top: 5em;
+  text-align: right;
+}

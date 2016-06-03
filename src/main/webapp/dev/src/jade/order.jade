@@ -1,0 +1,17 @@
+extends ./utils/layout.jade
+include ./utils/mixins.jade
+
+block style
+    link(href="../css/order.css", rel="stylesheet")
+
+block content
+    .content
+        block header
+            include ./includes/logo-header.jade
+        .pay-order-container
+            +count-down("15", "0")
+            +order-table()
+        .pay-btn-container
+            a(href="#")
+                button.ui.primary.button.purchase-btn
+                    | 确认无误,去付款

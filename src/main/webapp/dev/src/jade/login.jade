@@ -1,0 +1,28 @@
+extends ./utils/layout.jade
+include ./utils/mixins.jade
+
+block style
+    link(href="../css/login.css", rel="stylesheet")
+
+block nav
+    | 
+
+block content
+    .content
+        .center-container
+            form
+                .title
+                    | 登录
+                .input-item
+                    label(for="username")
+                        | 用户名
+                    input(type="text",id="username")
+                .input-item
+                    label(for="password")
+                        | 密码
+                    input(type="password", id="password")
+                button.button.ui
+                    | 登录
+                button.button.ui
+                    a(href="../html/register.html")
+                        | 还没账号，去注册
