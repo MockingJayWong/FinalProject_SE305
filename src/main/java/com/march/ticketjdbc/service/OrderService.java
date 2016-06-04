@@ -16,10 +16,16 @@ public class OrderService {
 	@Autowired
 	private SessionDAOImpl sessionDAO;
 	
-	@Autowired
+	
 	private OrderDAOImpl orderDAO;
 	
-	public static List<Orders> checkOrderList = new ArrayList<Orders>();
+	private List<Orders> checkOrderList;
+	
+	@Autowired
+	public OrderService(OrderDAOImpl orderDAO) {
+		this.orderDAO = orderDAO;
+		checkOrderList = orderDAO.findOrdersState("1");
+	}
 	
 	private final long effectiveTime = 15 * 60 * 1000;
 	
@@ -28,7 +34,7 @@ public class OrderService {
 		List<Integer> Seats_int = new ArrayList<Integer>();
 		for (String str : Seats_str) {
 			String []Seats_xy = str.split("_");
-			Seats_int.add( (Integer.parseInt(Seats_xy[0])  - 1) * 10+ Integer.parseInt(Seats_xy[1] )  + Integer.parseInt(Seats_xy[0])   - 2);
+			Seats_int.add( (Integer.parseInt(Seats_xy[0])  - 1) * 11+ Integer.parseInt(Seats_xy[1] )  - 1);
 		}
 		
 		List<Ticket> soldTickets = ticketDAO.findBySession(sessionId);		
@@ -66,7 +72,7 @@ public class OrderService {
 		//锁定已选票
 		for (String str: Seat_str) {
 			String []Seats_xy = str.split("_");
-			int s = (Integer.parseInt(Seats_xy[0])  - 1) * 10+ Integer.parseInt(Seats_xy[1] )  + Integer.parseInt(Seats_xy[0])   - 2;
+			int s = (Integer.parseInt(Seats_xy[0])  - 1) * 11+ Integer.parseInt(Seats_xy[1] )  - 1;
 			ticketDAO.insert(new Ticket(order.getId(), s, session.getPrice(), sessionId));
 		}
 		
@@ -101,7 +107,7 @@ public class OrderService {
 		}
 	}
 
-	public static List<Orders> getCheckOrderList() {
+	public List<Orders> getCheckOrderList() {
 		return checkOrderList;
 	}
 	

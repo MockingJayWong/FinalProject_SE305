@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -24,8 +25,8 @@ public class OrderController {
 	@RequestMapping(value = "createOrder", method = RequestMethod.GET)
 	@ResponseBody
 	@JsonView(JsonModule.CreateOrderModule.class)
-	public Object getJson(int sessionId, String seats) {
-		return jsonService.createOrder(1,sessionId, seats);
+	public Object getJson(int sessionid, String seats) {
+		return jsonService.createOrder(1,sessionid, seats);
 		//return jsonService.createOrder(Integer.parseInt(httpSession.getAttribute("userId").toString()),sessionId, seats);
 	}
 	

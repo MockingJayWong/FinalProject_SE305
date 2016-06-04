@@ -29,6 +29,9 @@ public class JsonData {
 	@JsonView(JsonModule.GetMovieDetailModule.class) 
 	private Movie movie;
 	
+	@JsonView(JsonModule.UserModule.class)
+	private User user;
+	
 	public Cinema getCinema() {
 		return cinema;
 	}
@@ -44,9 +47,6 @@ public class JsonData {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	@JsonView(JsonModule.UserModule.class)
-	private User user;
 	
 	public JsonData() {
 		list = new ArrayList<Object>();
