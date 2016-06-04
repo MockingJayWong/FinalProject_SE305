@@ -78,4 +78,24 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
+	@Override
+	public User findByTelephone(String telephone) {
+		try {
+			return jdbcTemplate.queryForObject("select * from user where telephone = ?",
+					new BeanPropertyRowMapper<User>(User.class), telephone);
+		} catch(EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public User findByEmail(String email) {
+		try {
+			return jdbcTemplate.queryForObject("select * from user where email = ?",
+					new BeanPropertyRowMapper<User>(User.class), email);
+		} catch(EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
 }
