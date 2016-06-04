@@ -13,4 +13,5 @@ public interface TicketDAO {
 	public int insert(Ticket ticket);
 	public int update(Ticket ticket);
 	public int delete(int ticketID);
+	public int deleteByOrderID(int orderID);
 }

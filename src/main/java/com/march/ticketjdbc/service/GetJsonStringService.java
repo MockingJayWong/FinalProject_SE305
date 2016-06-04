@@ -28,6 +28,9 @@ public class GetJsonStringService {
 
 	@Autowired
 	private SeatService seatService;
+	
+	@Autowired
+	private TicketService ticketService;
 
 	
 	// --------------------------------- Movie Json -----------------------------------
@@ -127,8 +130,8 @@ public class GetJsonStringService {
 		JsonData data = new JsonData();
 		data.setError_code("0");
 
-		Seat seat = seatService.getSeatBySessionId(sessionId);
-		data.setList(TransSoldList(seat.getSold_list()));
+		orderService.checkOrder();
+		data.setList(TransSoldList(ticketService.findBySessionID(sessionId)));
 		//data.setH(10);
 		//data.setW(10);
 
@@ -140,15 +143,18 @@ public class GetJsonStringService {
 	// --------------------------------- Order Json -----------------------------------
 	public Object createOrder(int userId, int sessionId, String seats) {
 		JsonData data = new JsonData();
-		if (orderService.checkSeats(sessionId, seats)) {
-			Session session = sessionService.getSessionDetailed(sessionId);
-			Orders order = orderService.createOrder(userId, session.getCinemaID(), sessionId, seats);
-			data.setError_code("0");
-			data.setOrder(order);
-
-			return GetJsonString("success", data);
+		orderService.checkOrder();
+		synchronized(orderService) {
+			if (orderService.checkSeats(sessionId, seats)) {
+				Session session = sessionService.getSessionDetailed(sessionId);
+				Orders order = orderService.createOrder(userId, session.getCinemaID(), sessionId, seats);
+				data.setError_code("0");
+				data.setOrder(order);
+	
+				return GetJsonString("success", data);
+			}
+			return GetJsonString("faild", null);
 		}
-		return GetJsonString("faild", null);
 	}
 	
 	public Object getOrderDetail(int orderId) {
@@ -165,8 +171,9 @@ public class GetJsonStringService {
 			
 			Session session = orderService.getSessionByOrderId(order.getId());
 			Cinema cinema = cinemaService.getInfoByCinemaId(order.getCinemaID());
-			Seat seats = seatService.getSeatBySessionId(session.getId());
-			List<int[]> seatList = TransSoldList(seats.getSold_list());
+			//seat
+
+			List<int[]> seatList = TransSoldList(ticketService.findByOrderID(orderId));
 			
 			data.setError_code("0");
 			data.setOrder(order);;
@@ -202,15 +209,16 @@ public class GetJsonStringService {
 	// ------------------------------- End User Json ---------------------------------
 
 
-	private List<int[]> TransSoldList(String soldList) {
-		String[] seatList = soldList.split(",");
+	private List<int[]> TransSoldList(List<Ticket> ticketList) {
+		
 		List<int[]> result = new ArrayList<int[]>();
-
-		for (int i = 0; i < seatList.length; i++) {
+		
+		int length = ticketList.size();
+		for (int i = 0; i < length; i++) {
 			int[] temp = new int[2];
 			// 位置有11行11列，位置从0-120
-			temp[0] = Integer.parseInt(seatList[i]) / 11 + 1;
-			temp[1] = Integer.parseInt(seatList[i]) % 11 + 1;
+			temp[0] = ticketList.get(i).getSeat() / 11 + 1;
+			temp[1] = ticketList.get(i).getSeat() % 11 + 1;
 			result.add(temp);
 		}
 		return result;

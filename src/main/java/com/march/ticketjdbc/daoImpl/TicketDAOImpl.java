@@ -68,5 +68,10 @@ public class TicketDAOImpl implements TicketDAO{
 	public int delete(int ticketID) {
 		return jdbcTemplate.update("delete from ticket where id = ?", ticketID);
 	}
+	
+	@Override
+	public int deleteByOrderID(int orderID) {
+		return jdbcTemplate.update("delete from ticket where orderID = ?", orderID);
+	}
 
 }

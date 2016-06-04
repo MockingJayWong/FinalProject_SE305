@@ -24,22 +24,25 @@ public class OrderService {
 	@Autowired
 	public OrderService(OrderDAOImpl orderDAO) {
 		this.orderDAO = orderDAO;
-		checkOrderList = orderDAO.findOrdersState("1");
+		checkOrderList = Collections.synchronizedList(orderDAO.findOrdersState("1"));
 	}
 	
-	private final long effectiveTime = 15 * 60 * 1000;
+	private final long effectiveTime = 20 * 1000;
 	
 	public boolean checkSeats(int sessionId, String seats) {
 		String []Seats_str = seats.split(",");
+
 		List<Integer> Seats_int = new ArrayList<Integer>();
 		for (String str : Seats_str) {
 			String []Seats_xy = str.split("_");
 			Seats_int.add( (Integer.parseInt(Seats_xy[0])  - 1) * 10+ Integer.parseInt(Seats_xy[1] )  + Integer.parseInt(Seats_xy[0])   - 2);
 		}
 		
-		List<Ticket> soldTickets = ticketDAO.findBySession(sessionId);		
+		List<Ticket> soldTickets = ticketDAO.findBySession(sessionId);
 		Collections.sort(Seats_int);
 		Collections.sort(soldTickets);
+
+		
 		
 		if (soldTickets.size() == 0)
 			return true;	//该场次暂无已售票
@@ -48,14 +51,16 @@ public class OrderService {
 		
 		int i = 0, j = 0;
 		while (i < Seats_int.size() && j < soldTickets.size()) {
-			if (Seats_int.get(i).equals(soldTickets.get(j).getSeat()))
+			if (Seats_int.get(i).equals(soldTickets.get(j).getSeat())) {
+				
 				return false;
+			}
 			int a = Seats_int.get(i);
 			int b = soldTickets.get(j).getSeat();
 			if (a < b) i++;
 			else j++;
 		}
-				
+
 		return true;
 	}
 	
@@ -75,7 +80,6 @@ public class OrderService {
 			int s = (Integer.parseInt(Seats_xy[0])  - 1) * 10+ Integer.parseInt(Seats_xy[1] )  + Integer.parseInt(Seats_xy[0])   - 2;
 			ticketDAO.insert(new Ticket(order.getId(), s, session.getPrice(), sessionId));
 		}
-		
 		return order;
 	}
 	
@@ -93,6 +97,7 @@ public class OrderService {
 	}
 	
 	public void checkOrder() {
+		/*
 		if (!checkOrderList.isEmpty()) {
 			Orders order = checkOrderList.get(0);
 
@@ -103,6 +108,21 @@ public class OrderService {
 			if (length > effectiveTime) {
 				orderDAO.update(order.getId(), "2");
 				checkOrderList.remove(0);
+			}
+		}*/
+		synchronized(checkOrderList) {
+			Iterator<Orders> iter = checkOrderList.iterator();
+			while (iter.hasNext()) {
+				Orders order = iter.next();
+				if (order.getTime() + effectiveTime > System.currentTimeMillis()) {
+					break;
+				}
+				if (orderDAO.findByOrderId(order.getId()).getState() == "1") {
+					orderDAO.update(order.getId(), "2");
+				}
+				//票解锁
+				ticketDAO.deleteByOrderID(order.getId());
+				iter.remove();
 			}
 		}
 	}
