@@ -143,7 +143,6 @@ public class GetJsonStringService {
 		if (orderService.checkSeats(sessionId, seats)) {
 			Session session = sessionService.getSessionDetailed(sessionId);
 			Orders order = orderService.createOrder(userId, session.getCinemaID(), sessionId, seats);
-			
 			data.setError_code("0");
 			data.setOrder(order);
 

@@ -16,10 +16,16 @@ public class OrderService {
 	@Autowired
 	private SessionDAOImpl sessionDAO;
 	
-	@Autowired
+	
 	private OrderDAOImpl orderDAO;
 	
-	public static List<Orders> checkOrderList = new ArrayList<Orders>();
+	private List<Orders> checkOrderList;
+	
+	@Autowired
+	public OrderService(OrderDAOImpl orderDAO) {
+		this.orderDAO = orderDAO;
+		checkOrderList = orderDAO.findOrdersState("1");
+	}
 	
 	private final long effectiveTime = 15 * 60 * 1000;
 	
@@ -101,7 +107,7 @@ public class OrderService {
 		}
 	}
 
-	public static List<Orders> getCheckOrderList() {
+	public List<Orders> getCheckOrderList() {
 		return checkOrderList;
 	}
 	
