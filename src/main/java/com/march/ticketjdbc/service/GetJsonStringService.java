@@ -193,17 +193,25 @@ public class GetJsonStringService {
 		return GetJsonString(userService.login(username, password), null);
 	}
 
-	public Object userSign(String username, String password, String telephone, String email) {
-		return GetJsonString(userService.sign(username, password, telephone, email), null);
+	public Object userRegister(String username, String password, String password2, String telephone, String email) {
+		User user = userService.register(username, password, password2, telephone, email);
+		if (user.getId() == -1) {
+			JsonData data = new JsonData();
+			data.setUser(user);
+			
+			return GetJsonString("fail", data);
+		}
+		
+		return GetJsonString("success", null);
 	}
 
 	public Object userChange(String username, String password, String telephone, String email) {
 		return GetJsonString(userService.change(username, password, telephone, email), null);
 	}
 
-	public Object userInfo(String username) {
+	public Object userInfo(int userId) {
 		JsonData data = new JsonData();
-		data.setUser(userService.getInfo(username));
+		data.setUser(userService.getInfo(userId));
 		return GetJsonString("success", data);
 	}
 	// ------------------------------- End User Json ---------------------------------
