@@ -395,7 +395,7 @@
                 url:'../session/'+session_id,
                 success:function(responseJson) {
                   $(".first.modal").modal("hide");
-                  var sold_list = responseJson.data.seat;
+                  var sold_list = responseJson.data.list;
                   for (seatIndex in sold_list) {
                     /* if (sold_list[seatIndex] != '') {
                       var seat_x = parseInt(sold_list[seatIndex])/11+1;
@@ -404,7 +404,7 @@
                     } */
                     var seat_x = sold_list[seatIndex][0];
                     var seat_y = sold_list[seatIndex][1];
-                    $('.row'+seat_x).filter('.col'+seat_y).attr("checked","checked").attr("disabled", "disabled");
+                    $('.row-'+seat_x).filter('.col-'+seat_y).attr("checked","checked").attr("disabled", "disabled");
                   }
                   $(".second.modal").modal("show");
                 }
@@ -428,6 +428,11 @@
                 success:function(responseJson) {
                   order_id = responseJson.data.id;
                   window.location.href="../order/"+order_id;
+                },
+                error:function(XMLHttpRequest, textStatus, errorThrown) {
+	            	  alert(XMLHttpRequest.status);
+	            	  alert(XMLHttpRequest.readyState);
+	            	  alert(textStatus);
                 }
               })
             })

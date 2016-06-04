@@ -186,7 +186,64 @@ button.button.ui {
   height: 2.5em;
   background-color: #2f7277;
 }
-.main {
+.content {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.content .center-container {
   margin: auto;
-  width: 1000px;
+  width: 400px;
+  min-height: 200px;
+  border: 5px solid #FCFCFC;
+  border-radius: 3px;
+  background-color: #E6B84A;
+  position: absolute;
+  left: 50%;
+  margin-left: -200px;
+  margin-top: 160px;
+}
+.content .center-container .user-info {
+  color: #FCFCFC;
+  font-size: 1.1em;
+  text-align: center;
+  position: relative;
+  padding: 1em 0;
+}
+.content .center-container .user-info .title {
+  position: absolute;
+  left: 0;
+  top: -1.5em;
+  font-size: 1.5em;
+  background-color: #DF7244;
+  padding: 0.2em;
+}
+.content .center-container .user-info .info {
+  margin: 2em 0;
+  padding: 0 3em;
+}
+.content .center-container .user-info .info .label {
+  width: 5em;
+  float: left;
+  text-align: left;
+  font-weight: bold;
+  color: #FCFCFC;
+}
+.content .center-container .user-info .info .value {
+  height: 2em;
+  width: 10em;
+  text-align: left;
+  padding: 0 0.5em;
+  color: #989378;
+  border-bottom: 2px solid #FCFCFC;
+}
+.content .center-container .user-info button {
+  background-color: #2f7277;
+  color: #FCFCFC;
+}
+.content .center-container .user-info button a {
+  color: #FCFCFC;
+}
+.content .center-container .user-info button a:hover {
+  color: rgba(0, 0, 0, 0.8);
 }

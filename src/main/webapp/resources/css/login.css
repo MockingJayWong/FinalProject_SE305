@@ -186,7 +186,62 @@ button.button.ui {
   height: 2.5em;
   background-color: #2f7277;
 }
-.main {
+.content {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.content .center-container {
   margin: auto;
-  width: 1000px;
+  width: 400px;
+  min-height: 200px;
+  border: 5px solid #FCFCFC;
+  border-radius: 3px;
+  background-color: #E6B84A;
+  position: absolute;
+  left: 50%;
+  margin-left: -200px;
+  margin-top: 160px;
+}
+.content .center-container form {
+  color: #FCFCFC;
+  font-size: 1.1em;
+  text-align: center;
+  position: relative;
+  padding: 1em 0;
+}
+.content .center-container form .title {
+  position: absolute;
+  left: 0;
+  top: -1.5em;
+  font-size: 1.5em;
+  background-color: #DF7244;
+  padding: 0.2em;
+}
+.content .center-container form .input-item {
+  margin: 2em 0;
+  padding: 0 3em;
+}
+.content .center-container form .input-item label {
+  width: 5em;
+  float: left;
+  text-align: left;
+  font-weight: bold;
+}
+.content .center-container form .input-item input {
+  height: 2em;
+  border: 3px solid #FCFCFC;
+  border-radius: 0.5em;
+  padding: 0 0.5em;
+  color: #989378;
+}
+.content .center-container form button {
+  background-color: #2f7277;
+  color: #FCFCFC;
+}
+.content .center-container form button a {
+  color: #FCFCFC;
+}
+.content .center-container form button a:hover {
+  color: rgba(0, 0, 0, 0.8);
 }
