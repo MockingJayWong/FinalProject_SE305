@@ -185,6 +185,21 @@ public class GetJsonStringService {
 		}
 		return GetJsonString("fail", null);
 	}
+	
+	public Object EasyPayOrder(int orderID) {
+		JsonData data = new JsonData();
+		try {
+			Orders order = orderService.getOrderDetail(orderID);
+			
+			if (orderService.UpdateOrderState(orderID, "0") > 0) {
+				order.setState("0");
+			}
+			data.setOrder(order);
+			return GetJsonString("success", data);
+		} catch (Exception e) {
+			return GetJsonString("fail", data);
+		}
+	}
 	// ------------------------------- End Order Json ---------------------------------
 	
 	

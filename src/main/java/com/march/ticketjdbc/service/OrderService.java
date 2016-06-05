@@ -117,7 +117,7 @@ public class OrderService {
 				if (order.getTime() + effectiveTime > System.currentTimeMillis()) {
 					break;
 				}
-				if (orderDAO.findByOrderId(order.getId()).getState() == "1") {
+				if (orderDAO.findByOrderId(order.getId()).getState().equals("1")) {
 					orderDAO.update(order.getId(), "2");
 				}
 				//票解锁
@@ -129,6 +129,10 @@ public class OrderService {
 
 	public List<Orders> getCheckOrderList() {
 		return checkOrderList;
+	}
+	
+	public int UpdateOrderState(int orderid, String state) {
+		return orderDAO.update(orderid, state);
 	}
 	
 }
