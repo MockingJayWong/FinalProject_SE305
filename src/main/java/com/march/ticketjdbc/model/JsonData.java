@@ -32,6 +32,17 @@ public class JsonData {
 	@JsonView(JsonModule.UserModule.class)
 	private User user;
 	
+	@JsonView(JsonModule.UserLoginModule.class)
+	private String url;
+	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	public Cinema getCinema() {
 		return cinema;
 	}

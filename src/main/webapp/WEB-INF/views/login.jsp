@@ -55,6 +55,9 @@
     	          case "fail":
     	        	  $('#error_msg').show();
     	            break;
+    	          case "success":
+    	        	  window.location.href= "/" + responseJson.data.url;
+    	        	  break;
     	          default:
     	            break;
     	        }

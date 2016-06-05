@@ -1,6 +1,7 @@
 package com.march.ticketjdbc.interceptor;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.servlet.http.*;
@@ -48,19 +49,19 @@ public class AuthorizedInterceptor implements HandlerInterceptor{
 		}
 		
 		HttpSession session = request.getSession();
-		String username = (String) session.getAttribute("username");
-		String currentUri = request.getParameter("currentUrl");
+		String userId = (String) session.getAttribute("userId");
+		String currentUrl = request.getParameter("currentUrl");
 		boolean loginFlag = false;
 		
-		//若session里面的username为空,则查看cookie中是否有记录,否则照常进行
-		if (username == null) {
-			Cookie usernameCookie = null;
+		//若session里面的userId为空,则查看cookie中是否有记录,否则照常进行
+		if (userId == null) {
+			Cookie userIdCookie = null;
 			Cookie passwordCookie = null;
 			Cookie[] cookies = request.getCookies();
 			if (cookies != null) {
 				for (Cookie cookie : cookies) {
-					if (cookie.getName().equals("username")) {
-						usernameCookie = cookie;
+					if (cookie.getName().equals("userId")) {
+						userIdCookie = cookie;
 					} else if (cookie.getName().equals("password")) {
 						passwordCookie = cookie;
 					}
@@ -68,25 +69,25 @@ public class AuthorizedInterceptor implements HandlerInterceptor{
 			}
 			
 			//若cookie中无记录,跳转登陆页面,否则检验cookie中记录是否正确
-			if (usernameCookie != null && passwordCookie != null && usernameCookie.getValue() != "" && passwordCookie.getValue() != "") {
-				username = usernameCookie.getValue();
+			if (userIdCookie != null && passwordCookie != null && userIdCookie.getValue() != "" && passwordCookie.getValue() != "") {
+				userId = userIdCookie.getValue();
 				String password = passwordCookie.getValue();
 				
 				//若cookie中的记录不正确,则清除记录,正确则登陆并设置session
-				Map<String, Object> map = (Map<String, Object>) jsonService.userLogin(username, password);
+				Map<String, Object> map = (Map<String, Object>) jsonService.userLoginById(userId, password);
 				if (((String)map.get("status")).equals("success")) {
 					//session无记录，cookie记录正确,登陆成功
-			        request.getSession().setAttribute("username", username);
+			        request.getSession().setAttribute("userId", userId);
 			        loginFlag = true;
 				} else {
 					//session无记录，cookie记录错误，跳转登陆页面
-					usernameCookie.setValue(null);
+					userIdCookie.setValue(null);
 					passwordCookie .setValue(null);
 					
-					usernameCookie.setPath("/");  
+					userIdCookie.setPath("/");  
 					passwordCookie.setPath("/");
 					
-			        response.addCookie(usernameCookie); 
+			        response.addCookie(userIdCookie); 
 			        response.addCookie(passwordCookie);
 			        
 			        loginFlag = false;
@@ -102,11 +103,17 @@ public class AuthorizedInterceptor implements HandlerInterceptor{
 		
 		try {
 			if (loginFlag) {
-				response.sendRedirect(currentUri);
 				return true;
 			} else {
-				response.sendRedirect("/ticketjdbc/login");
-				return false;
+				String jsonObject = "{\"status\":\"fail\",\"url\":\"" + currentUrl + "\"}";
+				String contentType = "application/json";  
+		        response.setContentType(contentType);  
+		        response.setCharacterEncoding("UTF-8");
+		        PrintWriter out = response.getWriter();  
+		        out.print(jsonObject);  
+		        out.flush();  
+		        out.close();
+		        return false;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

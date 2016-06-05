@@ -153,7 +153,7 @@ public class GetJsonStringService {
 	
 				return GetJsonString("success", data);
 			}
-			return GetJsonString("faild", null);
+			return GetJsonString("create fail", null);
 		}
 	}
 	
@@ -189,10 +189,19 @@ public class GetJsonStringService {
 	
 	
 	// --------------------------------- User Json -----------------------------------
-	public Object userLogin(String username, String password) {
-		return GetJsonString(userService.login(username, password), null);
+	public Object userLogin(String username, String password, String url) {
+		JsonData data = new JsonData();
+		data.setUrl(url);
+		
+		User user = userService.login(username, password);
+		data.setUser(user);
+		return GetJsonString(user == null ? "fail" : "success", data);
 	}
 
+	public Object userLoginById(String userId, String password) {
+		return GetJsonString(userService.loginById(userId, password), null);
+	}
+	
 	public Object userRegister(String username, String password, String password2, String telephone, String email) {
 		User user = userService.register(username, password, password2, telephone, email);
 		if (user.getId() == -1) {
@@ -209,7 +218,7 @@ public class GetJsonStringService {
 		return GetJsonString(userService.change(username, password, telephone, email), null);
 	}
 
-	public Object userInfo(int userId) {
+	public Object getUserInfo(int userId) {
 		JsonData data = new JsonData();
 		data.setUser(userService.getInfo(userId));
 		return GetJsonString("success", data);

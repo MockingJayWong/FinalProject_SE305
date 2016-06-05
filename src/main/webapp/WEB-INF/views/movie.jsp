@@ -426,8 +426,14 @@
                 url:'../order/createOrder',
                 data:{sessionId:session_id, seats:seats_str},
                 success:function(responseJson) {
-                  order_id = responseJson.data.id;
-                  window.location.href="../order/"+order_id;
+                	if (responseJson.status=="fail") {
+                		window.location.href= "/" + responseJson.url;
+                	} else if (responseJson.status=="create fail") {
+                		
+                	} else if (responseJson.status=="success")	{
+                		order_id = responseJson.data.order.id;
+                        window.location.href="../order/"+order_id;
+                	}
                 },
                 error:function(XMLHttpRequest, textStatus, errorThrown) {
 	            	  alert(XMLHttpRequest.status);

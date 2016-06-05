@@ -1,6 +1,6 @@
 package com.march.ticketjdbc.controller;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,15 +19,15 @@ import com.march.ticketjdbc.service.GetJsonStringService;
 public class OrderController {
 	@Autowired
 	private GetJsonStringService jsonService;
-	@Autowired  
-	private HttpSession httpSession;  
 	
 	@RequestMapping(value = "createOrder", method = RequestMethod.GET)
 	@ResponseBody
 	@JsonView(JsonModule.CreateOrderModule.class)
-	public Object getJson(@RequestParam("sessionId") int sessionid, @RequestParam("seats") String seats) {
-		return jsonService.createOrder(1,sessionid, seats);
-		//return jsonService.createOrder(Integer.parseInt(httpSession.getAttribute("userId").toString()),sessionId, seats);
+	public Object getJson(HttpServletRequest request) {
+		int userId = Integer.parseInt((String) request.getSession().getAttribute("userId"));
+		int sessionId = Integer.parseInt(request.getParameter("sessionId"));
+		String seats = request.getParameter("seats");
+		return jsonService.createOrder(userId,sessionId, seats);
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)

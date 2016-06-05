@@ -19,8 +19,6 @@ public class SessionController {
 	@Autowired
 	private GetJsonStringService jsonService;
 	
-	
-	
 	@ResponseBody
 	@RequestMapping("/sessionList")
 	@JsonView(JsonModule.GetSessionListModule.class)

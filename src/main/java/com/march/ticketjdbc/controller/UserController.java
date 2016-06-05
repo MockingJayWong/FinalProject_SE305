@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.march.ticketjdbc.model.JsonData;
 import com.march.ticketjdbc.model.JsonModule;
+import com.march.ticketjdbc.model.User;
 import com.march.ticketjdbc.service.GetJsonStringService;
 
 @Controller
@@ -41,14 +43,6 @@ public class UserController {
 		String telephone = request.getParameter("telephone");
 		String email = request.getParameter("email");
 		Map<String, Object> map = (Map<String, Object> ) jsonService.userRegister(username, password, password2, telephone, email);
-
-		if (((String)map.get("status")).equals("success")) {
-			try {
-				response.sendRedirect("/ticketjdbc/login");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
 		
 		return map;
 	}
@@ -60,44 +54,48 @@ public class UserController {
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	@ResponseBody
-	@JsonView(JsonModule.UserModule.class)
+	@JsonView(JsonModule.UserLoginModule.class)
 	public Object getLoginJson(HttpServletRequest request,HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String url  = request.getParameter("currentUrl");
 		
-		Map<String, Object>map = (Map<String, Object>) jsonService.userLogin(username, password);
+		Map<String, Object>map = (Map<String, Object>) jsonService.userLogin(username, password, url);
 		if ( ((String) map.get("status")).equals("success")  ) {
-			Cookie usernameCookie = new Cookie("username", username);
+			JsonData data = (JsonData)map.get("data");
+			String userId = Integer.toString(data.getUser().getId());
+			Cookie userIdCookie = new Cookie("userId", userId);
 			Cookie passwordCookie = new Cookie("password", password);
 			
-			usernameCookie.setPath("/");
+			userIdCookie.setPath("/");
 			passwordCookie.setPath("/");
 			
-			usernameCookie.setMaxAge(maxAge);
+			userIdCookie.setMaxAge(maxAge);
 			passwordCookie.setMaxAge(maxAge);
 			
-			response.addCookie(usernameCookie);
+			response.addCookie(userIdCookie);
 			response.addCookie(passwordCookie);
 			
-			session.setAttribute("username", username);
+			session.setAttribute("userId", userId);
+			
 		}
-		
+
 		return map;
 	}
 	
 	@RequestMapping(value="logOut")
 	public void logOut(HttpServletRequest request, HttpServletResponse response) {
-		Cookie usernameCookie = new Cookie("username",null);
+		Cookie userIdCookie = new Cookie("userId",null);
 		Cookie passwordCookie = new Cookie("password",null);
 		
-		usernameCookie.setPath("/");  
+		userIdCookie.setPath("/");  
 		passwordCookie.setPath("/");
 		
-        response.addCookie(usernameCookie); 
+        response.addCookie(userIdCookie); 
         response.addCookie(passwordCookie);
 		try {
-			response.sendRedirect("/ticketjdbc/index");
+			response.sendRedirect("/ticketjdbc/");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -112,8 +110,16 @@ public class UserController {
 	@RequestMapping(value = "user/info", method = RequestMethod.GET)
 	@ResponseBody
 	@JsonView(JsonModule.UserModule.class)
-	public Object getInfoJson(int userId) {
-		return jsonService.userInfo(userId);
+	public Object getInfoJson(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("userId").equals(request.getParameter("userId"))) {
+			int userId = Integer.parseInt(request.getParameter("userId"));
+			return jsonService.getUserInfo(userId);
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("status", "fail");
+		return map;
 	}
 	
 	@RequestMapping(value = "change", method = RequestMethod.GET)

@@ -10,5 +10,6 @@ public class JsonModule {
 	public interface CreateOrderModule extends DefaultModule {}
 	public interface GetOrderDetailModule extends DefaultModule {}
 	public interface UserModule extends DefaultModule {}
+	public interface UserLoginModule extends DefaultModule {}
 	public interface CinemaModule extends DefaultModule {}
 }

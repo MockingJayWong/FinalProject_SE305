@@ -19,8 +19,15 @@ public class UserService {
 	private String emailRegex="^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$";
 	private String telephoneRegex="^1[0-9]{10}$";
 	
-	public String login(String username, String password) {
+	public User login(String username, String password) {
 		User user = userDAO.findByName(username);
+		if (user == null || !user.getPassword().equals(password))
+			return null;
+		return user;
+	}
+	
+	public String loginById(String userId, String password) {
+		User user = userDAO.findByID(Integer.parseInt(userId));
 		if (user == null || !user.getPassword().equals(password))
 			return "fail";
 		return "success";

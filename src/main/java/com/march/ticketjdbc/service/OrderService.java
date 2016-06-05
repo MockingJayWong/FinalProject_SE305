@@ -27,7 +27,7 @@ public class OrderService {
 		checkOrderList = Collections.synchronizedList(orderDAO.findOrdersState("1"));
 	}
 	
-	private final long effectiveTime = 20 * 1000;
+	private final long effectiveTime = 15 * 60 * 1000;
 	
 	public boolean checkSeats(int sessionId, String seats) {
 		String []Seats_str = seats.split(",");
@@ -117,7 +117,7 @@ public class OrderService {
 				if (order.getTime() + effectiveTime > System.currentTimeMillis()) {
 					break;
 				}
-				if (orderDAO.findByOrderId(order.getId()).getState() == "1") {
+				if (orderDAO.findByOrderId(order.getId()).getState().equals("1")) {
 					orderDAO.update(order.getId(), "2");
 				}
 				//票解锁
