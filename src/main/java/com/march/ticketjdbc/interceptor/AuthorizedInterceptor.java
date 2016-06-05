@@ -2,6 +2,7 @@ package com.march.ticketjdbc.interceptor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.*;
@@ -16,7 +17,7 @@ public class AuthorizedInterceptor implements HandlerInterceptor{
 	@Autowired
 	private GetJsonStringService jsonService;
 	
-	private static final String[] INTERCEPTOR_URI = {"/createOrder"};
+	private static final String[] INTERCEPTOR_URI = {"/createOrder","user/info"};
 	
 	@Override
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
@@ -99,13 +100,13 @@ public class AuthorizedInterceptor implements HandlerInterceptor{
 			//session存在username,已登陆用户
 			loginFlag = true;
 		}
-		
+
 		try {
 			if (loginFlag) {
 				return true;
 			} else {
-			String jsonObject = "{\"status\":\"fail\",\"ur\":\"ticketjdbc\account\login\"}";
-			String contentType = "application/json";  
+			    String jsonObject = "{\"status\":\"fail\",\"url\":\"ticketjdbc/account/login\"}";
+			    String contentType = "application/json";  
 		        response.setContentType(contentType);  
 		        response.setCharacterEncoding("UTF-8");
 		        PrintWriter out = response.getWriter();  
