@@ -50,7 +50,6 @@ public class AuthorizedInterceptor implements HandlerInterceptor{
 		
 		HttpSession session = request.getSession();
 		String userId = (String) session.getAttribute("userId");
-		String currentUrl = request.getParameter("currentUrl");
 		boolean loginFlag = false;
 		
 		//若session里面的userId为空,则查看cookie中是否有记录,否则照常进行
@@ -105,8 +104,8 @@ public class AuthorizedInterceptor implements HandlerInterceptor{
 			if (loginFlag) {
 				return true;
 			} else {
-				String jsonObject = "{\"status\":\"fail\",\"url\":\"" + currentUrl + "\"}";
-				String contentType = "application/json";  
+			String jsonObject = "{\"status\":\"fail\",\"ur\":\"ticketjdbc\account\login\"}";
+			String contentType = "application/json";  
 		        response.setContentType(contentType);  
 		        response.setCharacterEncoding("UTF-8");
 		        PrintWriter out = response.getWriter();  
