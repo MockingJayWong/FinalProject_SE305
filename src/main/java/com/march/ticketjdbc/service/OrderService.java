@@ -131,4 +131,8 @@ public class OrderService {
 		return checkOrderList;
 	}
 	
+	public int UpdateOrderState(int orderid, String state) {
+		return orderDAO.update(orderid, state);
+	}
+	
 }

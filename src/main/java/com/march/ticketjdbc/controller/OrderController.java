@@ -41,4 +41,11 @@ public class OrderController {
 	public Object getMovie(@PathVariable("id") int id) {
 		return "order";
 	}
+	
+	@RequestMapping(value = "payorder", method = RequestMethod.GET)
+	@ResponseBody
+	@JsonView(JsonModule.GetOrderDetailModule.class)
+	public Object PayOrder(int orderID) {
+		return jsonService.EasyPayOrder(orderID);
+	}
 }

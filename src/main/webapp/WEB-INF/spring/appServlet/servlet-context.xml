@@ -56,7 +56,7 @@
 	<beans:bean id="sessionDAO" class="com.march.ticketjdbc.daoImpl.SessionDAOImpl" />
 	<beans:bean id="ticketDAO" class="com.march.ticketjdbc.daoImpl.TicketDAOImpl" />
 	<beans:bean id="userDAO" class="com.march.ticketjdbc.daoImpl.UserDAOImpl" />
-	
+
 	<!-- Services -->
 	<context:component-scan base-package="com.march.ticketjdbc.service" />
 
