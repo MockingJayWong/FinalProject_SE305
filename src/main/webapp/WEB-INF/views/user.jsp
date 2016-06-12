@@ -5,14 +5,14 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>首页</title>
-    <link href="../css/lib/semantic/dist/semantic.min.css" rel="stylesheet">
-    <link href="../css/user.css" rel="stylesheet">
+    <link href="../resources/css/lib/semantic/dist/semantic.min.css" rel="stylesheet">
+    <link href="../resources/css/user.css" rel="stylesheet">
   </head>
   <body>
     <div class="whole">
       <div class="ui main container">
         <nav class="navigator">
-          <div class="ui menu"><a id="menu_item_1" href="account/login" class="item">登陆</a><a id="menu_item_2" href="account/register" class="item">注册</a>
+          <div class="ui menu"><a id="menu_item_1" href="login" class="item">登陆</a><a id="menu_item_2" href="register" class="item">注册</a>
             <div class="right item">
               <div class="ui icon input">
                 <input type="text" placeholder="搜索电影院或电影"><i class="search icon"></i>
@@ -43,7 +43,7 @@
       </div>
     </div>
     <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
-    <script src="../css/lib/semantic/dist/semantic.min.js"></script>
+    <script src="../resources/css/lib/semantic/dist/semantic.min.js"></script>
     <script type="text/javascript">
     
     $(function() {
@@ -57,9 +57,9 @@
           return null;
       }
       var username = getCookie('username');
-      if (username) {
-        $('#menu_item_1').attr('href', 'account/user').html('Hello, '+username);
-        $('#menu_item_2').attr('href', 'account/logOut').html('退出');
+      if (username && username != '""') {
+        $('#menu_item_1').attr('href', 'user').html('Hello, '+username);
+        $('#menu_item_2').attr('href', 'logOut').html('退出');
       }
     	
     	var userId = getUrlParam('userId');

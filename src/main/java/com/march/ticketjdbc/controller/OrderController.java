@@ -42,7 +42,7 @@ public class OrderController {
 		return "order";
 	}
 	
-	@RequestMapping(value = "payorder", method = RequestMethod.GET)
+	@RequestMapping(value = "payOrder", method = RequestMethod.GET)
 	@ResponseBody
 	@JsonView(JsonModule.GetOrderDetailModule.class)
 	public Object PayOrder(int orderID) {

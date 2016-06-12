@@ -64,7 +64,7 @@
 		        	  return null;
         	  }
         	  var username = getCookie('username');
-        	  if (username) {
+        	  if (username && username != '""') {
         		  $('#menu_item_1').attr('href', 'account/user').html('Hello, '+username);
         		  $('#menu_item_2').attr('href', 'account/logOut').html('退出');
         	  }

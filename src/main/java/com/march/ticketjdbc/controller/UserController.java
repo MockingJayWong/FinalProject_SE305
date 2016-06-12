@@ -68,15 +68,19 @@ public class UserController {
 			String userId = Integer.toString(data.getUser().getId());
 			Cookie userIdCookie = new Cookie("userId", userId);
 			Cookie passwordCookie = new Cookie("password", password);
+			Cookie usernameCookie = new Cookie("username", username);
 			
 			userIdCookie.setPath("/");
 			passwordCookie.setPath("/");
+			usernameCookie.setPath("/");
 			
 			userIdCookie.setMaxAge(maxAge);
 			passwordCookie.setMaxAge(maxAge);
+			usernameCookie.setMaxAge(maxAge);
 			
 			response.addCookie(userIdCookie);
 			response.addCookie(passwordCookie);
+			response.addCookie(usernameCookie);
 			
 			session.setAttribute("userId", userId);
 			
@@ -89,13 +93,17 @@ public class UserController {
 	public void logOut(HttpServletRequest request, HttpServletResponse response) {
 		Cookie userIdCookie = new Cookie("userId",null);
 		Cookie passwordCookie = new Cookie("password",null);
+		Cookie usernameCookie = new Cookie("username", null);
 		
 		userIdCookie.setPath("/");  
 		passwordCookie.setPath("/");
+		usernameCookie.setPath("/");
 		
         response.addCookie(userIdCookie); 
         response.addCookie(passwordCookie);
-		try {
+		response.addCookie(usernameCookie);
+        
+        try {
 			response.sendRedirect("/ticketjdbc/");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -103,8 +111,8 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping(value = "user/{id}", method = RequestMethod.GET)
-	public Object getUserPage(@PathVariable("id") int id) {
+	@RequestMapping(value = "user", method = RequestMethod.GET)
+	public Object getUserPage(HttpServletRequest request) {
 		return "user";
 	}
 	
