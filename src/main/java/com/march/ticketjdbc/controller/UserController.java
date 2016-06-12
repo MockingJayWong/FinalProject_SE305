@@ -113,14 +113,8 @@ public class UserController {
 	@JsonView(JsonModule.UserModule.class)
 	public Object getInfoJson(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		if (session.getAttribute("userId").equals(request.getParameter("userId"))) {
-			int userId = Integer.parseInt(request.getParameter("userId"));
+		int userId = Integer.parseInt((String) session.getAttribute("userId"));
 			return jsonService.getUserInfo(userId);
-		}
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("status", "fail");
-		return map;
 	}
 	
 	@RequestMapping(value = "change", method = RequestMethod.GET)
