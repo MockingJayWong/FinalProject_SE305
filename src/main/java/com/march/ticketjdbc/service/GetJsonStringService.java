@@ -206,6 +206,7 @@ public class GetJsonStringService {
 	// --------------------------------- User Json -----------------------------------
 	public Object userLogin(String username, String password, String url) {
 		JsonData data = new JsonData();
+		if (url == null) url = "ticketjdbc";
 		data.setUrl(url);
 		
 		User user = userService.login(username, password);

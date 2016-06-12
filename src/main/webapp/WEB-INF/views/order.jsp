@@ -12,7 +12,7 @@
     <div class="whole">
       <div class="ui main container">
         <nav class="navigator">
-          <div class="ui menu"><a href="#" class="item">登陆</a><a href="#" class="item">注册</a>
+          <div class="ui menu"><a id="menu_item_1" href="account/login" class="item">登陆</a><a id="menu_item_2" href="account/register" class="item">注册</a>
             <div class="right item">
               <div class="ui icon input">
                 <input type="text" placeholder="搜索电影院或电影"><i class="search icon"></i>
@@ -64,11 +64,26 @@
       <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
       <script src="../resources/css/lib/semantic/dist/semantic.min.js"></script>
       <script type="text/javascript">
-        $(doucment).ready(function() {
+        $(document).ready(function() {
+        	
+        	function getCookie(name)
+          {
+              var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+              if(arr=document.cookie.match(reg))
+              return unescape(arr[2]);
+              else
+              return null;
+          }
+          var username = getCookie('username');
+          if (username) {
+            $('#menu_item_1').attr('href', 'account/user').html('Hello, '+username);
+            $('#menu_item_2').attr('href', 'account/logOut').html('退出');
+          }
+        	
        	  // 从url获取orderId
           var url = window.location.href;
-	      var temp_array =  url.split('/');
-	      var orderId = temp_array[temp_array.length-1];
+          var temp_array =  url.split('/');
+          var orderId = temp_array[temp_array.length-1];
 
           // 获取订单的详细信息
           $.ajax({

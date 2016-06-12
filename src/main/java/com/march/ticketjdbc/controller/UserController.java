@@ -61,6 +61,7 @@ public class UserController {
 		String password = request.getParameter("password");
 		String url  = request.getParameter("currentUrl");
 		
+		@SuppressWarnings("unchecked")
 		Map<String, Object>map = (Map<String, Object>) jsonService.userLogin(username, password, url);
 		if ( ((String) map.get("status")).equals("success")  ) {
 			JsonData data = (JsonData)map.get("data");

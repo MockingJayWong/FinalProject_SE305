@@ -13,7 +13,7 @@
     <div class="whole">
       <div class="ui main container">
         <nav class="navigator">
-          <div class="ui menu"><a href="account/login" class="item">登陆</a><a href="account/register" class="item">注册</a>
+          <div class="ui menu"><a id="menu_item_1" href="account/login" class="item">登陆</a><a id="menu_item_2" href="account/register" class="item">注册</a>
             <div class="right item">
               <div class="ui icon input">
                 <input type="text" placeholder="搜索电影院或电影"><i class="search icon"></i>
@@ -55,6 +55,21 @@
     <script type="text/javascript" src="resources/css/lib/semantic/dist/semantic.min.js"></script>
     <script type="text/javascript">
         $(function() {
+        	  function getCookie(name)
+        	  {
+		        	  var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+		        	  if(arr=document.cookie.match(reg))
+		        	  return unescape(arr[2]);
+		        	  else
+		        	  return null;
+        	  }
+        	  var username = getCookie('username');
+        	  if (username) {
+        		  $('#menu_item_1').attr('href', 'account/user').html('Hello, '+username);
+        		  $('#menu_item_2').attr('href', 'account/logOut').html('退出');
+        	  }
+        	  
+        	  
             // 获取current movie list
             $.ajax({
                 url:'movie/currentMovieList',

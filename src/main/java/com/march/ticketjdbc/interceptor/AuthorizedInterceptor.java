@@ -104,7 +104,7 @@ public class AuthorizedInterceptor implements HandlerInterceptor{
 			if (loginFlag) {
 				return true;
 			} else {
-			String jsonObject = "{\"status\":\"fail\",\"ur\":\"ticketjdbc\account\login\"}";
+			String jsonObject = "{\"status\":\"fail\",\"url\":\"ticketjdbc/account/login\"}";
 			String contentType = "application/json";  
 		        response.setContentType(contentType);  
 		        response.setCharacterEncoding("UTF-8");

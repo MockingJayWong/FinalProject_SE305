@@ -12,7 +12,7 @@
     <div class="whole">
       <div class="ui main container">
         <nav class="navigator">
-          <div class="ui menu"><a href="#" class="item">登陆</a><a href="#" class="item">注册</a>
+          <div class="ui menu"><a id="menu_item_1" href="account/login" class="item">登陆</a><a id="menu_item_2" href="account/register" class="item">注册</a>
             <div class="right item">
               <div class="ui icon input">
                 <input type="text" placeholder="搜索电影院或电影"><i class="search icon"></i>
@@ -263,12 +263,27 @@
       <script src="../resources/css/lib/semantic/dist/semantic.min.js"></script>
       <script type="text/javascript">
         $(document).ready(function(){
+        	
+        	function getCookie(name)
+          {
+              var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+              if(arr=document.cookie.match(reg))
+              return unescape(arr[2]);
+              else
+              return null;
+          }
+          var username = getCookie('username');
+          if (username) {
+            $('#menu_item_1').attr('href', 'account/user').html('Hello, '+username);
+            $('#menu_item_2').attr('href', 'account/logOut').html('退出');
+          }
+        	
         	// 从url获取movieId
         	var url = window.location.href;
-			var temp_array =  url.split('/');
-			var movie_id = temp_array[temp_array.length-1].split('#')[0];
-            
-			// 获取movie detail
+					var temp_array =  url.split('/');
+					var movie_id = temp_array[temp_array.length-1].split('#')[0];
+		            
+					// 获取movie detail
             $.ajax({
                 url:'detail',
                 data:{movieId:movie_id},
@@ -427,9 +442,9 @@
                 data:{sessionId:session_id, seats:seats_str},
                 success:function(responseJson) {
                 	if (responseJson.status=="fail") {
-                		window.location.href= "/" + responseJson.url;
+                		window.location.href= "/" + responseJson.url+"?currentUrl="+window.location.href;
                 	} else if (responseJson.status=="create fail") {
-                		
+                		alert("创建订单失败！")
                 	} else if (responseJson.status=="success")	{
                 		order_id = responseJson.data.order.id;
                         window.location.href="../order/"+order_id;
