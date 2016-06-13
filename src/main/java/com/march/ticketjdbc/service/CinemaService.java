@@ -25,6 +25,10 @@ public class CinemaService {
 		return cinemaDAO.findAll();
 	}
 	
+	public Cinema findById(int cinemaId) {
+		return cinemaDAO.findById(cinemaId);
+	}
+	
 	public List<Cinema> findCinemasByMovie(int movieId) {
 		List<Cinema> cinemas = new ArrayList<Cinema>();
 		Movie movie = movieDAO.findByID(movieId);
