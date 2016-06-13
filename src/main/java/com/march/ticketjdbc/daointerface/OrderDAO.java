@@ -20,7 +20,7 @@ public interface OrderDAO {
 	public List<Orders> findByCinemaIdIdAndData(int Id, long startTime , long endTime);
 	
 	public List<Orders>findOrdersState(String state);
-	public Orders  findByOrderId(int Id);
+	public Orders findByOrderId(int Id);
 		
 	public int insert(Orders order);
 	

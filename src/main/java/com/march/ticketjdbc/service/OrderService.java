@@ -135,4 +135,8 @@ public class OrderService {
 		return orderDAO.update(orderid, state);
 	}
 	
+	public List<Orders> getOrderList(int userId) {
+		checkOrder();
+		return orderDAO.findByUserId(userId);
+	}
 }

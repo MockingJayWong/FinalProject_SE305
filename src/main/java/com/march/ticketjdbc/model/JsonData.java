@@ -11,7 +11,7 @@ public class JsonData {
 	private String error_code;
 
 	@JsonView({JsonModule.GetMovieListModule.class, JsonModule.GetCinemaListModule.class, JsonModule.GetSessionListModule.class,JsonModule.GetOrderDetailModule.class
-		,JsonModule.GetSessionInfoModule.class})
+		,JsonModule.GetSessionInfoModule.class, JsonModule.GetOrderListModule.class})
 	private List<Object> list;
 
 	@JsonView({JsonModule.CreateOrderModule.class, JsonModule.GetOrderDetailModule.class})

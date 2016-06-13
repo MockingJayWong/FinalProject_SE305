@@ -104,17 +104,16 @@ public class UserService {
 		return reUser;
 	}
 	
-	public String change(String username, String password, String telephone, String email) {
-		if (password == null || password.length() == 0)
-			return "password can not be empty";
-		User user = userDAO.findByName(username);
+	public String change(int userId , String password) {
+		//check password format
+		Pattern pattern = Pattern.compile(passwordRegex);
+		Matcher m = pattern.matcher(password);
+		
+		if (!m.find()) {
+			return "wrong password format";
+		}
+		User user = userDAO.findByID(userId);
 		user.setPassword(password);
-		
-		if (telephone == null || telephone.length() == 0) user.setTelephone("");
-		else user.setTelephone(telephone);
-		
-		if (email == null || email.length() == 0) user.setEmail("");
-		else user.setEmail(email);
 		
 		userDAO.update(user);
 		return "success";
