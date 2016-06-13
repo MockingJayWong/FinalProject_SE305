@@ -133,6 +133,7 @@
                                 <td>'+seats_str+'</td>\
                               </tr>';
               $('#order_tbody').html(order_html);
+              $('.total .value').html('￥'+order.prices)
 
               var order_state = order.state;
               if (order_state == '0') {

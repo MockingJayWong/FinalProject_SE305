@@ -12,7 +12,11 @@
     <div class="whole">
       <div class="ui main container">
         <nav class="navigator">
-          <div class="ui menu"><a href="../html/index.html" class="item">首页</a><a href="../html/login.html" class="item">登陆</a><a href="../html/register.html" class="item">注册</a><a href="../html/user.html" class="item">个人信息</a><a href="../html/orderList.html" class="item">我的订单</a>
+          <div class="ui menu">
+            <a href="../" class="item">首页</a>
+            <a href="../account/login" class="item">登陆</a>
+            <a href="../account/register" class="item">注册</a>
+            <a href="../account/user/orderList" class="item">我的订单</a>
             <div class="right item">
               <div class="ui icon input">
                 <input type="text" placeholder="搜索电影院或电影"><i class="search icon"></i>
@@ -55,70 +59,7 @@
                   <h4>热映电影</h4>
                 </div>
                 <div id='movies' class="items-content">
-                  <div class="item movie-item">
-                    <div class="item-title movie-name">魔兽</div>
-                    <div class="item-pic movie-poster"><img src="../assets/0.jpg" class="movie-poster poster"/></div>
-                    <div class="item-content">
-                      <dl class="movie-price movie-info info">
-                        <dt class="label">票价</dt>
-                        <dd class="value">35</dd>
-                      </dl>
-                      <dl class="movie-section movie-info info">
-                        <dt class="label">场次</dt>
-                        <dd class="value">13:10 | 13:45 | 14:50 | 15:30 | 16:30 | 17:15 |18:10 | 19:00 | 19:50 | 20:40 |21:30 | 22:25</dd>
-                      </dl>
-                    </div>
-                    <div class="item-button"><a href="#">
-                        <button class="ui primary button purchase-btn">选座购票</button></a></div>
-                  </div>
-                  <div class="item movie-item">
-                    <div class="item-title movie-name">魔兽</div>
-                    <div class="item-pic movie-poster"><img src="../assets/0.jpg" class="movie-poster poster"/></div>
-                    <div class="item-content">
-                      <dl class="movie-price movie-info info">
-                        <dt class="label">票价</dt>
-                        <dd class="value">35</dd>
-                      </dl>
-                      <dl class="movie-section movie-info info">
-                        <dt class="label">场次</dt>
-                        <dd class="value">13:10 | 13:45 | 14:50 | 15:30 | 16:30 | 17:15 |18:10 | 19:00 | 19:50 | 20:40 |21:30 | 22:25</dd>
-                      </dl>
-                    </div>
-                    <div class="item-button"><a href="#">
-                        <button class="ui primary button purchase-btn">选座购票</button></a></div>
-                  </div>
-                  <div class="item movie-item">
-                    <div class="item-title movie-name">魔兽</div>
-                    <div class="item-pic movie-poster"><img src="../assets/0.jpg" class="movie-poster poster"/></div>
-                    <div class="item-content">
-                      <dl class="movie-price movie-info info">
-                        <dt class="label">票价</dt>
-                        <dd class="value">35</dd>
-                      </dl>
-                      <dl class="movie-section movie-info info">
-                        <dt class="label">场次</dt>
-                        <dd class="value">13:10 | 13:45 | 14:50 | 15:30 | 16:30 | 17:15 |18:10 | 19:00 | 19:50 | 20:40 |21:30 | 22:25</dd>
-                      </dl>
-                    </div>
-                    <div class="item-button"><a href="#">
-                        <button class="ui primary button purchase-btn">选座购票</button></a></div>
-                  </div>
-                  <div class="item movie-item">
-                    <div class="item-title movie-name">魔兽</div>
-                    <div class="item-pic movie-poster"><img src="../assets/0.jpg" class="movie-poster poster"/></div>
-                    <div class="item-content">
-                      <dl class="movie-price movie-info info">
-                        <dt class="label">票价</dt>
-                        <dd class="value">35</dd>
-                      </dl>
-                      <dl class="movie-section movie-info info">
-                        <dt class="label">场次</dt>
-                        <dd class="value">13:10 | 13:45 | 14:50 | 15:30 | 16:30 | 17:15 |18:10 | 19:00 | 19:50 | 20:40 |21:30 | 22:25</dd>
-                      </dl>
-                    </div>
-                    <div class="item-button"><a href="#">
-                        <button class="ui primary button purchase-btn">选座购票</button></a></div>
-                  </div>
+
                 </div>
               </div>
             </div>
@@ -141,26 +82,7 @@
                       </tr>
                     </thead>
                     <tbody id='sessions_tbody' class="reco-sections">
-                      <tr class="section-item">
-                        <td class="startTime">22:25</td>
-                        <td class="endTime">23:55</td>
-                        <td class="language">英语3D</td>
-                        <td class="room">二号厅</td>
-                        <td class="price">31.5</td>
-                        <td>
-                          <button class="ui primary button purchase-btn">购票   </button>
-                        </td>
-                      </tr>
-                      <tr class="section-item">
-                        <td class="startTime">22:25</td>
-                        <td class="endTime">23:55</td>
-                        <td class="language">英语3D</td>
-                        <td class="room">二号厅</td>
-                        <td class="price">31.5</td>
-                        <td>
-                          <button class="ui primary button purchase-btn">购票   </button>
-                        </td>
-                      </tr>
+                      
                     </tbody>
                   </table>
                 </div>
@@ -351,11 +273,6 @@
         $(".ui.modal").modal({
             allowMutiple: false
         });
-    
-        $(".movie-item .purchase-btn").click(function(e) {
-            $(".first.modal").modal("show");
-        })
-        $(".second.modal").modal("attach events", ".first.modal .button");
         
         
         // 从url获取cinemaId
@@ -390,7 +307,7 @@
             var movie_html = 
                 '<div class="item movie-item">\
                   <div class="item-title movie-name">魔兽</div>\
-                  <div class="item-pic movie-poster"><img src="url" class="movie-poster poster"/></div>\
+                  <div class="item-pic movie-poster"><img src="../resources/images/url" class="movie-poster poster"/></div>\
                   <div class="item-content">\
                     <dl class="movie-price movie-info info">\
                       <dt class="label">票价</dt>\
@@ -410,7 +327,7 @@
                 var movieList = responseJson.data.list;
                 for (var movieIndex in movieList) {
                   var movie = movieList[movieIndex];
-                  movie_id_map[movie.movieId] = movie;
+                  movie_id_map[movie.id] = movie;
                   var session_str = '';
                   var sessions = movie.sessions;
                   for (var sessionIndex in sessions) {
@@ -420,7 +337,7 @@
                     session_str += start_time.getHours()+':'+start_time.getMinutes()+' ';
                   }
 
-                  movies_html += movie_html.replace('35', movie.sessions[0].price).replace('魔兽', movie.movieName).replace('url', movie.url).replace('sessions', session_str).replace('movie_id', movie.movieId);
+                  movies_html += movie_html.replace('35', movie.sessions[0].price).replace('魔兽', movie.movieName).replace('url', movie.url).replace('sessions', session_str).replace('movie_id', movie.id);
                 }
                 $('#movies').html(movies_html);
                 $(".movie-item .purchase-btn").click(select_session);

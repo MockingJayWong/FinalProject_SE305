@@ -26,7 +26,7 @@
         </nav>
         <div class="content">
           <div class="header">
-            <div class="logo">logo</div>
+            <a href="#"><img src="../../resources/images/logo.png" alt="logo" class="logo"/></a>
           </div>
           <div class="pay-order-container">
             <h4 class="title">我的订单</h4>
