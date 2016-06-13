@@ -118,6 +118,9 @@
                     $('#'+key+'+label').html(value).css('display','block'); ;
                   }
                   break;
+                case "success":
+                  window.location.href= "../";
+  	        	  break;
                 default:
                   break;
               }

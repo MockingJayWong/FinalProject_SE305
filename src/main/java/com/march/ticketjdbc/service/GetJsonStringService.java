@@ -190,12 +190,15 @@ public class GetJsonStringService {
 		JsonData data = new JsonData();
 		try {
 			Orders order = orderService.getOrderDetail(orderID);
-			
-			if (orderService.UpdateOrderState(orderID, "0") > 0) {
-				order.setState("0");
+			if (order.getState() == "1") {
+				if (orderService.UpdateOrderState(orderID, "0") > 0) {
+					order.setState("0");
+				}
+				data.setOrder(order);
+				return GetJsonString("success", data);
+			} else {
+				return GetJsonString("fail", data);
 			}
-			data.setOrder(order);
-			return GetJsonString("success", data);
 		} catch (Exception e) {
 			return GetJsonString("fail", data);
 		}
