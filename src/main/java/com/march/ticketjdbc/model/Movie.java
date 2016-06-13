@@ -1,12 +1,14 @@
 package com.march.ticketjdbc.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class Movie {
-	@JsonView({JsonModule.GetMovieListModule.class, JsonModule.GetMovieDetailModule.class})
+	@JsonView({JsonModule.GetMovieListModule.class, JsonModule.GetMovieDetailModule.class, JsonModule.GetMovieByCinemaIdModule.class})
 	private int id;
 	
-	@JsonView({JsonModule.GetMovieListModule.class, JsonModule.GetMovieDetailModule.class})
+	@JsonView({JsonModule.GetMovieListModule.class, JsonModule.GetMovieDetailModule.class, JsonModule.GetMovieByCinemaIdModule.class})
 	private String movieName;
 	
 	@JsonView({JsonModule.GetMovieListModule.class, JsonModule.GetMovieDetailModule.class})
@@ -33,6 +35,11 @@ public class Movie {
 	
 	@JsonView(JsonModule.GetMovieDetailModule.class)
 	private String actor;
+	
+	//-------------------Not from database, Just for JSON------------------------
+	@JsonView(JsonModule.GetMovieByCinemaIdModule.class)
+	private List<Session> sessions;
+	//----------------------------END non-database-------------------------------
 	
 	public int getId() {
 		return id;
@@ -102,7 +109,12 @@ public class Movie {
 	public void setLength(long length) {
 		this.length = length;
 	}
-
+	public List<Session> getSessions() {
+		return sessions;
+	}
+	public void setSessions(List<Session> sessions) {
+		this.sessions = sessions;
+	}
 	public Movie(String movieName, String url, String type, String introduction, float score, long start_time,
 			long end_time, long length, String director, String actor) {
 		super();

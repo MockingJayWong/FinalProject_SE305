@@ -17,7 +17,7 @@ public class AuthorizedInterceptor implements HandlerInterceptor{
 	@Autowired
 	private GetJsonStringService jsonService;
 	
-	private static final String[] INTERCEPTOR_URI = {"/createOrder","user/info", "account/user/orderList"};
+	private static final String[] INTERCEPTOR_URI = {"/createOrder","user/info", "account/user/orderList", "order/orderList"};
 	
 	@Override
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)

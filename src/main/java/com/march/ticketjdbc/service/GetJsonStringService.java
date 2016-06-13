@@ -5,6 +5,7 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.march.ticketjdbc.daointerface.SessionDAO;
 import com.march.ticketjdbc.model.*;
 
 @Service
@@ -91,7 +92,13 @@ public class GetJsonStringService {
 	public Object GetMoviesFromCinema(int cinemaId) {
 		JsonData data = new JsonData();
 		data.setError_code("0");
-		List<Movie> movies = movieService.findMovieByCinemaId(cinemaId);
+		List<Movie> movies = new ArrayList<Movie>();
+		for (Movie mov : movieService.findMovieByCinemaId(cinemaId)) {
+			if (mov != null) {
+				mov.setSessions(sessionService.findSessionsByMovieAndCinema(cinemaId, mov.getMovieName()));
+				movies.add(mov);
+			}
+		}
 		data.setList(movies);
 		return GetJsonString("success", data);
 	}
