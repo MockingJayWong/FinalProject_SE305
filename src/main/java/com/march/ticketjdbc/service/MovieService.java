@@ -32,9 +32,13 @@ public class MovieService {
 		List<Movie> movies = new ArrayList<Movie>();
 		Cinema cinema = cinemaDAO.findById(cinemaId);
 		
+		List<Session> sessionList = sessionDao.findByCinemaID(cinemaId);
+		
 		if (cinema != null) {
-			for (Session session : sessionDao.findByCinemaID(cinemaId)) {
-				movies.add(movieDAO.findByMovieName(session.getMovieName()));
+			for (int i = 0; i < sessionList.size(); i++) {
+				Session session = sessionList.get(i);
+				Movie movie = movieDAO.findByMovieName(session.getMovieName());
+				movies.add(movie);
 			}
 		}
 		
