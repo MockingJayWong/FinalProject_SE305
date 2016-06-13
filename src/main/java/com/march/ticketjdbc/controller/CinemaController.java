@@ -40,7 +40,7 @@ public class CinemaController {
 	
 	@RequestMapping(value = "movieList", method = RequestMethod.GET)
 	@ResponseBody
-	@JsonView(JsonModule.GetMovieListModule.class)
+	@JsonView(JsonModule.GetMovieByCinemaIdModule.class)
 	public Object getMoviesFromCinema(@RequestParam("cinemaId") int id) {
 		return jsonService.GetMoviesFromCinema(id);
 	}

@@ -5,6 +5,7 @@ public class JsonModule {
 	public interface GetMovieListModule extends DefaultModule {}
 	public interface GetMovieDetailModule extends DefaultModule {}
 	public interface GetCinemaListModule extends DefaultModule {}
+	public interface GetMovieByCinemaIdModule extends DefaultModule {}
 	public interface GetSessionListModule extends DefaultModule {}
 	public interface GetSessionInfoModule extends DefaultModule {}
 	public interface CreateOrderModule extends DefaultModule {}

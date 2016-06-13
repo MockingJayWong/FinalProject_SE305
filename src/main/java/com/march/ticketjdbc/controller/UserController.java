@@ -136,11 +136,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "orderList", method = RequestMethod.GET)
-	@ResponseBody
-	@JsonView(JsonModule.GetOrderListModule.class)
-	public Object getOrderList(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		int userId = Integer.parseInt((String) session.getAttribute("userId"));
-		return jsonService.getOrderList(userId);
+	public Object orderList() {
+		return "orderList";
 	}
 }

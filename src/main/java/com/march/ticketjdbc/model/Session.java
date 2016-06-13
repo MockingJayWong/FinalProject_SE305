@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 public class Session {
 
-	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class})
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class, JsonModule.GetMovieByCinemaIdModule.class})
 	private int id;
 	
 	private int cinemaID;
@@ -15,16 +15,16 @@ public class Session {
 	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class, JsonModule.GetOrderDetailModule.class})
 	private String movieName;
 	
-	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class,JsonModule.GetOrderDetailModule.class})
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class,JsonModule.GetOrderDetailModule.class, JsonModule.GetMovieByCinemaIdModule.class})
 	private long start_time;
 	
-	@JsonView({JsonModule.GetSessionListModule.class,  JsonModule.GetCinemaListModule.class,JsonModule.GetOrderDetailModule.class})
+	@JsonView({JsonModule.GetSessionListModule.class,  JsonModule.GetCinemaListModule.class,JsonModule.GetOrderDetailModule.class, JsonModule.GetMovieByCinemaIdModule.class})
 	private long end_time;
 	
 	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class,JsonModule.GetOrderDetailModule.class})
 	private String language;
 	
-	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class})
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class, JsonModule.GetMovieByCinemaIdModule.class})
 	private float price;
 	
 	public int getId() {
