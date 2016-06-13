@@ -1,0 +1,32 @@
+extends ./utils/layout.jade
+include ./utils/mixins.jade
+
+block style
+    link(href="../css/movie.css", rel="stylesheet")
+
+block content
+    .content
+        block header
+            include ./includes/logo-header.jade
+        +detail-intro("cinema")
+        a(name="movies")
+        .tab-container
+            +tab-container("movie")
+        +modal("section")(type="table", order="first")
+        +modal("seat")(type="seats", order="second")
+
+block append script
+    script(type="text/javascript").
+        $(document).ready(function(){
+            $(".ui.menu .item").tab();
+            $(".ui.rating").rating("disable");
+
+            $(".ui.modal").modal({
+                allowMutiple: false
+            });
+
+            $(".movie-item .purchase-btn").click(function(e) {
+                $(".first.modal").modal("show");
+            })
+            $(".second.modal").modal("attach events", ".first.modal .button")
+        });

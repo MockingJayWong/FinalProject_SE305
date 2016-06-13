@@ -59,35 +59,8 @@ button.button.ui {
   padding: 0 0.5em;
   color: #989378;
 }
-.count-down-container {
-  padding: 1em;
-}
-.count-down-container i.icon {
-  font-size: 4.5em;
-  color: #E6B84A;
-  margin: 0.2em;
-  float: left;
-}
-.count-down-container .tips {
-  display: inline-block;
+.content .pay-order-container .title {
   margin: 1em 0;
-}
-.count-down-container .tips > * {
-  padding: 0.5em;
-}
-.count-down-container .tips .time-left {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-.count-down-container .tips .otherwise {
-  font-size: 0.9em;
-  color: #b0b0b0;
-}
-.content .pay-order-container .total > * {
-  display: inline-block;
-}
-.content .pay-order-container .total .value {
-  color: #E6B84A;
 }
 .content .pay-btn-container {
   margin-top: 5em;

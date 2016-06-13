@@ -210,3 +210,28 @@ mixin order-table()
             | 应付总额: 
         .value 
             | ￥73
+
+mixin orders-table()
+    -
+        var headers = ["订单号", "下单时间", "总价", "状态", ""];
+        var values = ["00001", "2016年6月12号 21:00","71元", "待付款"];
+    table.order-detail.ui.celled.table
+        thead
+            tr
+                each header in headers
+                    th= header
+        tbody
+            tr
+                each value in values
+                    td= value
+                td
+                    a(href="../html/order.html")
+                        button.button.ui
+                            | 查看订单
+            tr
+                each value in values
+                    td= value
+                td
+                    a(href="../html/order.html")
+                        button.button.ui
+                            | 查看订单
