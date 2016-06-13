@@ -9,10 +9,14 @@ block content
     .content
         .center-container
             .user-info
+                .tip
+                    | 修改成功
                 .title
                     | 个人信息
-                +info("user", "用户名", "AAA")
-                +info("user", "邮箱", "110120130@qq.com")
-                +info("user", "电话号码", "12922029832")
+                +input-info("user", "用户名", "AAA")
+                +input-info("user", "邮箱", "110120130@qq.com")
+                +input-info("user", "电话号码", "12922029832")
                 button.button.ui
                     | 修改
+                button.button.ui
+                    | 确认修改
