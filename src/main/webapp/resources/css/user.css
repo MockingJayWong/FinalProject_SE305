@@ -40,6 +40,7 @@ dl {
 }
 button.button.ui {
   background-color: #2f7277 !important;
+  color: #FCFCFC;
 }
 .input-item {
   margin: 2em 0;
@@ -210,6 +211,9 @@ button.button.ui {
   position: relative;
   padding: 1em 0;
 }
+.content .center-container .user-info .tip {
+  text-align: center;
+}
 .content .center-container .user-info .title {
   position: absolute;
   left: 0;
@@ -236,6 +240,11 @@ button.button.ui {
   padding: 0 0.5em;
   color: #989378;
   border-bottom: 2px solid #FCFCFC;
+}
+.content .center-container .user-info .info .value input {
+  background-color: #E6B84A;
+  border: none;
+  width: 100%;
 }
 .content .center-container .user-info button {
   background-color: #2f7277;

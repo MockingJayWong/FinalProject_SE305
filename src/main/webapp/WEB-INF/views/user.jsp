@@ -12,7 +12,11 @@
     <div class="whole">
       <div class="ui main container">
         <nav class="navigator">
-          <div class="ui menu"><a href="../.." class="item">首页</a><a id="menu_item_1" href="login" class="item">登陆</a><a id="menu_item_2" href="register" class="item">注册</a>
+          <div class="ui menu">
+	          <a href=".." class="item">首页</a>
+	          <a id="menu_item_1" href="login" class="item">登陆</a>
+	          <a id="menu_item_2" href="register" class="item">注册</a>
+	          <a id="menu_item_3" href="user/orderList" class="item">我的订单</a>
             <div class="right item">
               <div class="ui icon input">
                 <input type="text" placeholder="搜索电影院或电影"><i class="search icon"></i>
@@ -23,20 +27,28 @@
         <div class="content">
           <div class="center-container">
             <div class="user-info">
+              <div class="tip">修改成功</div>
               <div class="title">个人信息</div>
               <dl class="user-undefined user-info info">
                 <dt class="label">用户名</dt>
-                <dd id="username" class="value">AAA</dd>
+                <dd class="value">
+                  <input id='username' value="AAA" readonly="readonly"/>
+                </dd>
               </dl>
               <dl class="user-undefined user-info info">
                 <dt class="label">邮箱</dt>
-                <dd id="email" class="value">110120130@qq.com</dd>
+                <dd class="value">
+                  <input id='email' value="110120130@qq.com" readonly="readonly"/>
+                </dd>
               </dl>
               <dl class="user-undefined user-info info">
                 <dt class="label">电话号码</dt>
-                <dd id="telephone" class="value">12922029832</dd>
+                <dd class="value">
+                  <input id='telephone' value="12922029832" readonly="readonly"/>
+                </dd>
               </dl>
-              <button class="button ui">修改</button>
+              <button id='modify_btn' class="button ui">修改</button>
+              <button id='confirm_modify_btn' class="button ui">确认修改</button>
             </div>
           </div>
         </div>
@@ -47,6 +59,8 @@
     <script type="text/javascript">
     
     $(function() {
+    	
+    	$('.tip, #confirm_modify_btn').hide();
     	
     	function getCookie(name)
       {
@@ -60,6 +74,8 @@
       if (username && username != '""') {
         $('#menu_item_1').attr('href', 'user').html('Hello, '+username);
         $('#menu_item_2').attr('href', 'logOut').html('退出');
+      } else {
+          $('#menu_item_3').hide();
       }
     	
     	var userId = getUrlParam('userId');
@@ -81,7 +97,19 @@
 	    				break;
     			}
     		}
-    	})
+    	});
+    	
+    	/* $('#modify_btn').click(function() {
+    		$('#telephone').removeAttr('readonly');
+    		$('#email').removeAttr('readonly');
+    		$('#modyfy_btn').hide();
+    		$('#confirm_modify_btn').show().click(function) {
+    			$.ajax({
+    				url:'modify'
+    			})
+    		})
+    	}) */
+    	
     })
     
      function getUrlParam(name) {
