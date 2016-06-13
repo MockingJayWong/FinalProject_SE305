@@ -5,20 +5,20 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class Cinema {
-	@JsonView({JsonModule.GetCinemaListModule.class, JsonModule.CinemaModule.class})
+	@JsonView({JsonModule.GetCinemaListModule.class})
 	private int id;
 	@JsonView({JsonModule.GetCinemaListModule.class, JsonModule.CinemaModule.class,JsonModule.GetOrderDetailModule.class})
 	private String cinemaName;
 	@JsonView({JsonModule.GetCinemaListModule.class, JsonModule.CinemaModule.class,JsonModule.GetOrderDetailModule.class})
 	private String address;
 	
-	@JsonView(JsonModule.CinemaModule.class)
+	//@JsonView(JsonModule.CinemaModule.class)
 	private String username;
-	@JsonView(JsonModule.CinemaModule.class)
+	//@JsonView(JsonModule.CinemaModule.class)
 	private String password;
 	@JsonView(JsonModule.CinemaModule.class)
 	private String telephone;
-	@JsonView(JsonModule.CinemaModule.class)
+	//@JsonView(JsonModule.CinemaModule.class)
 	private String email;
 	
 	@JsonView(JsonModule.GetCinemaListModule.class)

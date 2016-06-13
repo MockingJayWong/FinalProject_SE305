@@ -2,6 +2,7 @@ package com.march.ticketjdbc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +24,25 @@ public class CinemaController {
 	@JsonView(JsonModule.GetCinemaListModule.class)
 	public Object getCinemaListJson(@RequestParam(value = "movieId", required = false) Integer id) {
 		return jsonService.GetCinemaListJson(id);
+	}
+	
+	@RequestMapping(value = "{id}", method = RequestMethod.GET)
+	public String getCinema() {
+		return "cinema";
+	}
+	
+	@RequestMapping(value = "detail", method = RequestMethod.GET)
+	@ResponseBody
+	@JsonView(JsonModule.CinemaModule.class)
+	public Object getCinemaDetail(@RequestParam("cinemaId") int id) {
+		return jsonService.GetCinemaDetail(id);
+	}
+	
+	@RequestMapping(value = "movieList", method = RequestMethod.GET)
+	@ResponseBody
+	@JsonView(JsonModule.GetMovieListModule.class)
+	public Object getMoviesFromCinema(@RequestParam("cinemaId") int id) {
+		return jsonService.GetMoviesFromCinema(id);
 	}
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)

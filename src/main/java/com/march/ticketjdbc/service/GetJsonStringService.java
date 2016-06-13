@@ -81,6 +81,21 @@ public class GetJsonStringService {
 		return GetJsonString("success", data);
 	}
 	
+	public Object GetCinemaDetail(int cinemaId) {
+		JsonData data = new JsonData();
+		data.setCinema(cinemaService.findById(cinemaId));
+		data.setError_code("0");
+		return GetJsonString("success", data);
+	}
+	
+	public Object GetMoviesFromCinema(int cinemaId) {
+		JsonData data = new JsonData();
+		data.setError_code("0");
+		List<Movie> movies = movieService.findMovieByCinemaId(cinemaId);
+		data.setList(movies);
+		return GetJsonString("success", data);
+	}
+	
 	public Object cinemaLogin(String username, String password) {
 		return GetJsonString(cinemaService.login(username, password), null);
 	}
