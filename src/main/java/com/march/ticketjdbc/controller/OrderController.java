@@ -49,4 +49,8 @@ public class OrderController {
 		return jsonService.EasyPayOrder(orderID);
 	}
 	
+	@RequestMapping(value = "orderList", method = RequestMethod.GET)
+	public Object orderList() {
+		return "orderList";
+	}
 }

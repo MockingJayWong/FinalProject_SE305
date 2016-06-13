@@ -159,15 +159,7 @@ public class GetJsonStringService {
 	public Object getOrderDetail(int orderId) {
 		JsonData data = new JsonData();
 		Orders order = orderService.getOrderDetail(orderId);
-		if (order != null) {
-			if (order.getState().equals("0")) {
-				order.setState("paid");
-			} else if (order.getState().equals("1")) {
-				order.setState("not paid");
-			} else if (order.getState().equals("2")) {
-				order.setState("invalid");
-			}
-			
+		if (order != null) {			
 			Session session = orderService.getSessionByOrderId(order.getId());
 			Cinema cinema = cinemaService.getInfoByCinemaId(order.getCinemaID());
 			//seat
@@ -189,7 +181,7 @@ public class GetJsonStringService {
 		JsonData data = new JsonData();
 		try {
 			Orders order = orderService.getOrderDetail(orderID);
-			if (order.getState() == "1") {
+			if (order.getState().equals("1")) {
 				if (orderService.UpdateOrderState(orderID, "0") > 0) {
 					order.setState("0");
 				}

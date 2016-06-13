@@ -17,7 +17,7 @@ public class AuthorizedInterceptor implements HandlerInterceptor{
 	@Autowired
 	private GetJsonStringService jsonService;
 	
-	private static final String[] INTERCEPTOR_URI = {"/createOrder","user/info"};
+	private static final String[] INTERCEPTOR_URI = {"/createOrder","user/info", "account/user/orderList"};
 	
 	@Override
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
@@ -53,7 +53,7 @@ public class AuthorizedInterceptor implements HandlerInterceptor{
 		String userId = (String) session.getAttribute("userId");
 		boolean loginFlag = false;
 		
-		//若session里面的userId为空,则查看cookie中是否有记录,否则照常进行
+		//鑻ession閲岄潰鐨剈serId涓虹┖,鍒欐煡鐪媍ookie涓槸鍚︽湁璁板綍,鍚﹀垯鐓у父杩涜
 		if (userId == null) {
 			Cookie userIdCookie = null;
 			Cookie passwordCookie = null;
@@ -68,19 +68,19 @@ public class AuthorizedInterceptor implements HandlerInterceptor{
 				}
 			}
 			
-			//若cookie中无记录,跳转登陆页面,否则检验cookie中记录是否正确
+			//鑻ookie涓棤璁板綍,璺宠浆鐧婚檰椤甸潰,鍚﹀垯妫�楠宑ookie涓褰曟槸鍚︽纭�
 			if (userIdCookie != null && passwordCookie != null && userIdCookie.getValue() != "" && passwordCookie.getValue() != "") {
 				userId = userIdCookie.getValue();
 				String password = passwordCookie.getValue();
 				
-				//若cookie中的记录不正确,则清除记录,正确则登陆并设置session
+				//鑻ookie涓殑璁板綍涓嶆纭�,鍒欐竻闄よ褰�,姝ｇ‘鍒欑櫥闄嗗苟璁剧疆session
 				Map<String, Object> map = (Map<String, Object>) jsonService.userLoginById(userId, password);
 				if (((String)map.get("status")).equals("success")) {
-					//session无记录，cookie记录正确,登陆成功
+					//session鏃犺褰曪紝cookie璁板綍姝ｇ‘,鐧婚檰鎴愬姛
 			        request.getSession().setAttribute("userId", userId);
 			        loginFlag = true;
 				} else {
-					//session无记录，cookie记录错误，跳转登陆页面
+					//session鏃犺褰曪紝cookie璁板綍閿欒锛岃烦杞櫥闄嗛〉闈�
 					userIdCookie.setValue(null);
 					passwordCookie .setValue(null);
 					
@@ -93,11 +93,11 @@ public class AuthorizedInterceptor implements HandlerInterceptor{
 			        loginFlag = false;
 				}
 			} else {
-				//session及cookie均无记录，跳转登陆页面
+				//session鍙奵ookie鍧囨棤璁板綍锛岃烦杞櫥闄嗛〉闈�
 				loginFlag = false;
 			}
 		} else {
-			//session存在username,已登陆用户
+			//session瀛樺湪username,宸茬櫥闄嗙敤鎴�
 			loginFlag = true;
 		}
 
