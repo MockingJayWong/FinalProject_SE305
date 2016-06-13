@@ -105,7 +105,7 @@
               var seats = responseJson.data.list;
               var session = responseJson.data.session;
 
-              var start_time = new Date(session.start_time*1000);
+              var start_time = new Date(session.start_time);
               var movie_name = session.movieName;
               var cinema_name = cinema.cinemaName;
               var seats_str = "";

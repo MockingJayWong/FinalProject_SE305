@@ -5,17 +5,17 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>首页</title>
-    <link href="../resources/css/lib/semantic/dist/semantic.min.css" rel="stylesheet">
-    <link href="../resources/css/orderList.css" rel="stylesheet">
+    <link href="../../resources/css/lib/semantic/dist/semantic.min.css" rel="stylesheet">
+    <link href="../../resources/css/orderList.css" rel="stylesheet">
   </head>
   <body>
     <div class="whole">
       <div class="ui main container">
         <nav class="navigator">
           <div class="ui menu">
-            <a href=".." class="item">首页</a>
-            <a id="menu_item_1" href="login" class="item">登陆</a>
-            <a id="menu_item_2" href="register" class="item">注册</a>
+            <a href="../.." class="item">首页</a>
+            <a id="menu_item_1" href="../login" class="item">登陆</a>
+            <a id="menu_item_2" href="../register" class="item">注册</a>
             <a id="menu_item_3" href="#" class="item">我的订单</a>
             <div class="right item">
               <div class="ui icon input">
@@ -64,11 +64,28 @@
       </div>
     </div>
     <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
-    <script src="../resources/css/lib/semantic/dist/semantic.min.js"></script>
+    <script src="../../resources/css/lib/semantic/dist/semantic.min.js"></script>
     <script type="text/javascript">
       $(function() {
+    	  
+    	  function getCookie(name)
+        {
+    		  var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+    		  if(arr=document.cookie.match(reg))
+    			 return unescape(arr[2]);
+    		  else
+    			  return null;
+    		}
+        var username = getCookie('username');
+        if (username && username != '""') {
+          $('#menu_item_1').attr('href', '../account/user').html('Hello, '+username);
+          $('#menu_item_2').attr('href', '../account/logOut').html('退出');
+        } else {
+            $('#menu_item_3').hide();
+        }
+  	  
         $.ajax({
-          url:'../order/orderList',
+          url:'../../order/orderList',
           success: function(responseJson) {
             var html = 
                 '<tr>\
@@ -76,7 +93,7 @@
                   <td>2016年6月12号 21:00</td>\
                   <td>71元</td>\
                   <td>待付款</td>\
-                  <td><a href="../order/order_id">\
+                  <td><a id="btn_order_id" href="../../order/order_id">\
                       <button class="button ui">查看订单</button></a></td>\
                 </tr>'
 
@@ -88,12 +105,18 @@
 
             var orderList = responseJson.data.list;
             var htmlList = '';
+            var invalid_order_list = [];
             for (var orderIndex in orderList) {
               var order = orderList[orderIndex];
+              if (order.state == '2') invalid_order_list.push(order.id);
               var createTime = new Date(order.time);
-              htmlList += html.replace('00001', order.orderId).replace('2016年', ''+createTime.getYear()+'年').replace('6月', ''+createTime.getMonth()+'月').replace('12号', ''+createTime.getDate()+'号').replace('21:00', ''+createTime.getHours()+':'+createTime.getMinutes()).replace('待付款', orderState_map[order.state]).replace('order_id', order.id);
+              htmlList += html.replace('order_id', order.id).replace('00001', order.id).replace('2016年', ''+createTime.getFullYear()+'年').replace('6月', ''+createTime.getMonth()+'月').replace('12号', ''+createTime.getDate()+'号').replace('21:00', ''+createTime.getHours()+':'+createTime.getMinutes()).replace('待付款', orderState_map[order.state]).replace('order_id', order.id).replace('71', order.prices);
             }
             $('#order_table').html(htmlList);
+            for (var orderIndex in invalid_order_list) {
+            	var order_id = invalid_order_list[orderIndex];
+            	$('#btn_'+order_id).hide();
+            }
           }
         })
       })

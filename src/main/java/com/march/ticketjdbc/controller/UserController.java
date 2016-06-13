@@ -135,7 +135,7 @@ public class UserController {
 		return jsonService.userChange(userId, password);
 	}
 	
-	@RequestMapping(value = "orderList", method = RequestMethod.GET)
+	@RequestMapping(value = "user/orderList", method = RequestMethod.GET)
 	public Object orderList() {
 		return "orderList";
 	}
