@@ -11,7 +11,7 @@ public class Movie {
 	@JsonView({JsonModule.GetMovieListModule.class, JsonModule.GetMovieDetailModule.class, JsonModule.GetMovieByCinemaIdModule.class})
 	private String movieName;
 	
-	@JsonView({JsonModule.GetMovieListModule.class, JsonModule.GetMovieDetailModule.class})
+	@JsonView({JsonModule.GetMovieListModule.class, JsonModule.GetMovieDetailModule.class, JsonModule.GetMovieByCinemaIdModule.class})
 	private String url;
 	
 	@JsonView(JsonModule.GetMovieDetailModule.class)

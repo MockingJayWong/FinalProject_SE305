@@ -9,7 +9,7 @@ public class Session {
 	
 	private int cinemaID;
 	
-	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class,JsonModule.GetOrderDetailModule.class})
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class,JsonModule.GetOrderDetailModule.class, JsonModule.GetMovieByCinemaIdModule.class})
 	private int hall;
 	
 	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class, JsonModule.GetOrderDetailModule.class})
@@ -21,7 +21,7 @@ public class Session {
 	@JsonView({JsonModule.GetSessionListModule.class,  JsonModule.GetCinemaListModule.class,JsonModule.GetOrderDetailModule.class, JsonModule.GetMovieByCinemaIdModule.class})
 	private long end_time;
 	
-	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class,JsonModule.GetOrderDetailModule.class})
+	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class,JsonModule.GetOrderDetailModule.class, JsonModule.GetMovieByCinemaIdModule.class})
 	private String language;
 	
 	@JsonView({JsonModule.GetSessionListModule.class, JsonModule.GetCinemaListModule.class, JsonModule.GetMovieByCinemaIdModule.class})
