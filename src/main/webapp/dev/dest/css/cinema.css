@@ -186,10 +186,18 @@ button.button.ui {
   width: 100%;
 }
 .tab-container .items-container .items-content .item {
+  overflow: hidden;
   border-top: 1px solid #e3e3e3;
 }
-.tab-container .items-container .items-content .item .info {
-  width: 60%;
+.tab-container .items-container .items-content .item .item-title {
+  margin: 1em 0;
+}
+.tab-container .items-container .items-content .item .item-pic {
+  float: left;
+  margin-right: 1em;
+}
+.tab-container .items-container .items-content .item .items-content {
+  float: left;
 }
 .ui.modal.second .content > .btn-container {
   text-align: right;

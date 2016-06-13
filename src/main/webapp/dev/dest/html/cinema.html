@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>首页</title>
     <link href="../css/lib/semantic/dist/semantic.min.css" rel="stylesheet">
-    <link href="../css/movie.css" rel="stylesheet">
+    <link href="../css/cinema.css" rel="stylesheet">
   </head>
   <body>
     <div class="whole">
@@ -24,63 +24,44 @@
           </div>
           <div class="cinema-intro detail-intro">
             <div class="cinema-title title">
-              <h3>愤怒的小鸟</h3>
-            </div><img src="../assets/0.jpg" class="cinema-poster poster"/>
+              <h3>天河电影院</h3>
+            </div><img src="../assets/3.jpg" class="cinema-poster poster"/>
             <div class="cinema-rating rating">
               <div data-rating="3" data-max-rating="5" class="ui rating"></div><span class="rating-value">8.8</span>
             </div>
             <dl class="cinema-infos infos">
-              <dl class="cinema-first-time cinema-info info">
-                <dt class="label">首映</dt>
-                <dd class="value">2016-05-20</dd>
+              <dl class="cinema-address cinema-info info">
+                <dt class="label">地址</dt>
+                <dd class="value">天河区天河路623号天娱广场5楼（近地铁3号线岗顶站A出口）</dd>
               </dl>
-              <dl class="cinema-type cinema-info info">
-                <dt class="label">类型</dt>
-                <dd class="value">动画,奇幻,冒险</dd>
+              <dl class="cinema-phone cinema-info info">
+                <dt class="label">联系电话</dt>
+                <dd class="value">866666666</dd>
               </dl>
-              <dl class="cinema-version cinema-info info">
-                <dt class="label">版本</dt>
-                <dd class="value">3D</dd>
-              </dl>
-              <dl class="cinema-region cinema-info info">
-                <dt class="label">地区</dt>
-                <dd class="value">美国,芬兰</dd>
-              </dl>
-              <dl class="cinema-period cinema-info info">
-                <dt class="label">时长</dt>
-                <dd class="value">97分钟</dd>
-              </dl>
-              <dl class="cinema-director cinema-info info">
-                <dt class="label">导演</dt>
-                <dd class="value">费格尔·雷利,克莱·凯蒂</dd>
-              </dl>
-              <dl class="cinema-actors cinema-info info">
-                <dt class="label">主演</dt>
-                <dd class="value">杰森·苏戴奇斯，乔什·盖德，丹尼·麦克布耐德，玛娅·鲁道夫，彼特·丁拉基，比尔·哈德尔，托尼·海尔，科甘·迈克尔·凯...</dd>
+              <dl class="cinema-time cinema-info info">
+                <dt class="label">营业时间</dt>
+                <dd class="value">9:00-24:00</dd>
               </dl>
             </dl>
-            <div class="cinema-plot plot">
-              <h5 class="title">剧情</h5>
-              <div class="content">在一座与世隔绝的美丽小岛上，住着一群乐天知命的鸟。不过易怒的大红（杰森·苏戴奇斯 配音）、亢奋的恰克（乔什·盖德 配音）和炸弹（丹尼·麦克布耐德 配音）总是因为各自的怪性格而不被其他的鸟接纳。不过当神秘的绿猪伦纳德（比尔·哈德尔 配音）造访这座世外小岛，就得由这群怪咖查出这些神秘兮兮的外来客到底有何目的</div>
-            </div>
           </div><a name="movies"></a>
           <div class="tab-container">
-            <div class="ui attached tabular menu reco-movies"><a data-tab="cinemas" class="item active">上映影院</a><a data-tab="recommends" class="item">热门影评</a>
+            <div class="ui attached tabular menu reco-movies"><a data-tab="movies" class="item active">电影</a><a data-tab="recommends" class="item">影院评价</a>
             </div>
-            <div data-tab="cinemas" class="ui tab attached segment active">
-              <div class="items-container reco-cinemas">
+            <div data-tab="movies" class="ui tab attached segment active">
+              <div class="items-container reco-movies">
                 <div class="title">
-                  <h4>热门电影院</h4>
+                  <h4>热映电影</h4>
                 </div>
                 <div class="items-content">
-                  <div class="item cinema-item">
-                    <div class="item-title cinema-name">天河电影院</div>
+                  <div class="item movie-item">
+                    <div class="item-title movie-name">魔兽</div>
+                    <div class="item-pic movie-poster"><img src="../assets/0.jpg" class="movie-poster poster"/></div>
                     <div class="item-content">
-                      <dl class="cinema-address cinema-info info">
-                        <dt class="label">地址</dt>
-                        <dd class="value">天河区天河路623号天娱广场5楼（近地铁3号线岗顶站A出口）</dd>
+                      <dl class="movie-price movie-info info">
+                        <dt class="label">票价</dt>
+                        <dd class="value">35</dd>
                       </dl>
-                      <dl class="cinema-section cinema-info info">
+                      <dl class="movie-section movie-info info">
                         <dt class="label">场次</dt>
                         <dd class="value">13:10 | 13:45 | 14:50 | 15:30 | 16:30 | 17:15 |18:10 | 19:00 | 19:50 | 20:40 |21:30 | 22:25</dd>
                       </dl>
@@ -88,14 +69,15 @@
                     <div class="item-button"><a href="#">
                         <button class="ui primary button purchase-btn">选座购票</button></a></div>
                   </div>
-                  <div class="item cinema-item">
-                    <div class="item-title cinema-name">天河电影院</div>
+                  <div class="item movie-item">
+                    <div class="item-title movie-name">魔兽</div>
+                    <div class="item-pic movie-poster"><img src="../assets/0.jpg" class="movie-poster poster"/></div>
                     <div class="item-content">
-                      <dl class="cinema-address cinema-info info">
-                        <dt class="label">地址</dt>
-                        <dd class="value">天河区天河路623号天娱广场5楼（近地铁3号线岗顶站A出口）</dd>
+                      <dl class="movie-price movie-info info">
+                        <dt class="label">票价</dt>
+                        <dd class="value">35</dd>
                       </dl>
-                      <dl class="cinema-section cinema-info info">
+                      <dl class="movie-section movie-info info">
                         <dt class="label">场次</dt>
                         <dd class="value">13:10 | 13:45 | 14:50 | 15:30 | 16:30 | 17:15 |18:10 | 19:00 | 19:50 | 20:40 |21:30 | 22:25</dd>
                       </dl>
@@ -103,14 +85,15 @@
                     <div class="item-button"><a href="#">
                         <button class="ui primary button purchase-btn">选座购票</button></a></div>
                   </div>
-                  <div class="item cinema-item">
-                    <div class="item-title cinema-name">天河电影院</div>
+                  <div class="item movie-item">
+                    <div class="item-title movie-name">魔兽</div>
+                    <div class="item-pic movie-poster"><img src="../assets/0.jpg" class="movie-poster poster"/></div>
                     <div class="item-content">
-                      <dl class="cinema-address cinema-info info">
-                        <dt class="label">地址</dt>
-                        <dd class="value">天河区天河路623号天娱广场5楼（近地铁3号线岗顶站A出口）</dd>
+                      <dl class="movie-price movie-info info">
+                        <dt class="label">票价</dt>
+                        <dd class="value">35</dd>
                       </dl>
-                      <dl class="cinema-section cinema-info info">
+                      <dl class="movie-section movie-info info">
                         <dt class="label">场次</dt>
                         <dd class="value">13:10 | 13:45 | 14:50 | 15:30 | 16:30 | 17:15 |18:10 | 19:00 | 19:50 | 20:40 |21:30 | 22:25</dd>
                       </dl>
@@ -118,14 +101,15 @@
                     <div class="item-button"><a href="#">
                         <button class="ui primary button purchase-btn">选座购票</button></a></div>
                   </div>
-                  <div class="item cinema-item">
-                    <div class="item-title cinema-name">天河电影院</div>
+                  <div class="item movie-item">
+                    <div class="item-title movie-name">魔兽</div>
+                    <div class="item-pic movie-poster"><img src="../assets/0.jpg" class="movie-poster poster"/></div>
                     <div class="item-content">
-                      <dl class="cinema-address cinema-info info">
-                        <dt class="label">地址</dt>
-                        <dd class="value">天河区天河路623号天娱广场5楼（近地铁3号线岗顶站A出口）</dd>
+                      <dl class="movie-price movie-info info">
+                        <dt class="label">票价</dt>
+                        <dd class="value">35</dd>
                       </dl>
-                      <dl class="cinema-section cinema-info info">
+                      <dl class="movie-section movie-info info">
                         <dt class="label">场次</dt>
                         <dd class="value">13:10 | 13:45 | 14:50 | 15:30 | 16:30 | 17:15 |18:10 | 19:00 | 19:50 | 20:40 |21:30 | 22:25</dd>
                       </dl>

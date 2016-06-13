@@ -22,15 +22,28 @@ mixin info(name, key, value)
 
 mixin list-item(name, item)
     .item(class="#{name}-item")
-        .item-title(class=["#{name}-name"])
-            | 天河电影院
-        .item-content
-            +info(name, "地址", "天河区天河路623号天娱广场5楼（近地铁3号线岗顶站A出口）")(about="address")
-            +info(name, "场次", "13:10 | 13:45 | 14:50 | 15:30 | 16:30 | 17:15 |18:10 | 19:00 | 19:50 | 20:40 |21:30 | 22:25")(about="section")
-        .item-button
-            a(href="#")
-                button.ui.primary.button.purchase-btn
-                    | 选座购票
+        if name == "cinema"
+            .item-title(class=["#{name}-name"])
+                | 天河电影院
+            .item-content
+                +info(name, "地址", "天河区天河路623号天娱广场5楼（近地铁3号线岗顶站A出口）")(about="address")
+                +info(name, "场次", "13:10 | 13:45 | 14:50 | 15:30 | 16:30 | 17:15 |18:10 | 19:00 | 19:50 | 20:40 |21:30 | 22:25")(about="section")
+            .item-button
+                a(href="../html/cinema.html")
+                    button.ui.primary.button.purchase-btn
+                        | 选座购票
+        else if name == "movie"
+            .item-title(class=["#{name}-name"])
+                | 魔兽
+            .item-pic(class=["#{name}-poster"])
+                img(src="../assets/0.jpg", class=["#{name}-poster", "poster"])
+            .item-content
+                +info(name, "票价", "35")(about="price")
+                +info(name, "场次", "13:10 | 13:45 | 14:50 | 15:30 | 16:30 | 17:15 |18:10 | 19:00 | 19:50 | 20:40 |21:30 | 22:25")(about="section")
+            .item-button
+                a(href="#")
+                    button.ui.primary.button.purchase-btn
+                        | 选座购票
 
 mixin side(status, name)
     ul.side(class="#{status} reco-#{name}s-group carousel-item")
@@ -56,7 +69,10 @@ mixin carousel(name)
 mixin list(name)
     .items-container(class="reco-#{name}s")
         .title
-            h4 热门电影院
+            if name == "cinema"
+                h4 热门电影院
+            else if name == "movie"
+                h4 热映电影
         .items-content
             +list-item(name)
             +list-item(name)
@@ -65,27 +81,41 @@ mixin list(name)
 
 mixin detail-intro(name)
     div(class=["#{name}-intro", "detail-intro"])
-        div(class=["#{name}-title", "title"])
-            h3
-                | 愤怒的小鸟
-        img(src="../assets/0.jpg", class=["#{name}-poster", "poster"])
-        div(class=["#{name}-rating", "rating"])
-            .ui.rating(data-rating="3", data-max-rating="5")
-            span.rating-value
-                | 8.8
-        dl(class=["#{name}-infos", "infos"])
-            +info(name, "首映", "2016-05-20")(about="first-time")
-            +info(name, "类型", "动画,奇幻,冒险")(about="type")
-            +info(name, "版本", "3D")(about="version")
-            +info(name, "地区", "美国,芬兰")(about="region")
-            +info(name, "时长", "97分钟")(about="period")
-            +info(name, "导演", "费格尔·雷利,克莱·凯蒂")(about="director")
-            +info(name, "主演", "杰森·苏戴奇斯，乔什·盖德，丹尼·麦克布耐德，玛娅·鲁道夫，彼特·丁拉基，比尔·哈德尔，托尼·海尔，科甘·迈克尔·凯...")(about="actors")
-        div(class=["#{name}-plot", "plot"])
-            h5.title
-                | 剧情
-            .content
-                | 在一座与世隔绝的美丽小岛上，住着一群乐天知命的鸟。不过易怒的大红（杰森·苏戴奇斯 配音）、亢奋的恰克（乔什·盖德 配音）和炸弹（丹尼·麦克布耐德 配音）总是因为各自的怪性格而不被其他的鸟接纳。不过当神秘的绿猪伦纳德（比尔·哈德尔 配音）造访这座世外小岛，就得由这群怪咖查出这些神秘兮兮的外来客到底有何目的
+        if name == "movie"
+            div(class=["#{name}-title", "title"])
+                h3
+                    | 愤怒的小鸟
+            img(src="../assets/0.jpg", class=["#{name}-poster", "poster"])
+            div(class=["#{name}-rating", "rating"])
+                .ui.rating(data-rating="3", data-max-rating="5")
+                span.rating-value
+                    | 8.8
+            dl(class=["#{name}-infos", "infos"])
+                +info(name, "首映", "2016-05-20")(about="first-time")
+                +info(name, "类型", "动画,奇幻,冒险")(about="type")
+                +info(name, "版本", "3D")(about="version")
+                +info(name, "地区", "美国,芬兰")(about="region")
+                +info(name, "时长", "97分钟")(about="period")
+                +info(name, "导演", "费格尔·雷利,克莱·凯蒂")(about="director")
+                +info(name, "主演", "杰森·苏戴奇斯，乔什·盖德，丹尼·麦克布耐德，玛娅·鲁道夫，彼特·丁拉基，比尔·哈德尔，托尼·海尔，科甘·迈克尔·凯...")(about="actors")
+            div(class=["#{name}-plot", "plot"])
+                h5.title
+                    | 剧情
+                .content
+                    | 在一座与世隔绝的美丽小岛上，住着一群乐天知命的鸟。不过易怒的大红（杰森·苏戴奇斯 配音）、亢奋的恰克（乔什·盖德 配音）和炸弹（丹尼·麦克布耐德 配音）总是因为各自的怪性格而不被其他的鸟接纳。不过当神秘的绿猪伦纳德（比尔·哈德尔 配音）造访这座世外小岛，就得由这群怪咖查出这些神秘兮兮的外来客到底有何目的
+        else if name == "cinema"
+            div(class=["#{name}-title", "title"])
+                h3
+                    | 天河电影院
+            img(src="../assets/3.jpg", class=["#{name}-poster", "poster"])
+            div(class=["#{name}-rating", "rating"])
+                .ui.rating(data-rating="3", data-max-rating="5")
+                span.rating-value
+                    | 8.8
+            dl(class=["#{name}-infos", "infos"])
+                +info(name, "地址", "天河区天河路623号天娱广场5楼（近地铁3号线岗顶站A出口）")(about="address")
+                +info(name, "联系电话", "866666666")(about="phone")
+                +info(name, "营业时间", "9:00-24:00")(about="time")
 
 mixin tab-item(name, title)
     a.item(data-tab=name, class=[attributes.status])
@@ -100,12 +130,20 @@ mixin tab-segment(name, title)
 
 
 mixin tab-container(name)
-    .ui.attached.tabular.menu(class="reco-#{name}s")
-        +tab-item("cinemas", "上映影院")(status="active")
-        +tab-item("recommends", "热门影评")
-    +tab-segment("cinemas")(status="active")
-        +list("cinema")
-    +tab-segment("recommends")
+    if name == "cinema"
+        .ui.attached.tabular.menu(class="reco-#{name}s")
+            +tab-item("cinemas", "上映影院")(status="active")
+            +tab-item("recommends", "热门影评")
+        +tab-segment("cinemas")(status="active")
+            +list("cinema")
+        +tab-segment("recommends")
+    else if name == "movie"
+        .ui.attached.tabular.menu(class="reco-#{name}s")
+            +tab-item("movies", "电影")(status="active")
+            +tab-item("recommends", "影院评价")
+        +tab-segment("movies")(status="active")
+            +list("movie")
+        +tab-segment("recommends")
 
 mixin table(name)
     -
