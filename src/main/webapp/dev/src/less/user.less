@@ -21,6 +21,7 @@
         left: 50%;
         margin-left: -200px;
         margin-top: 160px;
+
         
         .user-info {
             color: @light-text-col;
@@ -28,6 +29,11 @@
             text-align: center;
             position: relative;
             padding: 1em 0;
+
+            .tip {
+                text-align: center;
+            }
+
 
             .title {
                 position: absolute;
@@ -57,6 +63,12 @@
                     padding: 0 0.5em;
                     color: @dark-text-col;
                     border-bottom: 2px solid @light-text-col;
+
+                    input {
+                        background-color: @bg-second-col;
+                        border: none;
+                        width: 100%;
+                    }
                 }
             }
 

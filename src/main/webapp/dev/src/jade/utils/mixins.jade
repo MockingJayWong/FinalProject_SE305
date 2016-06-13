@@ -20,6 +20,13 @@ mixin info(name, key, value)
         dd.value
             | #{value}
 
+mixin input-info(name, key, value)
+    dl(class="#{name}-#{attributes.about}", class=["#{name}-info", "info"])
+        dt.label
+            | #{key}
+        dd.value
+            input(value="#{value}",readonly="readonly")
+
 mixin list-item(name, item)
     .item(class="#{name}-item")
         if name == "cinema"
