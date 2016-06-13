@@ -12,7 +12,11 @@
     <div class="whole">
       <div class="ui main container">
         <nav class="navigator">
-          <div class="ui menu"><a id="menu_item_1" href="../account/login" class="item">登陆</a><a id="menu_item_2" href="../account/register" class="item">注册</a>
+          <div class="ui menu">
+            <a href=".." class="item">首页</a>
+            <a id="menu_item_1" href="../account/login" class="item">登陆</a>
+            <a id="menu_item_2" href="../account/register" class="item">注册</a>
+            <a id="menu_item_3" href="../account/user/orderList" class="item">我的订单</a>
             <div class="right item">
               <div class="ui icon input">
                 <input type="text" placeholder="搜索电影院或电影"><i class="search icon"></i>
@@ -276,6 +280,8 @@
           if (username && username != '""') {
             $('#menu_item_1').attr('href', '../account/user').html('Hello, '+username);
             $('#menu_item_2').attr('href', '../account/logOut').html('退出');
+          } else {
+              $('#menu_item_3').hide();
           }
         	
         	// 从url获取movieId

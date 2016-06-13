@@ -12,7 +12,7 @@
     <div class="whole">
       <div class="ui main container">
         <nav class="navigator">
-          <div class="ui menu"><a id="menu_item_1" href="login" class="item">登陆</a><a id="menu_item_2" href="register" class="item">注册</a>
+          <div class="ui menu"><a href="../.." class="item">首页</a><a id="menu_item_1" href="login" class="item">登陆</a><a id="menu_item_2" href="register" class="item">注册</a>
             <div class="right item">
               <div class="ui icon input">
                 <input type="text" placeholder="搜索电影院或电影"><i class="search icon"></i>
