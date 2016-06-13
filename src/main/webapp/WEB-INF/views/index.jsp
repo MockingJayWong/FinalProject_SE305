@@ -23,7 +23,7 @@
         </nav>
         <div class="content">
           <div class="header">
-            <div class="logo">logo</div>
+            <a href="#"><img src="resources/images/logo.png" alt="logo" class="logo"/></a>
           </div>
           <div class="main">
             <div class="carousel reco-movies">

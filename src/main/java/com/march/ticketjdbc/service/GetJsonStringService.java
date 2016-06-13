@@ -5,7 +5,6 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.march.ticketjdbc.model.JsonData;
 import com.march.ticketjdbc.model.*;
 
 @Service
@@ -160,15 +159,7 @@ public class GetJsonStringService {
 	public Object getOrderDetail(int orderId) {
 		JsonData data = new JsonData();
 		Orders order = orderService.getOrderDetail(orderId);
-		if (order != null) {
-			if (order.getState().equals("0")) {
-				order.setState("paid");
-			} else if (order.getState().equals("1")) {
-				order.setState("not paid");
-			} else if (order.getState().equals("2")) {
-				order.setState("invalid");
-			}
-			
+		if (order != null) {			
 			Session session = orderService.getSessionByOrderId(order.getId());
 			Cinema cinema = cinemaService.getInfoByCinemaId(order.getCinemaID());
 			//seat
@@ -190,15 +181,24 @@ public class GetJsonStringService {
 		JsonData data = new JsonData();
 		try {
 			Orders order = orderService.getOrderDetail(orderID);
-			
-			if (orderService.UpdateOrderState(orderID, "0") > 0) {
-				order.setState("0");
+			if (order.getState().equals("1")) {
+				if (orderService.UpdateOrderState(orderID, "0") > 0) {
+					order.setState("0");
+				}
+				data.setOrder(order);
+				return GetJsonString("success", data);
+			} else {
+				return GetJsonString("fail", data);
 			}
-			data.setOrder(order);
-			return GetJsonString("success", data);
 		} catch (Exception e) {
 			return GetJsonString("fail", data);
 		}
+	}
+	
+	public Object getOrderList(int userId) {
+		JsonData data = new JsonData();
+		data.setList(orderService.getOrderList(userId));
+		return GetJsonString("success", data);
 	}
 	// ------------------------------- End Order Json ---------------------------------
 	
@@ -230,8 +230,8 @@ public class GetJsonStringService {
 		return GetJsonString("success", null);
 	}
 
-	public Object userChange(String username, String password, String telephone, String email) {
-		return GetJsonString(userService.change(username, password, telephone, email), null);
+	public Object userChange(int userId, String password) {
+		return GetJsonString(userService.change(userId, password), null);
 	}
 
 	public Object getUserInfo(int userId) {
@@ -265,4 +265,5 @@ public class GetJsonStringService {
 
 		return map;
 	}
+
 }

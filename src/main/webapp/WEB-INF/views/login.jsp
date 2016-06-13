@@ -25,7 +25,7 @@
                 <input type="password" id="password" name="password">
               </div>
               <button id="login_btn" type="submit" class="button ui">登录</button>
-              <button class="button ui"><a href="/register">还没账号，去注册</a></button>
+              <button class="button ui"><a href="../account/register">还没账号，去注册</a></button>
             </form>
           </div>
         </div>

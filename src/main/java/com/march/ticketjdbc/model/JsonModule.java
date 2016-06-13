@@ -9,6 +9,7 @@ public class JsonModule {
 	public interface GetSessionInfoModule extends DefaultModule {}
 	public interface CreateOrderModule extends DefaultModule {}
 	public interface GetOrderDetailModule extends DefaultModule {}
+	public interface GetOrderListModule extends DefaultModule {}
 	public interface UserModule extends DefaultModule {}
 	public interface UserLoginModule extends DefaultModule {}
 	public interface CinemaModule extends DefaultModule {}

@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/march/ticketjdbc/daoImpl/OrderDAOImpl.java=UTF-8
+encoding//src/main/java/com/march/ticketjdbc/interceptor/AuthorizedInterceptor.java=UTF-8
 encoding//src/main/java/com/march/ticketjdbc/service/GetJsonStringService.java=UTF-8
 encoding//src/main/java/com/march/ticketjdbc/service/OrderService.java=UTF-8
 encoding//src/main/java/com/march/ticketjdbc/service/UserService.java=UTF-8

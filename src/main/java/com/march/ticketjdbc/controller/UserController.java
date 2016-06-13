@@ -125,12 +125,22 @@ public class UserController {
 			return jsonService.getUserInfo(userId);
 	}
 	
-	@RequestMapping(value = "change", method = RequestMethod.GET)
+	@RequestMapping(value = "change", method = RequestMethod.POST)
 	@ResponseBody
 	@JsonView(JsonModule.UserModule.class)
-	public Object getChangeJson(String username, String password, String telephone, String email) {
-		return jsonService.userChange(username, password, telephone, email);
+	public Object getChangeJson(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		int userId = Integer.parseInt((String) session.getAttribute("userId"));
+		String password = request.getParameter("password");
+		return jsonService.userChange(userId, password);
 	}
 	
-	
+	@RequestMapping(value = "orderList", method = RequestMethod.GET)
+	@ResponseBody
+	@JsonView(JsonModule.GetOrderListModule.class)
+	public Object getOrderList(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		int userId = Integer.parseInt((String) session.getAttribute("userId"));
+		return jsonService.getOrderList(userId);
+	}
 }
