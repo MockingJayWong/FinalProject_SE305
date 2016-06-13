@@ -22,7 +22,7 @@
         </nav>
         <div class="content">
           <div class="header">
-            <div class="logo">logo</div>
+            <a href=".."><img src="../resources/images/logo.png" alt="logo" class="logo"/></a>
           </div>
           <div id="movie_detail" class="movie-intro detail-intro">
             <!-- to be ajax -->
@@ -291,7 +291,7 @@
                   var movie_detial_html = 
                     '<div class="movie-title title">\
                       <h3>movie_name</h3>\
-                    </div><img src="../assets/movie_url" class="movie-poster poster"/>\
+                    </div><img src="../resources/images/movie_url" class="movie-poster poster"/>\
                     <div class="movie-rating rating">\
                       <div data-rating="3" data-max-rating="5" class="ui rating"></div><span class="rating-value">movie_score</span>\
                     </div>\
