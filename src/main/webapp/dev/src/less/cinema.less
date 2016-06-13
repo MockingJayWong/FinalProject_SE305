@@ -1,0 +1,45 @@
+@import "global/colors.less";
+@import "global/layout.less";
+@import "global/utils.less";
+
+
+@import "includes/detail-intro.less";
+@import "includes/list.less";
+@import "includes/tab.less";
+@import "includes/room-container.less";
+
+
+
+.tab-container {
+    @border: 1px solid darken(@light-text-col, 10%);
+
+    width: 70%;
+
+    .items-container {
+        border: none;
+        width: 100%;
+        .items-content {
+            .item {
+                overflow: hidden;
+                border-top: @border;
+                .item-title {
+                    margin: 1em 0;
+                }
+                .item-pic {
+                    float: left;
+                    margin-right: 1em;
+                }
+                .items-content {
+                    float: left;
+                }
+
+            }
+        }
+    }
+}
+
+.ui.modal.second {
+    .content > .btn-container {
+        text-align: right;
+    }
+}

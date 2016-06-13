@@ -40,6 +40,7 @@ dl {
 }
 button.button.ui {
   background-color: #2f7277 !important;
+  color: #FCFCFC;
 }
 .input-item {
   margin: 2em 0;
