@@ -110,7 +110,7 @@
               var order = orderList[orderIndex];
               if (order.state == '2') invalid_order_list.push(order.id);
               var createTime = new Date(order.time);
-              htmlList += html.replace('order_id', order.id).replace('00001', order.id).replace('2016年', ''+createTime.getFullYear()+'年').replace('6月', ''+createTime.getMonth()+'月').replace('12号', ''+createTime.getDate()+'号').replace('21:00', ''+createTime.getHours()+':'+createTime.getMinutes()).replace('待付款', orderState_map[order.state]).replace('order_id', order.id).replace('71', order.prices);
+              htmlList += html.replace('order_id', order.id).replace('00001', order.id).replace('2016年', ''+createTime.getFullYear()+'年').replace('6月', ''+(createTime.getMonth()+1)+'月').replace('12号', ''+createTime.getDate()+'号').replace('21:00', ''+createTime.getHours()+':'+createTime.getMinutes()).replace('待付款', orderState_map[order.state]).replace('order_id', order.id).replace('71', order.prices);
             }
             $('#order_table').html(htmlList);
             for (var orderIndex in invalid_order_list) {

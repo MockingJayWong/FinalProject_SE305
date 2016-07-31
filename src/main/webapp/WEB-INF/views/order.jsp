@@ -127,7 +127,7 @@
               var day = start_time.getDay();
               var order_html = 
                               '<tr>\
-                                <td>'+start_time.getMonth()+'月'+start_time.getDate()+'号 '+day_map[day]+' '+start_time.getHours()+':'+start_time.getMinutes()+'</td>\
+                                <td>'+(start_time.getMonth() + 1)+'月'+start_time.getDate()+'号 '+day_map[day]+' '+start_time.getHours()+':'+start_time.getMinutes()+'</td>\
                                 <td>'+movie_name+'</td>\
                                 <td>'+cinema_name+'</td>\
                                 <td>'+seats_str+'</td>\
