@@ -335,7 +335,21 @@
             });
 
             var cinema_id_map = {};
-			
+            Date.prototype.Format = function (fmt) {
+                var o = {
+                    "M+": this.getMonth() + 1, //月份 
+                    "d+": this.getDate(), //日 
+                    "h+": this.getHours(), //小时 
+                    "m+": this.getMinutes(), //分 
+                    "s+": this.getSeconds(), //秒 
+                    "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+                    "S": this.getMilliseconds() //毫秒 
+                };
+                if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+                for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                return fmt;
+            }
             $.ajax({
               url:"../cinema/cinemaList",
               data:{movieId:movie_id},
@@ -367,7 +381,9 @@
                   var session_list = cinema.sessions;
                   for (var sessionIndex in session_list) {
                     var session = session_list[sessionIndex];
-                    sessions_str += session.start_time.toString();
+                    var start_date = new Date(session.start_time);
+                    sessions_str += start_date.Format("yyyy-MM-dd hh:mm:ss");
+                    
                     if (sessionIndex < session_list.len-1) sessions_str += ' | ';
                   }
                   cinema_html_after_replace = cinema_html.replace('cinema_id', cinema.id).replace('cinema_name', cinema.cinemaName).replace('cinema_address', cinema.address).replace('cinema_sessions', sessions_str)

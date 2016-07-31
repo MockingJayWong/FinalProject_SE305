@@ -43,7 +43,7 @@ public class SessionDAOImpl implements SessionDAO{
 
 	@Override
 	public List<Session> findByCinemaID(int cinemeID) {
-		return jdbcTemplate.query("select * from session where cinemaID = ?",new Object[]{cinemeID} ,new BeanPropertyRowMapper<Session>(Session.class));
+		return jdbcTemplate.query("select * from session where cinemaID = ? and start_time > unix_timestamp(now())*1000",new Object[]{cinemeID} ,new BeanPropertyRowMapper<Session>(Session.class));
 	}
 
 	@Override

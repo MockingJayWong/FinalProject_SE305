@@ -1,6 +1,7 @@
 package com.march.ticketjdbc.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class CinemaService {
 		return cinemaDAO.findById(cinemaId);
 	}
 	
-	public List<Cinema> findCinemasByMovie(int movieId) {
+	/*public List<Cinema> findCinemasByMovie(int movieId) {
 		List<Cinema> cinemas = new ArrayList<Cinema>();
 		Movie movie = movieDAO.findByID(movieId);
 		
@@ -37,6 +38,20 @@ public class CinemaService {
 			String name = movie.getMovieName();
 			for (Session session:sessionDao.findByMovieName(name)) {
 				cinemas.add(cinemaDAO.findById(session.getCinemaID()));
+			}
+		}
+
+		return cinemas;
+	}*/
+	public List<Cinema> findCinemasByMovie(int movieId) {
+		List<Cinema> cinemas = new ArrayList<Cinema>();
+		Movie movie = movieDAO.findByID(movieId);
+		
+		if (movie != null) {
+			String name = movie.getMovieName();
+			for (Session session:sessionDao.findByMovieName(name)) {
+				if (session.getStart_time() > Calendar.getInstance().getTimeInMillis())
+					cinemas.add(cinemaDAO.findById(session.getCinemaID()));
 			}
 		}
 

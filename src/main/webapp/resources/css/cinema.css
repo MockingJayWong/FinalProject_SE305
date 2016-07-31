@@ -202,3 +202,7 @@ button.button.ui {
 .ui.modal.second .content > .btn-container {
   text-align: right;
 }
+
+img.movie-poster {
+  width: 100px;
+}
